@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, Row, Col, Container } from 'react-bootstrap';
-import './footer.scss';
+import { Row, Container } from 'react-bootstrap';
+import './footerDark.scss';
 
 
 const HomePageFooter = [
@@ -40,7 +40,7 @@ export class AppFooter extends Component {
 
     render() {
         return (
-            <footer className='footer-container'>
+            <footer className='footer-dark'>
                 <Container>
                     <Row>
                         {this.renderFooterColumn()}
@@ -55,8 +55,8 @@ const FooterSection = (props) => {
     const { item } = props;
     return (
         <React.Fragment>
-            <h2> {item.title} </h2>
-            {item.content.map((contentElement) => <a key={contentElement.link} > <p> {contentElement.title} </p> </a>)}
+            <h2 className="footer-main-menu"> {item.title} </h2>
+            {item.content.map((contentElement) => <a key={contentElement.link} > <p className="footer-sub-menu" > {contentElement.title} </p> </a>)}
         </React.Fragment>
     )
 }

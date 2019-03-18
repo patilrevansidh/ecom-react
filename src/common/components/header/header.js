@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, Form, Badge, NavDropdown } from 'react-bootstrap';
-import { NAV_CONST, NAV_CONST_ARRAY } from '../../../common/constants/navLink';
+import { Navbar, Nav, Form, Badge } from 'react-bootstrap';
+import {  NAV_CONST_ARRAY } from '../../../common/constants/navLink';
 import { Link } from 'react-router-dom';
 import './headerDark.scss';
 export class AppHeader extends Component {
@@ -32,8 +32,8 @@ const SearchForm = (props) => {
         <Form inline>
             <div className="search-bar">
                 <input className="search_input" type="text" name="" placeholder="Search..." />
-                <a href="#" className="search_icon"><i className="fas fa-search" />
-                </a>
+                <span className="search_icon"><i className="fas fa-search" />
+                </span>
             </div>
         </Form>
     )

@@ -1,0 +1,28 @@
+@import '../../assets//styles/colors.scss';
+
+.footer-dark{
+    height: 344px;
+    background-color: $black;
+    .footer-main-menu{
+        // width: 51px;
+        height: 24px;
+        font-family: 'Montserrat';
+        font-size: 16px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: $white-two;
+    }
+    .footer-sub-menu{
+        font-family: OpenSans;
+        font-size: 16px;
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: 0.7px;
+        color: $white-two;
+    }
+}
