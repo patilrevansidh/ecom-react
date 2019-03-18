@@ -1,42 +1,45 @@
 @import './colors.scss';
 
-.Text-Style {
-    font-family: PlayfairDisplay;
-    font-size: 24px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: 1px;
+$sunflower-yellow: #ffd201;
+$brownish-grey: #6c6c6c;
+$vivid-purple: #9013fe;
+$aquamarine: #00d3ca;
+$white: #f7f7f7;
+$red-pink: #f62f5e;
+$sky-blue: #6eb2fb;
+$macaroni-and-cheese: #f1ad3d;
+$white-two: #ffffff;
+$greyish: #b4b4b4;
+$black: #2e2e2e;
+$light-greyish:#F7F7F7;
+/* Text styles */
+@mixin Text-Style {
+  font-family: PlayfairDisplay;
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 2px;
 }
-.Text-Style-2 {
-    font-family: Montserrat;
-    font-size: 12px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    text-align: center;
-    color: $blue;
+@mixin Text-Style-2 {
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  text-align: center;
+  color: $red-pink;
 }
-  .Text-Style-3 {
-    font-family: Montserrat;
-    font-size: 7.5px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 2.4;
-    letter-spacing: normal;
-    color: #2e2e2e;
+@mixin Text-Style-3 {
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 2.4;
+  color: $black;
 }
-.Text-Style-4 {
-    font-family: Montserrat;
-    font-size: 7.5px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 2.4;
-    letter-spacing: normal;
-    color: $blue;
+@mixin Text-Style-4 {
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 2.4;
+  color: $red-pink;
 }

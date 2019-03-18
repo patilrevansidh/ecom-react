@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Navbar, Nav, Form, Badge } from 'react-bootstrap';
 import {  NAV_CONST_ARRAY } from '../../../common/constants/navLink';
 import { Link } from 'react-router-dom';
-import './headerDark.scss';
+import './header.scss';
 export class AppHeader extends Component {
     render() {
         return (
             <header>
-                <Navbar fixed expand="lg" className="bg-dark" >
+                <Navbar fixed expand="lg" className="shopmate-bg-light" >
                     <Navbar.Brand className="brand" href="/">Brand</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">

@@ -1,49 +1,141 @@
-@import '../../assets//styles//colors.scss';
+// @import '../../assets/styles/colors.scss';
+@import '../../assets/styles/textCatalog.scss';
 
-.bg {  
-    background-color: $blue;
-}
-.searchbar{
-  margin-bottom: auto;
-  margin-top: auto;
-  height: 50px;
-  background-color: $white-two;
-  border-color: $brownish-grey;
-  border-radius: 25px;
-  padding: 8px;
-}
-.header-menu-white{
-  color: $white-two !important;
-}
-.search_input{
-  color: $brownish-grey;
-  border: 0;
-  outline: 0;
-  background: $white-two;
-  border: 1px;
-  line-height: 35px;
-  border-radius: 18px;
-  padding: 0 10px;
-  width: 250px;
-}
-
-.search-card-badge{
-  display: flex;
-  align-items: center;
-}
-
-.card-badge{
+@mixin  nav-bar-brand-menu {
+  width: 192px;
+  height: 24px;
+  font-family: 'Montserrat';
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 6px;
   color: $blue;
-  font-size: 12px
 }
 
-.search_icon{
-  height: 40px;
-  width: 40px;
-  float: right;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  color:$brownish-grey;
+.bg-dark{    
+    background-color: $black;
+    .brand{
+        width: 192px;
+        height: 24px;
+        font-family: 'Montserrat';
+        font-size: 24px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1;
+        letter-spacing: 6px;
+        color: $white-two;
+    }   
+    .navbar-nav .nav-menu-item{       
+        font-family: 'Montserrat';
+        font-size: 15px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 2.4;
+        letter-spacing: normal;
+        color: $white-two;
+    }   
+    .header-menu-white{
+        color: $white-two !important;
+    }    
+      
+    .search-card-badge{
+        display: flex;
+        align-items: center;
+        .form-inline{
+          height: 36px;
+          height: 36px;
+          background-color: $white-two;
+          border-radius: 18px;
+          .search-bar{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .search_icon{
+            height: 40px;
+            width: 40px;     
+            float: right;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color:$brownish-grey;
+          }    
+        .search_input{
+            color: $brownish-grey;
+            border: 0;
+            outline: 0;
+            background: $white-two;
+            border: 1px;
+            line-height: 35px;
+            border-radius: 18px;
+            padding: 0 10px;
+            width: 250px;
+          }
+        }
+        .shoping-cart-icon{
+          color: $white-two;
+          margin-left: 10px; 
+        }
+        .card-badge{
+            color: $white-two;
+            font-size: 12px
+        }      
+    }   
+}
+
+.shopmate-bg-light{    
+  background-color: $white-two;
+  .brand{
+    @include nav-bar-brand-menu
+  }   
+  .brand:hover{
+    @include nav-bar-brand-menu
+  }
+  .navbar-nav .nav-menu-item{          
+      @include Text-Style-3;
+  }     
+  .search-card-badge{
+      display: flex;
+      align-items: center;
+
+      .form-inline{        
+        .search-bar{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 18px;
+          border: solid 1px #e1e1e1;
+          height: 36px;
+        }
+        .search_icon{
+          width: 40px;     
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color:$brownish-grey;
+        }    
+      .search_input{
+          color: $brownish-grey;
+          border: 0;
+          outline: 0;        
+          line-height: 30px;
+          border-radius: 18px;
+          padding: 0 10px;
+          width: 250px;
+        }
+      }
+      .shoping-cart-icon{
+        color: $black;
+        margin-left: 10px; 
+      }
+      .card-badge{
+          color: $blue;
+          font-size: 12px
+      }      
+  }   
 }

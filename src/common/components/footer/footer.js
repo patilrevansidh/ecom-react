@@ -1,30 +1,29 @@
 import React, { Component } from 'react';
 import { Row, Container } from 'react-bootstrap';
-import './footerDark.scss';
+import './footer.scss';
 
 
 const HomePageFooter = [
     {
-        title: 'Question ?', content: [
-            { title: 'Order', link: '1' },
-            { title: 'Returns', link: '2' },
-            { title: 'Track Order', link: '3' },
-            { title: 'Refund', link: '4' },
+        title: 'QUESTIONS ?', content: [
+            { title: 'Help', link: '1' },
+            { title: 'Track Order', link: '2' },
+            { title: 'Return', link: '3' },
         ]
     },
     {
-        title: 'What`s in store ?', content: [
+        title: `WHAT'S IN STORE`, content: [
             { title: 'Women', link: '5' },
             { title: 'Men', link: '6' },
-            { title: 'Kids', link: '7' },
-            { title: 'Brands', link: '8' },
+            { title: 'A-Z Products', link: '7' },
+            { title: 'Buy Gift Vouchers', link: '8' },
         ]
     },
     {
-        title: 'Follow ?', content: [
+        title: 'FOLLOW US', content: [
             { title: 'Facebook', link: '9' },
-            { title: 'Instagram', link: '10' },
             { title: 'Twitter', link: '11' },
+            { title: 'YouTube', link: '10' },
         ]
     }
 ]
@@ -40,7 +39,7 @@ export class AppFooter extends Component {
 
     render() {
         return (
-            <footer className='footer-dark'>
+            <footer className='footer-light'>
                 <Container>
                     <Row>
                         {this.renderFooterColumn()}

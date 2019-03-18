@@ -4,6 +4,7 @@ import { Dashboard, Home, FacebookLogin } from '../modules/moduleImports';
 import { AppFooter, AppHeader } from '../common/components/importer';
 import { Container } from 'react-bootstrap';
 import { withList } from "../common/components/hoc/withList";
+import '../common/assets/styles/theme.scss'
 
 
 
@@ -26,14 +27,16 @@ const ComponentWithHeader = ({ component: Component, ...rest }) => {
 export default class Routes extends React.Component {
     render() {
         return (
-            <Router basename="/" >
-                <Switch>
-                    <ComponentWithHeader exact path="/" component={FacebookLogin} />
-                    <Route exact path="/dashboard" component={Dashboard} />
-                    <Route exact path="/a" component={withList(SampleA, [1, 2, 3, 4,])} />
-                    <Route exact path="/b" component={withList(SampleB, [1, 2, 3, 4,])} />
-                </Switch>
-            </Router>
+            <div className="theme-light" >
+                <Router basename="/" >
+                    <Switch>
+                        <ComponentWithHeader exact path="/" component={FacebookLogin} />
+                        <Route exact path="/dashboard" component={Dashboard} />
+                        <Route exact path="/a" component={withList(SampleA, [1, 2, 3, 4,])} />
+                        <Route exact path="/b" component={withList(SampleB, [1, 2, 3, 4,])} />
+                    </Switch>
+                </Router>
+            </div>
         )
     }
 }
