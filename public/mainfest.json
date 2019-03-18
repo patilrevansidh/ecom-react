@@ -1,0 +1,32 @@
+{
+    "short_name": "ECom",
+    "name": "Shop Here with ECom",
+    "icons": [
+        {"src": "./assets/launcher-icon-194x194.png", "sizes": "194x194 512x512", "type": "image/png"},
+        {"src": "./assets/launcher-icon-144x144.png", "sizes": "144x144", "type": "image/png"},
+        {
+            "src": "assets/launcher-icon-1x.png",
+            "type": "image/png",
+            "sizes": "48x48"
+          },
+          {
+            "src": "assets/launcher-icon-2x.png",
+            "type": "image/png",
+            "sizes": "96x96"
+          },
+          {
+            "src": "assets/launcher-icon-3x.png",
+            "type": "image/png",
+            "sizes": "144x144"
+          },
+          {
+            "src": "assets/launcher-icon-4x.png",
+            "type": "image/png",
+            "sizes": "192x192"
+          }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#1976d2",
+    "start_url": "/?utm_source=launcher"
+}

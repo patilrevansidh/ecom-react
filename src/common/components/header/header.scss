@@ -1,0 +1,49 @@
+@import '../../assets//styles//colors.scss';
+
+.bg {  
+    background-color: $blue;
+}
+.searchbar{
+  margin-bottom: auto;
+  margin-top: auto;
+  height: 50px;
+  background-color: $white-two;
+  border-color: $brownish-grey;
+  border-radius: 25px;
+  padding: 8px;
+}
+.header-menu-white{
+  color: $white-two !important;
+}
+.search_input{
+  color: $brownish-grey;
+  border: 0;
+  outline: 0;
+  background: $white-two;
+  border: 1px;
+  line-height: 35px;
+  border-radius: 18px;
+  padding: 0 10px;
+  width: 250px;
+}
+
+.search-card-badge{
+  display: flex;
+  align-items: center;
+}
+
+.card-badge{
+  color: $blue;
+  font-size: 12px
+}
+
+.search_icon{
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color:$brownish-grey;
+}

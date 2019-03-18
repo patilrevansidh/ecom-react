@@ -1,0 +1,42 @@
+@import './colors.scss';
+
+.Text-Style {
+    font-family: PlayfairDisplay;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: 1px;
+}
+.Text-Style-2 {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    text-align: center;
+    color: $blue;
+}
+  .Text-Style-3 {
+    font-family: Montserrat;
+    font-size: 7.5px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.4;
+    letter-spacing: normal;
+    color: #2e2e2e;
+}
+.Text-Style-4 {
+    font-family: Montserrat;
+    font-size: 7.5px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.4;
+    letter-spacing: normal;
+    color: $blue;
+}
