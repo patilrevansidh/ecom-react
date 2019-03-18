@@ -4,6 +4,7 @@ import { Modal, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { handleAuthModal } from '../../common/actions/authAction';
 import { SignInForm, SignUpForm } from './AuthForms';
+import './auth.scss'
 
 class AuthModal extends EcomPureComponent {
     state = this.getInitialState();
@@ -32,21 +33,23 @@ class AuthModal extends EcomPureComponent {
 
     render() {
         return (
-            < Modal.Dialog >
-                <Modal.Header onHide={this.handleClose} closeButton>
-                    <Modal.Title>{this.props.profile.isSignInForm && "Sign In" || "Sign Up"}</Modal.Title>
+            <div className="auth-container">
+                < Modal.Dialog >
+                    <Modal.Header onHide={this.handleClose} closeButton>
+                        <Modal.Title>{this.props.profile.isSignInForm && "Sign In" || "Sign Up"}</Modal.Title>
+                    </Modal.Header>
                     <Modal.Body>
                         {this.props.profile.isSignInForm
-                            && <Form>
+                            && <Form >
                                 <SignInForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
                             </Form>
                             || <Form>
-                                <SignUpForm handleChange={this.handleChange} />
+                                <SignUpForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
                             </Form>
                         }
                     </Modal.Body>
-                </Modal.Header>
-            </Modal.Dialog >
+                </Modal.Dialog >
+            </div>
         );
     }
 }
