@@ -6,7 +6,9 @@ import { handleAuthModal } from '../../actions/authAction';
 class AuthMenuHeader extends EcomPureComponent {
 
     handleAuthClick = (e) => {
-        this.props.handleAuthModal(true)
+        const showAuthModal = true;
+        const isSignInForm = e.target.id === 'sign'
+        this.props.handleAuthModal({ isSignInForm, showAuthModal })
     }
 
     render() {
@@ -19,7 +21,7 @@ class AuthMenuHeader extends EcomPureComponent {
 
 function mapDispatchToProps(dispatchEvent) {
     return {
-        handleAuthModal: (flag) => { dispatchEvent(handleAuthModal(flag)) }
+        handleAuthModal: (payload) => { dispatchEvent(handleAuthModal(payload)) }
     }
 }
 
