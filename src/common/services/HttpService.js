@@ -1,7 +1,7 @@
 import axios from 'axios';
-
+import { URLS } from '../constants/stringConstants';
 const axiosInstance = axios.create({
-    baseURL: 'https://backendapi.turing.com/',
+    baseURL: URLS.API_BASE_URL,
     headers: {
         'Content-Type': 'application/json',
         'user-key': localStorage.getItem('accessToken'),
