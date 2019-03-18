@@ -1,5 +1,6 @@
 import Dashboard from './dashboard/dashboard';
 import Home from './home/home';
 import FacebookLogin from './auth/testLogin';
+import AuthModal from './auth/AuthModal';
 
-export { Dashboard, Home, FacebookLogin }
+export { Dashboard, Home, FacebookLogin, AuthModal }

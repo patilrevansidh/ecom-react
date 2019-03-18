@@ -3,13 +3,13 @@ import { Navbar, Nav, Form, Badge } from 'react-bootstrap';
 import { NAV_CONST_ARRAY } from '../../../common/constants/navLink';
 import { Link } from 'react-router-dom';
 import { EcomPureComponent } from '../EcomPureComponent';
-import Authmenuheader from './authmenuheader';
+import AuthMenuHeader from './AuthMenuHeader';
 import './header.scss';
 export class AppHeader extends EcomPureComponent {
     render() {
         return (
             <header>
-                {this.props.showAuthMenu && <Authmenuheader/>}
+                {this.props.showAuthMenu && <AuthMenuHeader/>}
                 <Navbar fixed expand="lg" className="shopmate-bg-light" >
                     <Navbar.Brand className="brand" href="/">Brand</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

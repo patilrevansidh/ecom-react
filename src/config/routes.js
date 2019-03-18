@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Dashboard, FacebookLogin } from '../modules/moduleImports';
+import { Dashboard, FacebookLogin, AuthModal } from '../modules/moduleImports';
 import { AppFooter, AppHeader } from '../common/components/importer';
 import { EcomPureComponent } from '../common/components/EcomPureComponent';
 import { connect } from 'react-redux'
@@ -9,7 +9,7 @@ import '../common/assets/styles/theme.scss';
 
 
 
-const ComponentWithHeader = ({ showAuthMenu, component: Component, ...rest }) => {
+const ComponentWithHeader = ({ showAuthModal, showAuthMenu, component: Component, ...rest }) => {
     return (
         <Route
             {...rest}
@@ -18,6 +18,7 @@ const ComponentWithHeader = ({ showAuthMenu, component: Component, ...rest }) =>
                     <AppHeader showAuthMenu />
                     <main style={{ height: '80vh' }} className="container">
                         <Component {...props} />
+                        {showAuthModal && <AuthModal />}
                     </main>
                     <AppFooter />
                 </React.Fragment>
@@ -31,8 +32,7 @@ class Routes extends EcomPureComponent {
             <div className="theme-light" >
                 <Router basename="/" >
                     <Switch>
-                        {this.props.profile.showAuthModal && <div>Auth Clicked</div>}
-                        <ComponentWithHeader showAuthMenu exact path="/" component={FacebookLogin} />
+                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} showAuthMenu exact path="/" component={FacebookLogin} />
                         <Route exact path="/dashboard" component={Dashboard} />
                         <Route exact path="/a" component={withList(SampleA, [1, 2, 3, 4,])} />
                         <Route exact path="/b" component={withList(SampleB, [1, 2, 3, 4,])} />
