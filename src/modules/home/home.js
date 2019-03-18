@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HTTPService } from '../../common/services/HttpService';
+import { getAttributes, getCategories, getDepartments, getProducts } from '../../common/actions/productAction';
 
 class Home extends Component {
 
     componentWillMount() {
-        HTTPService.get('departments')
-            .then(response => console.log('Response', response))
-            .catch(err => console.log('Error', err))
+        this.initializeRedux()
+    }
+
+    initializeRedux() {
+        this.props.fetchAttributes();
+        this.props.fetchCategogies();
+        this.props.fetchDepartments();
+        this.props.fetchProducts();
     }
 
     render() {
         return (
             <div>
-                Home {this.props.tempReducer.isWorking}
+                Home
+                 {/* {this.props.tempReducer.isWorking} */}
             </div>
         );
     }
@@ -25,4 +31,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Home);
+function mapDispatchToProps(dispatchEvent) {
+    return {
+        fetchProducts: () => { dispatchEvent(getProducts()) },
+        fetchCategogies: () => { dispatchEvent(getCategories()) },
+        fetchAttributes: () => { dispatchEvent(getAttributes()) },
+        fetchDepartments: () => { dispatchEvent(getDepartments()) }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Home);

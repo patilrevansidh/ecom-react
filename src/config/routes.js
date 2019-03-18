@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Dashboard, FacebookLogin, AuthModal } from '../modules/moduleImports';
+import { Dashboard, Home, AuthModal } from '../modules/moduleImports';
 import { AppFooter, AppHeader } from '../common/components/importer';
 import { EcomPureComponent } from '../common/components/EcomPureComponent';
 import { connect } from 'react-redux'
@@ -32,7 +32,7 @@ class Routes extends EcomPureComponent {
             <div className="theme-light" >
                 <Router basename="/" >
                     <Switch>
-                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} showAuthMenu exact path="/" component={FacebookLogin} />
+                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} showAuthMenu exact path="/" component={Home} />
                         <Route exact path="/dashboard" component={Dashboard} />
                         <Route exact path="/a" component={withList(SampleA, [1, 2, 3, 4,])} />
                         <Route exact path="/b" component={withList(SampleB, [1, 2, 3, 4,])} />
