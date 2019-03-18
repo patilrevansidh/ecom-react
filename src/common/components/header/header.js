@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Form, Badge } from 'react-bootstrap';
-import {  NAV_CONST_ARRAY } from '../../../common/constants/navLink';
+import { NAV_CONST_ARRAY } from '../../../common/constants/navLink';
 import { Link } from 'react-router-dom';
 import './header.scss';
-export class AppHeader extends Component {
+import { EcomPureComponent } from '../EcomPureComponent';
+export class AppHeader extends EcomPureComponent {
     render() {
         return (
             <header>
+                {this.props.showAuthMenu && <div>  show top auth menu</div>}
                 <Navbar fixed expand="lg" className="shopmate-bg-light" >
                     <Navbar.Brand className="brand" href="/">Brand</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -27,14 +29,16 @@ export class AppHeader extends Component {
     }
 }
 
-const SearchForm = (props) => {
-    return (
-        <Form inline>
-            <div className="search-bar">
-                <input className="search_input" type="text" name="" placeholder="Search..." />
-                <span className="search_icon"><i className="fas fa-search" />
-                </span>
-            </div>
-        </Form>
-    )
+class SearchForm extends EcomPureComponent {
+    render() {
+        return (
+            <Form inline>
+                <div className="search-bar">
+                    <input className="search_input" type="text" name="" placeholder="Search..." />
+                    <span className="search_icon"><i className="fas fa-search" />
+                    </span>
+                </div>
+            </Form>
+        )
+    }
 }

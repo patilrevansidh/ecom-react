@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Container } from 'react-bootstrap';
 import './footer.scss';
+import { EcomPureComponent } from '../EcomPureComponent';
 
 
 const HomePageFooter = [
@@ -27,7 +28,7 @@ const HomePageFooter = [
         ]
     }
 ]
-export class AppFooter extends Component {
+export class AppFooter extends EcomPureComponent {
 
     renderFooterColumn = () => {
         return HomePageFooter.map((item) =>
