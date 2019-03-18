@@ -1,5 +1,5 @@
-import { HTTPService } from '../services/HttpService';
-import { URLS } from '../constants/stringConstants';
+import { HTTPService } from '../HttpService';
+import { URLS } from '../../constants/stringConstants';
 
 export function updateCustomer(payload) {
     return HTTPService.put('customer', payload)
