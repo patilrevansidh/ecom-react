@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Navbar, Nav, Form, Badge } from 'react-bootstrap';
 import { NAV_CONST_ARRAY } from '../../../common/constants/navLink';
 import { Link } from 'react-router-dom';
-import './header.scss';
 import { EcomPureComponent } from '../EcomPureComponent';
+import Authmenuheader from './authmenuheader';
+import './header.scss';
 export class AppHeader extends EcomPureComponent {
     render() {
         return (
             <header>
-                {this.props.showAuthMenu && <div>  show top auth menu</div>}
+                {this.props.showAuthMenu && <Authmenuheader/>}
                 <Navbar fixed expand="lg" className="shopmate-bg-light" >
                     <Navbar.Brand className="brand" href="/">Brand</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

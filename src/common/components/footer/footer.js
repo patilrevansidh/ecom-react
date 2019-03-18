@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Row, Container } from 'react-bootstrap';
 import './footer.scss';
 import { EcomPureComponent } from '../EcomPureComponent';

@@ -139,3 +139,23 @@
       }      
   }   
 }
+
+.bg-auth-header{
+  display: flex;
+  .highlight-header{
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: bold;   
+    color: $red-pink;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+  }
+  .sub-header{    
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: bold;
+    color: $black;
+  }
+
+}

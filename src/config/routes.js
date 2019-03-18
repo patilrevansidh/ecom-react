@@ -14,7 +14,7 @@ const ComponentWithHeader = ({ showAuthMenu, component: Component, ...rest }) =>
             {...rest}
             render={props =>
                 <React.Fragment>
-                    <AppHeader />
+                    <AppHeader showAuthMenu />
                     <main style={{ height: '80vh' }} className="container">
                         <Component {...props} />
                     </main>
