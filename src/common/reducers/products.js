@@ -3,7 +3,7 @@ import { PRODUCTS } from '../../common/constants/actionString';
 const initialState = {
     count: 0,
     products: [],
-    isLoading: false
+    isLoading: true
 }
 
 export const products = (state = initialState, action) => {

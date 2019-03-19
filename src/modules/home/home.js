@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getAttributes, getCategories, getDepartments, getProducts } from '../../common/actions/productAction';
 import { ProductCard } from '../Products/ProductCard/ProductCard';
 import { Row } from 'react-bootstrap';
+import ProductList from '../Products/List/ProductList';
 
 class Home extends Component {
 
@@ -20,7 +21,7 @@ class Home extends Component {
     render() {
         return (
             <Row>
-                {this.props.products.map(item => <ProductCard item={item} />)}
+                <ProductList />
             </Row>
 
         );
