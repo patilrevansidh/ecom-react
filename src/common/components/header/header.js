@@ -1,12 +1,11 @@
 import React from 'react';
-import { Navbar, Nav, Form, Badge } from 'react-bootstrap';
-import { NAV_CONST_ARRAY } from '../../../common/constants/navLink';
+import { Navbar, Nav, Form, Badge, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { EcomPureComponent } from '../EcomPureComponent';
 import AuthMenuHeader from './AuthMenuHeader';
 import './header.scss';
 import { connect } from 'react-redux';
-class AppHeaderComponent extends EcomPureComponent {    
+class AppHeaderComponent extends EcomPureComponent {
     render() {
         return (
             <header>
@@ -16,7 +15,21 @@ class AppHeaderComponent extends EcomPureComponent {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            {Array.isArray(this.props.departments) && this.props.departments.map(link => <a id={link.department_id} key={link.department_id} className="nav-link nav-menu-item" >{link.name}</a>)}
+                            {
+                                this.props.departments.map(link =>
+                                    <NavDropdown title={link.name} id={link.department_id} className="nav-menu-item">
+                                        {
+                                            link.categories.map(cat => {
+                                                return <React.Fragment key={cat.category_id} >
+                                                    <a className="nav-link" href={`${link.name}&${cat.name}`}>{cat.name}</a>
+
+                                                </React.Fragment>
+                                            })
+                                        }
+                                    </NavDropdown>
+                                    // <a onMouseOver={} id={link.department_id} key={link.department_id} className="nav-link nav-menu-item" >{link.name}</a>
+                                )
+                            }
                         </Nav>
                         <div className="search-card-badge">
                             <SearchForm />
