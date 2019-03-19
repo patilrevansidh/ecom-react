@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAttributes, getCategories, getDepartments, getProducts } from '../../common/actions/productAction';
+import { ProductCard } from '../Products/ProductCard/ProductCard';
+import { Row } from 'react-bootstrap';
 
 class Home extends Component {
 
@@ -17,17 +19,18 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
-                Home
-                 {/* {this.props.tempReducer.isWorking} */}
-            </div>
+            <Row>
+                {this.props.products.map(item => <ProductCard item={item} />)}
+            </Row>
+
         );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        tempReducer: state.tempReducer
+        products: state.products.products,
+        isLoadingProducts: state.products,
     }
 }
 
@@ -40,4 +43,4 @@ function mapDispatchToProps(dispatchEvent) {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

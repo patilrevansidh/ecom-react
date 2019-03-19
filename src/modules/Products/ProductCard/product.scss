@@ -21,6 +21,18 @@
         height: 165px;
         margin-top: 20px
     }
+    .dummy-image{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 151.5px;
+        height: 165px;
+        margin-top: 20px;
+        .fas.fa-images{
+            font-size: 90px;
+            align-self: center;
+        }
+    }
     .product-title{
         width: 220px;
         height: 24px;
@@ -46,5 +58,33 @@
         letter-spacing: normal;
         text-align: center;
         color: $red-pink;
+    }
+    .dummy-product-price{
+        width: 220px;
+        height: 24px;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: center;
+        background-color: $red-pink;
+        width: 150px
+    }
+    .dummy-product-title{
+        width: 220px;
+        height: 24px;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: center;
+        background-color: $black;
+        width: 120px
     }
 }
