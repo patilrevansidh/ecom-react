@@ -29,6 +29,7 @@
         width: 120px;
         height: 111px;
         margin-top: 20px;
+        opacity: 0.2;
         .fas.fa-images{
             font-size: 90px;
             align-self: center;
@@ -73,7 +74,8 @@
         letter-spacing: normal;
         text-align: center;
         background-color: $red-pink;
-        width: 150px
+        width: 150px;
+        opacity: 0.2;
     }
     .dummy-product-title{
         width: 220px;
@@ -87,6 +89,7 @@
         letter-spacing: normal;
         text-align: center;
         background-color: $black;
-        width: 120px
+        width: 120px;
+        opacity: 0.2;
     }
 }
