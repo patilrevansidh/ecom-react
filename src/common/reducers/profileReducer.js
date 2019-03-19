@@ -2,7 +2,9 @@ import { PROFILE_ACTION } from '../../common/constants/actionString';
 
 const initialState = {
     showAuthModal: false,
-    isSignInForm: true
+    isSignInForm: true,
+    isLoggedIn: false,
+    cart: []
 }
 
 export const profile = (state = initialState, action) => {

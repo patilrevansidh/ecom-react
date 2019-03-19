@@ -6,7 +6,8 @@ import { EcomPureComponent } from '../common/components/EcomPureComponent';
 import { connect } from 'react-redux'
 import { withList } from "../common/components/hoc/withList";
 import '../common/assets/styles/theme.scss';
-import { getAttributes, getCategories, getDepartments, getProducts } from '../common/actions/productAction';
+import { getProducts } from '../common/actions/productAction';
+import { getAttributes, getCategories, getDepartments } from '../common/actions/landingAction';
 
 
 const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) => {

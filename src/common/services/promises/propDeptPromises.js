@@ -21,20 +21,6 @@ export class Categories {
     }
 }
 
-export class Products {
-    static fecth() {
-        return HTTPService.get(URLS.API_URL_PATH.PRODUCTS)
-    }
-
-    static fetchDetails(id) {
-        return HTTPService.get(URLS.API_URL_PATH.PRODUCTS + id)
-    }
-
-    static reviewProduct(id, payload) {
-        return HTTPService.put(URLS.API_URL_PATH.PRODUCTS + id, payload)
-    }
-}
-
 export class Departments {
     static fecth() {
         const url = "departments/"
