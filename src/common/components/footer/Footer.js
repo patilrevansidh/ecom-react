@@ -56,7 +56,7 @@ const FooterSection = (props) => {
     return (
         <React.Fragment>
             <h2 className="footer-main-menu"> {item.title} </h2>
-            {item.content.map((contentElement) => <a key={contentElement.link} > <p className="footer-sub-menu" > {contentElement.title} </p> </a>)}
+            {item.content.map((contentElement) => <p key={contentElement.link} > <p className="footer-sub-menu" > {contentElement.title} </p> </p>)}
         </React.Fragment>
     )
 }

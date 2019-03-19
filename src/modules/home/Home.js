@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAttributes, getCategories, getDepartments, getProducts } from '../../common/actions/productAction';
 import { Row } from 'react-bootstrap';
 import ProductList from '../Products/List/ProductList';
 
 class Home extends Component {
     render() {
-        console.log("this.props", this.props)
         return (
             <Row>
                 <ProductList history={this.props.history} data={this.props.products} isLoading={this.props.isLoading} />

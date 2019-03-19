@@ -1,5 +1,5 @@
-import { ATTRIBUTES_CATEGORIES_PRODUCT_ACTION, PRODUCTS } from '../constants/actionString';
-import { Attributes, Departments, Categories, Products } from '../services/promises/propDeptPromises';
+import { ATTRIBUTES_CATEGORIES_PRODUCT_ACTION } from '../constants/actionString';
+import { Attributes, Departments, Categories } from '../services/promises/propDeptPromises';
 
 export function getAttributes() {
     return async (dispatchEvent) => {

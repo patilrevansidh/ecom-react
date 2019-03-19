@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navbar, Nav, Form, Badge, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { EcomPureComponent } from '../EcomPureComponent';
 import AuthMenuHeader from './AuthMenuHeader';
 import './header.scss';
@@ -17,7 +16,7 @@ class AppHeaderComponent extends EcomPureComponent {
                         <Nav className="mr-auto">
                             {
                                 this.props.departments.map(link =>
-                                    <NavDropdown title={link.name} id={link.department_id} className="nav-menu-item">
+                                    <NavDropdown title={link.name} key={link.department_id} id={link.department_id} className="nav-menu-item">
                                         {
                                             link.categories.map(cat => {
                                                 return <React.Fragment key={cat.category_id} >
