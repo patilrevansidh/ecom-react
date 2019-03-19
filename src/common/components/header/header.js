@@ -6,7 +6,7 @@ import { EcomPureComponent } from '../EcomPureComponent';
 import AuthMenuHeader from './AuthMenuHeader';
 import './header.scss';
 import { connect } from 'react-redux';
-class AppHeaderComponent extends EcomPureComponent {
+class AppHeaderComponent extends EcomPureComponent {    
     render() {
         return (
             <header>

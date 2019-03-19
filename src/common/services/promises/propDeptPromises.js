@@ -1,8 +1,6 @@
 import { HTTPService } from '../HttpService';
 import { URLS } from '../../constants/stringConstants';
 
-
-
 export class Attributes {
     static fecth() {
         return HTTPService.get(URLS.API_URL_PATH.ATTRIBUTES)
@@ -39,10 +37,34 @@ export class Products {
 
 export class Departments {
     static fecth() {
-        return HTTPService.get(URLS.API_URL_PATH.DEPARTMENTS)
+        const url = "departments/"
+        return HTTPService.get(url)
     }
     static fetchDetails(id) {
-        return HTTPService.get(URLS.API_URL_PATH.DEPARTMENTS + id)
+        const url = "departments/" + id;
+        return HTTPService.get(url)
+    }
+
+    static fetchDepartmentCategories(departments = []) {
+        const categories = []
+        departments.forEach(async (dept) => {
+            const url = '/categories/inDepartment/' + dept.department_id
+            categories.push(HTTPService.get(url))
+        });
+        return new Promise(async (resolve, reject) => {
+            try {
+                let response = await Promise.all(categories)
+                const allCatgories = [];
+                response.forEach(item => {
+                    item.forEach(i => allCatgories.push(i))
+                });
+                resolve(
+                    departments.map(dept => { return { ...dept, categories: allCatgories.filter(cat => cat.department_id === dept.department_id) } })
+                )
+            } catch (error) {
+                reject(error)
+            }
+        })
     }
 }
 
