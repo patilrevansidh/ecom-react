@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Dashboard, Home, AuthModal } from '../modules/moduleImports';
+import { Home, AuthModal, ProductDetailContainer } from '../modules/moduleImports';
 import { AppFooter, AppHeader } from '../common/components/importer';
 import { EcomPureComponent } from '../common/components/EcomPureComponent';
 import { connect } from 'react-redux'
 import { withList } from "../common/components/hoc/withList";
 import '../common/assets/styles/theme.scss';
-
+import { getAttributes, getCategories, getDepartments, getProducts } from '../common/actions/productAction';
 
 
 const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) => {
@@ -27,13 +27,24 @@ const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) =
     )
 }
 class Routes extends EcomPureComponent {
+    componentWillMount() {
+        this.initializeRedux()
+    }
+
+    initializeRedux() {
+        this.props.fetchDepartments();
+        this.props.fetchCategogies();
+        this.props.fetchAttributes();
+        this.props.fetchProducts();
+    }
+
     render() {
         return (
             <div className="theme-light" >
                 <Router basename="/" >
                     <Switch>
                         <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} showAuthMenu exact path="/" component={Home} />
-                        <Route exact path="/dashboard" component={Dashboard} />
+                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} path="/shopmate-product/" component={ProductDetailContainer} />
                         <Route exact path="/a" component={withList(SampleA, [1, 2, 3, 4,])} />
                         <Route exact path="/b" component={withList(SampleB, [1, 2, 3, 4,])} />
                     </Switch>
@@ -49,7 +60,16 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Routes)
+function mapDispatchToProps(dispatchEvent) {
+    return {
+        fetchProducts: () => { dispatchEvent(getProducts()) },
+        fetchCategogies: () => { dispatchEvent(getCategories()) },
+        fetchAttributes: () => { dispatchEvent(getAttributes()) },
+        fetchDepartments: () => { dispatchEvent(getDepartments()) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Routes)
 
 
 const SampleA = (props) => <p> Card A {props.data}</p>

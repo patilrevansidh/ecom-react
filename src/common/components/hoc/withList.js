@@ -6,7 +6,7 @@ export function withList(WrappedComponent, OtherComponent) {
             return (
                 <React.Fragment>
                     {this.props.isLoading && [1, 2, 4, 5, 6, 6, 7, 8].map((item) => <OtherComponent item={item} />)}
-                    {this.props.data.map((item) => <WrappedComponent item={item} />)}
+                    {this.props.data.map((item) => <WrappedComponent item={item} history={this.props.history} />)}
                 </React.Fragment>
             )
         }

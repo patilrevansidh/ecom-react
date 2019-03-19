@@ -6,7 +6,12 @@ import './product.scss';
 export class ProductCard extends Component {
 
     handleDetailsView = () => {
-        console.log("view Product", this.props.item)
+        const { item } = this.props;
+        this.props.history.push({
+            pathname: '/shopmate-product/'+item.name,
+            state: { ...item}
+        })
+        console.log("this.props",this.props)
     }
 
     handleImageLoading = (flag) => {
@@ -18,10 +23,10 @@ export class ProductCard extends Component {
         const imageUrl = `${URLS.IMAGE_BASE_URL}/products/${item.thumbnail}`;
         return (
             <Col sm={{ span: 10, offset: 2 }} md={{ span: 3, offset: 0 }}>
-                <div className="shopmante-card-container mb-3" onClick={this.handleDetailsView} >
-                    <img alt={'shopmate' + item.name} className="product-image" variant="top" src={imageUrl} />
+                <div className="shopmante-card-container mb-3"  >
+                    <img onClick={this.handleDetailsView} alt={'shopmate' + item.name} className="product-image" variant="top" src={imageUrl} />
                     <Card.Body>
-                        <Card.Title className="product-title" > {item.name}</Card.Title>
+                        <Card.Title onClick={this.handleDetailsView} className="product-title" > {item.name}</Card.Title>
                         <Card.Title className="product-price">
                             {item.price}
                         </Card.Title>

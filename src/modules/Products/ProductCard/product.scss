@@ -19,7 +19,8 @@
     .product-image{
         width: 151.5px;
         height: 165px;
-        margin-top: 20px
+        margin-top: 20px;
+        cursor: pointer;
     }
     .dummy-image{
         display: flex;
@@ -45,6 +46,7 @@
         letter-spacing: normal;
         text-align: center;
         color: $black;
+        cursor: pointer;
     }
     .product-price{
         width: 220px;

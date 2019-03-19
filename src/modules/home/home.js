@@ -5,22 +5,11 @@ import { Row } from 'react-bootstrap';
 import ProductList from '../Products/List/ProductList';
 
 class Home extends Component {
-
-    componentWillMount() {
-        this.initializeRedux()
-    }
-
-    initializeRedux() {
-        this.props.fetchDepartments();
-        this.props.fetchCategogies();
-        this.props.fetchAttributes();
-        this.props.fetchProducts();
-    }
-
     render() {
+        console.log("this.props", this.props)
         return (
             <Row>
-                <ProductList data={this.props.products} isLoading={this.props.isLoading} />
+                <ProductList history={this.props.history} data={this.props.products} isLoading={this.props.isLoading} />
             </Row>
 
         );
@@ -34,13 +23,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-function mapDispatchToProps(dispatchEvent) {
-    return {
-        fetchProducts: () => { dispatchEvent(getProducts()) },
-        fetchCategogies: () => { dispatchEvent(getCategories()) },
-        fetchAttributes: () => { dispatchEvent(getAttributes()) },
-        fetchDepartments: () => { dispatchEvent(getDepartments()) }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);
