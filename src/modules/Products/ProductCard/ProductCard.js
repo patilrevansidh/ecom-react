@@ -7,11 +7,7 @@ export class ProductCard extends Component {
 
     handleDetailsView = () => {
         const { item } = this.props;
-        this.props.history.push({
-            pathname: '/shopmate-product/'+item.name,
-            state: { ...item}
-        })
-        console.log("this.props",this.props)
+        this.props.history.push({ pathname: '/shopmate-product/' + item.name, state: item })
     }
 
     handleImageLoading = (flag) => {
@@ -28,7 +24,7 @@ export class ProductCard extends Component {
                     <Card.Body>
                         <Card.Title onClick={this.handleDetailsView} className="product-title" > {item.name}</Card.Title>
                         <Card.Title className="product-price">
-                            {item.price}
+                            $ {item.price}
                         </Card.Title>
                     </Card.Body>
                 </div>

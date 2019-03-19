@@ -21,4 +21,17 @@ export class Products {
     static reviewProduct(id, payload) {
         return HTTPService.put(URLS.API_URL_PATH.PRODUCTS + id, payload)
     }
+
+    static async getProductYouMayLike(id) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const sameCategory = await HTTPService.get(URLS.API_URL_PATH.PRODUCTS + '/inCategory' + id)
+                const sameDepartment = await HTTPService.get(URLS.API_URL_PATH.PRODUCTS + '/inDepartment' + id);
+                const similar_products = [...sameCategory, sameDepartment]
+                resolve(similar_products);
+            } catch (error) {
+                reject(error)
+            }
+        })
+    }
 }
