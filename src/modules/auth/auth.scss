@@ -1,23 +1,20 @@
 @import '../../common/assets/styles/textCatalog.scss';
 
-.auth-container{
-    .modal-dialog{
-        z-index: 10;
-        .text-box{  
-            border-radius: 25px;
-            border: solid 1px $form-border-color;
-            background-color: $white-two;
-            outline: 0;
-        }
-        .submit-button {
-            @include ECom-Button;
-            height: 35px;
-            width:120px ;
-            border-radius: 17px
-        }
-        .submit-container{
-            display: flex;
-            justify-content: center
-        }
+.fade.modal.show{
+    .text-box{  
+        border-radius: 25px;
+        border: solid 1px $form-border-color;
+        background-color: $white-two;
+        outline: 0;
     }
+    .submit-button {
+        @include ECom-Button;
+        height: 35px;
+        width:120px ;
+        border-radius: 17px
+    }
+    .submit-container{
+        display: flex;
+        justify-content: center
+    }    
 }

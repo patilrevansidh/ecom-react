@@ -1,0 +1,50 @@
+@import '../../../common/assets/styles/textCatalog.scss';
+
+.shopmante-card-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 1.25rem;
+    background-color: $white-two;
+    width: 250px ;
+    .card-body{
+        flex: 1 1 auto;
+        padding: 0.5rem;
+    }
+    .product-image{
+        width: 151.5px;
+        height: 165px;
+        margin-top: 20px
+    }
+    .product-title{
+        width: 220px;
+        height: 24px;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: center;
+        color: $black;
+    }
+    .product-price{
+        width: 220px;
+        height: 24px;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: center;
+        color: $red-pink;
+    }
+}

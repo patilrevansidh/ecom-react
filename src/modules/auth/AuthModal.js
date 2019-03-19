@@ -34,7 +34,7 @@ class AuthModal extends EcomPureComponent {
     render() {
         return (
             <div className="auth-container">
-                < Modal.Dialog >
+                <Modal show={this.props.profile.showAuthModal} onHide={this.handleClose} >
                     <Modal.Header onHide={this.handleClose} closeButton>
                         <Modal.Title>{this.props.profile.isSignInForm && "Sign In" || "Sign Up"}</Modal.Title>
                     </Modal.Header>
@@ -48,7 +48,7 @@ class AuthModal extends EcomPureComponent {
                             </Form>
                         }
                     </Modal.Body>
-                </Modal.Dialog >
+                </Modal >
             </div>
         );
     }
