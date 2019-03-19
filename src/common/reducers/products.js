@@ -1,13 +1,17 @@
-import { ATTRIBUTES_CATEGORIES_PRODUCT_ACTION } from '../../common/constants/actionString';
+import { PRODUCTS } from '../../common/constants/actionString';
 
 const initialState = {
-    products: []
+    count: 0,
+    products: [],
+    isLoading: false
 }
 
 export const products = (state = initialState, action) => {
     switch (action.type) {
-        case ATTRIBUTES_CATEGORIES_PRODUCT_ACTION.FETCH_PRODUCT:
-            return action.payload
+        case PRODUCTS.FETCH_PRODUCTS_COMPLETE:
+            return { ...state, ...action.payload, isLoading: false }
+        case PRODUCTS.PRODUCTS_LOADING:
+            return { ...state, isLoading: true }
         default:
             return state
     }
