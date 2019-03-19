@@ -9,13 +9,13 @@ import '../common/assets/styles/theme.scss';
 
 
 
-const ComponentWithHeader = ({ showAuthModal, showAuthMenu, component: Component, ...rest }) => {
+const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) => {
     return (
         <Route
             {...rest}
             render={props =>
                 <React.Fragment>
-                    <AppHeader showAuthMenu />
+                    <AppHeader  />
                     <main style={{ height: '80vh' }} className="container">
                         <Component {...props} />
                         {showAuthModal && <AuthModal />}

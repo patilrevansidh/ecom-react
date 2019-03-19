@@ -18,6 +18,11 @@ class AuthMenuHeader extends EcomPureComponent {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+        profile: state.profile
+    }
+}
 
 function mapDispatchToProps(dispatchEvent) {
     return {
@@ -25,4 +30,4 @@ function mapDispatchToProps(dispatchEvent) {
     }
 }
 
-export default connect(null, mapDispatchToProps)(AuthMenuHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthMenuHeader);

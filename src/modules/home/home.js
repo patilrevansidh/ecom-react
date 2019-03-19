@@ -9,9 +9,9 @@ class Home extends Component {
     }
 
     initializeRedux() {
-        this.props.fetchAttributes();
-        this.props.fetchCategogies();
         this.props.fetchDepartments();
+        this.props.fetchCategogies();
+        this.props.fetchAttributes();
         this.props.fetchProducts();
     }
 

@@ -5,17 +5,18 @@ import { Link } from 'react-router-dom';
 import { EcomPureComponent } from '../EcomPureComponent';
 import AuthMenuHeader from './AuthMenuHeader';
 import './header.scss';
-export class AppHeader extends EcomPureComponent {
+import { connect } from 'react-redux';
+class AppHeaderComponent extends EcomPureComponent {
     render() {
         return (
             <header>
-                {this.props.showAuthMenu && <AuthMenuHeader/>}
+                {<AuthMenuHeader />}
                 <Navbar fixed expand="lg" className="shopmate-bg-light" >
                     <Navbar.Brand className="brand" href="/">Brand</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            {NAV_CONST_ARRAY.map(link => <Link key={link.LINK} className="nav-link nav-menu-item" to={link.LINK}>{link.TITLE}</Link>)}
+                            {Array.isArray(this.props.departments) && this.props.departments.map(link => <a id={link.department_id} key={link.department_id} className="nav-link nav-menu-item" >{link.name}</a>)}
                         </Nav>
                         <div className="search-card-badge">
                             <SearchForm />
@@ -30,6 +31,13 @@ export class AppHeader extends EcomPureComponent {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        departments: state.departments
+    }
+}
+
+export const AppHeader = connect(mapStateToProps)(AppHeaderComponent)
 class SearchForm extends EcomPureComponent {
     render() {
         return (
