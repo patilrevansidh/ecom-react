@@ -15,8 +15,8 @@ const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) =
             {...rest}
             render={props =>
                 <React.Fragment>
-                    <AppHeader  />
-                    <main style={{ height: '80vh' }} className="container">
+                    <AppHeader />
+                    <main className="container">
                         <Component {...props} />
                         {showAuthModal && <AuthModal />}
                     </main>
