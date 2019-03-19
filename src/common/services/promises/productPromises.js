@@ -9,9 +9,10 @@ export class Products {
 
     static async fetchDetails(id) {
         try {
-            const details = await HTTPService.get(URLS.API_URL_PATH.PRODUCTS + id);
+            let details = await HTTPService.get(URLS.API_URL_PATH.PRODUCTS + id + '/details');
             const locations = await HTTPService.get(URLS.API_URL_PATH.PRODUCTS + id + '/locations');
             const reviews = await HTTPService.get(URLS.API_URL_PATH.PRODUCTS + id + '/reviews');
+            details = Array.isArray(details) && details[0] || details
             return { ...details, locations, reviews }
         } catch (error) {
 

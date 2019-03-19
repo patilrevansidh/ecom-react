@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getProductDetail } from '../../../common/actions/productAction';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Form } from 'react-bootstrap';
 import './productDetail.scss';
+import { URLS } from '../../../common/constants/stringConstants';
+import { TextInputGroup } from '../../../common/components/Input';
 
 class ProductDetailContainer extends EcomPureComponent {
     componentWillMount() {
@@ -17,22 +19,45 @@ class ProductDetailContainer extends EcomPureComponent {
         }
     }
 
+    handleRate = (index) => {
+        console.log('Index', index)
+    }
+
     render() {
-        console.log("this.props.selectedProduct", this.props.selectedProduct)
+        if (!this.props.selectedProduct) return null;
+        const { selectedProduct } = this.props
         return (
             <div className="shopmate-product-detail-container">
-                <Row style={{ height: 100, backgroundColor: '#FFF' }}>
+                <Row>
                     <Col md={{ span: 6 }}>
-                        images
+                        <img src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image} />
+                        {
+                            <div className="" >
+
+                            </div>
+                        }
                     </Col>
                     <Col md={{ span: 6 }}>
-                        detail
+                        <div className="product-detail">
+                            {selectedProduct.name}
+                        </div>
                     </Col>
                 </Row>
                 <Row className="review-container">
-                    <Col>
-                        review
-                    </Col>
+                    <div className="review-layout" >
+                        <div className="title"> Product Reviews </div>
+                        <Form>
+                            <div className="title"> Add a review </div>
+                            <TextInputGroup label="Choose a nickname" name="name" />
+                            <TextInputGroup label="Your Review" name="review" as="textarea" row={3} />
+                            <Form.Group as={Row} >
+                                <Form.Label column sm={4}> {"Overall Review"} </Form.Label>
+                                <Col sm="6">
+                                    {[1, 2, 3, 4].map((item) => <i onClick={() => this.handleRate(item)} className="" />)}
+                                </Col>
+                            </Form.Group>
+                        </Form>
+                    </div>
                 </Row>
             </div>
         );
