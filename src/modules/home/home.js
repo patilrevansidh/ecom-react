@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAttributes, getCategories, getDepartments, getProducts } from '../../common/actions/productAction';
-import { ProductCard } from '../Products/ProductCard/ProductCard';
 import { Row } from 'react-bootstrap';
 import ProductList from '../Products/List/ProductList';
 
@@ -21,7 +20,7 @@ class Home extends Component {
     render() {
         return (
             <Row>
-                <ProductList />
+                <ProductList data={this.props.products} isLoading={this.props.isLoading} />
             </Row>
 
         );
@@ -31,7 +30,7 @@ class Home extends Component {
 const mapStateToProps = (state) => {
     return {
         products: state.products.products,
-        isLoadingProducts: state.products,
+        isLoading: state.products.isLoading,
     }
 }
 

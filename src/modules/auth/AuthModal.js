@@ -27,8 +27,8 @@ class AuthModal extends EcomPureComponent {
     }
 
     handleSubmit = () => {
-        if (this.props.profile.isSignInForm) console.log("SignIn Press"); return;
-        console.log("Sign Up Press"); return;
+        // if (this.props.profile.isSignInForm) console.log("SignIn Press"); return;
+        // console.log("Sign Up Press"); return;
     }
 
     render() {
