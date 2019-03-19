@@ -5,7 +5,7 @@ export function getProducts() {
     return async (dispatchEvent) => {
         try {
             const response = await Products.fecth();
-            dispatchEvent({ type: ATTRIBUTES_CATEGORIES_PRODUCT_ACTION.FETCH_PRODUCT, payload: response })
+            dispatchEvent({ type: ATTRIBUTES_CATEGORIES_PRODUCT_ACTION.FETCH_PRODUCT, payload: { count: response.count, products: response.rows } })
         } catch (error) {
             console.log('Error in Products', error)
         }
@@ -38,8 +38,8 @@ export function getDepartments() {
     return async (dispatchEvent) => {
         try {
             let response = await Departments.fecth();
-            response = response.map(dept => ({ ...dept, categories: [] }))
-            dispatchEvent({ type: ATTRIBUTES_CATEGORIES_PRODUCT_ACTION.FECTH_DEPARTMENTS, payload: response })
+            // response = response.map(dept => ({ ...dept, categories: [] }))
+            // dispatchEvent({ type: ATTRIBUTES_CATEGORIES_PRODUCT_ACTION.FECTH_DEPARTMENTS, payload: response })
 
             const departments = await Departments.fetchDepartmentCategories(response)
             dispatchEvent({ type: ATTRIBUTES_CATEGORIES_PRODUCT_ACTION.FECTH_DEPARTMENTS, payload: departments })

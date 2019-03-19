@@ -2,5 +2,8 @@
 
 
 .theme-light{
-    background-color: $light-greyish
+    background-color: $light-greyish;
+    .container{
+        margin-top: 30px
+    }
 }
