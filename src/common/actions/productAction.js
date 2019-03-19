@@ -1,5 +1,5 @@
 import { PRODUCTS } from '../constants/actionString';
-import { Products } from '../services/promises/ProductPromises';
+import { Products } from '../services/promises/productPromises';
 
 export function getProducts() {
     return async (dispatch) => {

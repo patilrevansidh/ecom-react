@@ -1,7 +1,7 @@
 import Dashboard from './dashboard/dashboard';
-import Home from './home/home';
-import FacebookLogin from './auth/testLogin';
-import AuthModal from './auth/AuthModal';
+import Home from './Home/Home';
+import FacebookLogin from './Auth/testLogin';
+import AuthModal from './Auth/AuthModal';
 import ProductDetailContainer from './Products/ProductDetail/ProductDetailContainer';
 
 export { Dashboard, Home, FacebookLogin, AuthModal, ProductDetailContainer }

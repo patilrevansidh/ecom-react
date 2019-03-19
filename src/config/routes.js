@@ -4,10 +4,9 @@ import { Home, AuthModal, ProductDetailContainer } from '../modules/moduleImport
 import { AppFooter, AppHeader } from '../common/components/importer';
 import { EcomPureComponent } from '../common/components/EcomPureComponent';
 import { connect } from 'react-redux'
-import { withList } from "../common/components/hoc/withList";
-import '../common/assets/styles/theme.scss';
 import { getProducts } from '../common/actions/productAction';
 import { getAttributes, getCategories, getDepartments } from '../common/actions/landingAction';
+import '../common/assets/styles/theme.scss';
 
 
 const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) => {
@@ -46,8 +45,6 @@ class Routes extends EcomPureComponent {
                     <Switch>
                         <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} showAuthMenu exact path="/" component={Home} />
                         <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} path="/shopmate-product/" component={ProductDetailContainer} />
-                        <Route exact path="/a" component={withList(SampleA, [1, 2, 3, 4,])} />
-                        <Route exact path="/b" component={withList(SampleB, [1, 2, 3, 4,])} />
                     </Switch>
                 </Router>
             </div>
@@ -71,7 +68,3 @@ function mapDispatchToProps(dispatchEvent) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routes)
-
-
-const SampleA = (props) => <p> Card A {props.data}</p>
-const SampleB = (props) => <p> Card B {props.data}</p>

@@ -1,4 +1,4 @@
-import { withList } from '../../../common/components/hoc/withList';
+import { withList } from '../../../common/components/HOC/withList';
 import { ProductCard } from '../ProductCard/ProductCard';
 import { DummyProductCard } from '../ProductCard/DummyProductCard';
 

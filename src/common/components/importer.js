@@ -1,4 +1,4 @@
-import { AppHeader } from './header/header';
-import { AppFooter } from './footer/footer';
+import { AppHeader } from './Header/Header';
+import { AppFooter } from './Footer/Footer';
 
 export { AppFooter, AppHeader }
