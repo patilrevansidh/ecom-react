@@ -33,7 +33,7 @@ export function clearSelectedProduct() {
 
 export function postReview(id, formData) {
     return async (dispatchEvent) => {
-        const response = await Products.reviewProduct(id, formData)
-        dispatchEvent({ type: PRODUCTS.POST_PRODUCT_REVIEW })
+        await Products.reviewProduct(id, formData)
+        dispatchEvent({ type: PRODUCTS.POST_PRODUCT_REVIEW, payload: { ...formData, created_on: Date.now() } })
     }
 }

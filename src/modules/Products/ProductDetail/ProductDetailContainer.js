@@ -38,8 +38,8 @@ class ProductDetailContainer extends EcomPureComponent {
         e.preventDefault();
         if (this.props.profile.isLoggedIn) {
             const { selectedProduct } = this.props;
-            const { rating, review } = this.state;
-            const formData = { rating, review }
+            const { rating, review, name } = this.state;
+            const formData = { rating, review, name }
             this.props.handleSubmitReview(selectedProduct.product_id, formData)
             return;
         }
