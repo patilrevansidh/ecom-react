@@ -6,7 +6,6 @@ import { EcomPureComponent } from '../../../common/components/EcomPureComponent'
 import { Col } from 'react-bootstrap';
 import { URLS } from '../../../common/constants/stringConstants';
 import { AddReviewForm, ReviewList } from './ReviewComponents';
-import { objectToFormData } from '../../../common/services/helper/helper';
 import './productDetail.scss';
 
 class ProductDetailContainer extends EcomPureComponent {
@@ -51,7 +50,7 @@ class ProductDetailContainer extends EcomPureComponent {
         const { selectedProduct } = this.props
         return (
             <div className="shopmate-product-detail-container">
-                <div className="product-view-container">
+                <div className="product-view-container row">
                     <Col md={{ span: 6 }}>
                         <img src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image} />
                     </Col>
@@ -60,7 +59,14 @@ class ProductDetailContainer extends EcomPureComponent {
                             <div className="product-title"> {selectedProduct.name} </div>
                             <div className="product-description"> {selectedProduct.description} </div>
                             <div className="product-price">$ {selectedProduct.price}</div>
-                            <div className="attribute-label"> Color </div>
+                            <div className="attribute-details">
+                                <div className="attribute-label"> Color </div>
+                                <div className="attribute-options">
+                                    {selectedProduct.attributes.Color.map((color) => {
+                                        return <div className="attribute-color-circle" style={{ backgroundColor: color.attribute_value.toLowerCase() }} />
+                                    })}
+                                </div>
+                            </div>
                         </div>
                     </Col>
                 </div>

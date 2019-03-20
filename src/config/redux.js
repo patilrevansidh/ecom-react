@@ -12,7 +12,7 @@ import { departments } from '../common/reducers/departments';
 
 const combinedReducers = combineReducers({ profile, attributes, categories, products, departments })
 
-export const store = createStore(combinedReducers, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+export const store = createStore(combinedReducers, compose(applyMiddleware(thunk)))
 
 export const App = (props) => {
     return (

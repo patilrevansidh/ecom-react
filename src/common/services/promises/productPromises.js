@@ -1,6 +1,6 @@
 import { URLS } from '../../constants/stringConstants';
 import { HTTPService } from '../HttpService';
-// import { store } from '../../../config/redux';
+import groupBy from 'lodash/groupBy'
 
 export class Products {
     static fecth() {
@@ -12,8 +12,10 @@ export class Products {
             let details = await HTTPService.get(URLS.API_URL_PATH.PRODUCTS + id + '/details');
             const locations = await HTTPService.get(URLS.API_URL_PATH.PRODUCTS + id + '/locations');
             const reviews = await HTTPService.get(URLS.API_URL_PATH.PRODUCTS + id + '/reviews');
+            let attributes = await HTTPService.get(URLS.API_URL_PATH.ATTRIBUTES + 'inProduct/' + id)
+            attributes = groupBy(attributes, 'attribute_name');
             details = Array.isArray(details) && details[0] || details
-            return { ...details, locations, reviews }
+            return { ...details, locations, reviews, attributes }
         } catch (error) {
 
         }
