@@ -20,5 +20,6 @@ export const LABELS = {
     BUTTON: {
         SIGN_UP: 'Sign Up',
         SIGN_IN: 'Sign In',
+        SUBMIT: 'Submit'
     }
 }

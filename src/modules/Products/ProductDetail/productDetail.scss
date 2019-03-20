@@ -3,6 +3,12 @@
 .shopmate-product-detail-container{    
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     background-color: $white-two;
+    .no-margin{
+        margin: 0px;
+    }
+    .product-view-container{
+        display: flex
+    }
     .product-detail{
         // width: 380px;
         // height: 72px;
@@ -54,6 +60,44 @@
                 line-height: 1.5;
                 letter-spacing: 1px;
                 color: $black;              
+            }
+            .user-review{
+                pointer-events: none;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                .user-name{              
+                    font-family: 'LucidaGrande';
+                    font-size: 16px;
+                    font-weight: bold;
+                    font-style: normal;
+                    font-stretch: normal;
+                    line-height: 1.8;
+                    letter-spacing: normal;
+                    color: $black;
+                }
+                .other-text{                 
+                    font-family: 'OpenSans';
+                    font-size: 16px;
+                    font-weight: 300;
+                    font-style: normal;
+                    font-stretch: normal;
+                    line-height: 1.5;
+                    letter-spacing: normal;
+                    color: #2e2e2e;
+                }
+            }
+            .review-star{
+                color: $macaroni-and-cheese;
+            }
+            .submit-button {
+                @include ECom-Button;
+                height: 35px;
+                width:120px ;
+                border-radius: 17px
+            }
+            .submit-container{
+                padding-bottom: 20px;
+                text-align: center;
             }
         }
     }
