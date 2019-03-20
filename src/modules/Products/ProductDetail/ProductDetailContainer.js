@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getProductDetail, clearSelectedProduct } from '../../../common/actions/productAction';
+import { handleAuthModal } from '../../../common/actions/authAction';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
 import { Col } from 'react-bootstrap';
 import { URLS } from '../../../common/constants/stringConstants';
@@ -32,10 +33,12 @@ class ProductDetailContainer extends EcomPureComponent {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    handleSubmit = () => {
-        console.log("state", this.state)
-        const formData = new FormData(this.state);
-        console.log("post this form", formData)
+    handleSubmit = (e) => {
+        e.preventDefault();
+        if (this.props.profile.isLoggedIn) {
+            console.log("Post Reivew", this.state)
+        }
+        this.props.handleAuthModal({ showAuthModal: true })
     }
 
     render() {
@@ -79,13 +82,17 @@ class ProductDetailContainer extends EcomPureComponent {
 function mapStateToProps(state) {
     const selectedProduct = state.products.selectedProduct;
     const isDetailLoading = state.products.isDetailLoading;
-    return { selectedProduct, isDetailLoading }
+    return {
+        selectedProduct, isDetailLoading,
+        profile: state.profile
+    }
 }
 
 function mapDispatchToProps(dispatchEvent) {
     return {
         getProductDetail: (id) => { dispatchEvent(getProductDetail(id)) },
         clearSelectedProduct: () => { dispatchEvent(clearSelectedProduct()) },
+        handleAuthModal: (flag) => { dispatchEvent(handleAuthModal(flag)) }
     }
 }
 
