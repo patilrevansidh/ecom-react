@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProductDetail, clearSelectedProduct } from '../../../common/actions/productAction';
+import { getProductDetail, clearSelectedProduct, postReview } from '../../../common/actions/productAction';
 import { handleAuthModal } from '../../../common/actions/authAction';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
 import { Col } from 'react-bootstrap';
 import { URLS } from '../../../common/constants/stringConstants';
 import { AddReviewForm, ReviewList } from './ReviewComponents';
+import { objectToFormData } from '../../../common/services/helper/helper';
 import './productDetail.scss';
 
 class ProductDetailContainer extends EcomPureComponent {
@@ -36,7 +37,10 @@ class ProductDetailContainer extends EcomPureComponent {
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.props.profile.isLoggedIn) {
-            console.log("Post Reivew", this.state)
+            const { selectedProduct } = this.props;
+            const { rating, review } = this.state;
+            const formData = { rating, review }
+            this.props.handleSubmitReview(selectedProduct.product_id, formData)
             return;
         }
         this.props.handleAuthModal({ showAuthModal: true })
@@ -93,7 +97,8 @@ function mapDispatchToProps(dispatchEvent) {
     return {
         getProductDetail: (id) => { dispatchEvent(getProductDetail(id)) },
         clearSelectedProduct: () => { dispatchEvent(clearSelectedProduct()) },
-        handleAuthModal: (flag) => { dispatchEvent(handleAuthModal(flag)) }
+        handleAuthModal: (flag) => { dispatchEvent(handleAuthModal(flag)) },
+        handleSubmitReview: (id, formData) => { dispatchEvent(postReview(id, formData)) }
     }
 }
 

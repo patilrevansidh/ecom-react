@@ -20,7 +20,8 @@ export class Products {
     }
 
     static reviewProduct(id, payload) {
-        return HTTPService.put(URLS.API_URL_PATH.PRODUCTS + id, payload)
+        const url = URLS.API_URL_PATH.PRODUCTS + id + '/reviews'
+        return HTTPService.post(url, payload)
     }
 
     static async getProductYouMayLike(id) {
