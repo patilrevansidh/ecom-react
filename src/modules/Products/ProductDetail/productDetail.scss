@@ -70,6 +70,28 @@
                         width: 25px;
                         height: 25px;
                     }
+                    .attribute-color-reactangle-selected{
+                        width: 55px;
+                        height: 24px;
+                        border-radius: 2px;
+                        background-color: $red-pink;
+                    }
+                    .attribute-color-reactangle-selected{
+                        width: 55px;
+                        height: 24px;
+                        margin-left: 5px;
+                        border-radius: 2px;
+                        background-color: $red-pink;
+                        text-align: center;
+                    }
+                    .attribute-color-reactangle{
+                        width: 55px;
+                        height: 24px;
+                        border-radius: 2px;
+                        margin-left: 5px;
+                        background-color: $greyish;
+                        text-align: center;
+                    }
                 }
             }
         }
