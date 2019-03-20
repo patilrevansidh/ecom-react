@@ -22,6 +22,9 @@ export const products = (state = initialState, action) => {
         case PRODUCTS.FETCH_PRODUCT_DETAILS_COMPLETE:
             return { ...state, selectedProduct: action.payload, isDetailLoading: false }
 
+        case PRODUCTS.CLEAR_SELECTED_PRODUCT:
+            return { ...state, selectedProduct: null, isDetailLoading: false }
+
         default:
             return state
     }

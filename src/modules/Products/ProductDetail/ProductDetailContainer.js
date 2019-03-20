@@ -1,16 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProductDetail } from '../../../common/actions/productAction';
+import { getProductDetail, clearSelectedProduct } from '../../../common/actions/productAction';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
-import { Col, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { URLS } from '../../../common/constants/stringConstants';
-import { AddReviewForm, StarRate, ReviewList } from './ReviewComponents';
+import { AddReviewForm, ReviewList } from './ReviewComponents';
 import './productDetail.scss';
 
 class ProductDetailContainer extends EcomPureComponent {
     state = { review: '', name: '', rating: 0 }
     componentWillMount() {
         this.getProduct();
+    }
+
+    componentWillUnmount() {
+        this.props.clearSelectedProduct()
     }
 
     getProduct() {
@@ -60,6 +64,7 @@ class ProductDetailContainer extends EcomPureComponent {
                         <div className="title"> Product Reviews </div>
                         <div className="user-review" >
                             <ReviewList data={selectedProduct.reviews} />
+                            <div className="divider" />
                         </div>
                         <AddReviewForm handleChange={this.handleChange} handleSubmit={this.handleSubmit}
                             {...this.state} handleRate={this.handleRate}
@@ -78,7 +83,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatchEvent) {
-    return { getProductDetail: (id) => { dispatchEvent(getProductDetail(id)) } }
+    return {
+        getProductDetail: (id) => { dispatchEvent(getProductDetail(id)) },
+        clearSelectedProduct: () => { dispatchEvent(clearSelectedProduct()) },
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetailContainer);

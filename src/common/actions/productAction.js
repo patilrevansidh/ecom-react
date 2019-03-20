@@ -24,3 +24,9 @@ export function getProductDetail(id) {
         }
     }
 }
+
+export function clearSelectedProduct() {
+    return (dispatchEvent) => {
+        dispatchEvent({ type: PRODUCTS.CLEAR_SELECTED_PRODUCT })
+    }
+}
