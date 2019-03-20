@@ -6,23 +6,24 @@ import { LABELS } from '../../common/constants/stringConstants';
 
 export class SignInForm extends EcomPureComponent {
     render() {
+        const { error, isLoading, handleChange, handleSubmit } = this.props
         return (
             <React.Fragment>
                 <Form.Group as={Col} >
                     <Form.Control type="text" name="email" className="text-box"
-                        placeholder="Email" onChange={this.props.handleChange}
+                        placeholder="Email" onChange={handleChange} className={error && error.email && 'has-error' || ''}
                     />
-                    {/* {this.props.errors && <Form.Control.Feedback type={this.props.errors.password && 'invalid' || 'valid'} >{this.props.errors.password}</Form.Control.Feedback>} */}
+                    {error && error.email && <div className="invalid-feedback">{error.email}</div>}
                 </Form.Group>
                 <Form.Group as={Col}>
                     <Form.Control type="password" name="password" className="text-box"
-                        placeholder="Password" onChange={this.props.handleChange}
+                        placeholder="Password" onChange={handleChange} className={error && error.password && 'has-error' || ''}
                     />
-                    {/* {this.props.errors && <Form.Control.Feedback type={this.props.errors.email && 'invalid' || 'valid'} >{this.props.errors.email}</Form.Control.Feedback>} */}
+                    {error && error.password && <div className="invalid-feedback">{error.password}</div>}
                 </Form.Group>
                 <Form.Group as={Col} className="submit-container" >
-                    <Button variant="none" onClick={this.props.handleSubmit} className="submit-button" >
-                        {LABELS.BUTTON.SIGN_IN}
+                    <Button disabled={isLoading} variant="none" onClick={handleSubmit} className="submit-button" >
+                        {isLoading && LABELS.BUTTON.SIGN_IN || LABELS.BUTTON.LOADING}
                     </Button>
                 </Form.Group>
             </React.Fragment>
@@ -32,31 +33,40 @@ export class SignInForm extends EcomPureComponent {
 
 export class SignUpForm extends EcomPureComponent {
     render() {
+        const { error, isLoading, handleChange, handleSubmit } = this.props
         return (
             <React.Fragment>
                 <Form.Group as={Col} >
                     <Form.Control type="text" name="name" className="text-box"
-                        placeholder="Name" onChange={this.props.handleChange}
+                        className={error && error.name && 'has-error' || ''}
+                        placeholder="Name" onChange={handleChange}
                     />
+                    {error && error.name && <div className="invalid-feedback">{error.name}</div>}
                 </Form.Group>
                 <Form.Group as={Col} >
                     <Form.Control type="text" name="email" className="text-box"
-                        placeholder="Email" onChange={this.props.handleChange}
+                        className={error && error.email && 'has-error' || ''}
+                        placeholder="Email" onChange={handleChange}
                     />
+                    {error && error.email && <div className="invalid-feedback">{error.email}</div>}
                 </Form.Group>
                 <Form.Group as={Col}>
                     <Form.Control type="password" name="password" className="text-box"
-                        placeholder="Password" onChange={this.props.handleChange}
+                        className={error && error.password && 'has-error' || ''}
+                        placeholder="Password" onChange={handleChange}
                     />
+                    {error && error.password && <div className="invalid-feedback">{error.password}</div>}
                 </Form.Group>
                 <Form.Group as={Col}>
                     <Form.Control type="password" name="confirmPassword" className="text-box"
-                        placeholder="Confirm Password" onChange={this.props.handleChange}
+                        className={error && error.matchError && 'has-error' || ''}
+                        placeholder="Confirm Password" onChange={handleChange}
                     />
+                    {error && error.matchError && <div className="invalid-feedback">{error.matchError}</div>}
                 </Form.Group>
                 <Form.Group as={Col} className="submit-container" >
-                    <Button variant="none" onClick={this.props.handleSubmit} className="submit-button" >
-                        {LABELS.BUTTON.SIGN_UP}
+                    <Button disabled={isLoading} variant="none" onClick={handleSubmit} className="submit-button" >
+                        {isLoading && LABELS.BUTTON.SIGN_UP || LABELS.BUTTON.LOADING}
                     </Button>
                 </Form.Group>
             </React.Fragment>

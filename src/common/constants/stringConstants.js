@@ -20,6 +20,14 @@ export const LABELS = {
     BUTTON: {
         SIGN_UP: 'Sign Up',
         SIGN_IN: 'Sign In',
-        SUBMIT: 'Submit'
+        SUBMIT: 'Submit',
+        LOADING: 'Loading...'
     }
+}
+
+export const VALIDATION_ERRORS = {
+    EMAIL: 'Invalid Email',
+    PASSWORD: 'Enter Password',
+    PASSWORD_MATCH: 'Password Does not Match',
+    EMPTY: "Feild Cann't be empty",
 }

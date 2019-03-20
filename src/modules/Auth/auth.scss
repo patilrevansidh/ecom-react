@@ -16,5 +16,15 @@
     .submit-container{
         display: flex;
         justify-content: center
-    }    
+    }
+    .shopmate-auth-form{
+        .invalid-feedback{
+            display: block;
+        }
+        .has-error{
+            border-color: #dc3545;
+            padding-right: 2.25rem;
+            background-repeat: no-repeat;
+        }
+    }
 }
