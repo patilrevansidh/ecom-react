@@ -13,7 +13,16 @@ class AuthMenuHeader extends EcomPureComponent {
 
     render() {
         return (
-            <div className="bg-auth-header sub-header"> Hi!, <div id="sign" onClick={this.handleAuthClick} className="highlight-header"> Sign </div> or <div id="register" onClick={this.handleAuthClick} className="highlight-header"> Register </div>
+            <div className="bg-auth-header sub-header">
+                Hi!,
+                {this.props.profile.isLoggedIn
+                    && this.props.profile.user && <div className="highlight-header"> {this.props.profile.user.name} </div>
+                    || <React.Fragment>
+                        <div id="sign" onClick={this.handleAuthClick} className="highlight-header"> Sign </div>
+                        or
+                        <div id="register" onClick={this.handleAuthClick} className="highlight-header"> Register </div>
+                    </React.Fragment>
+                }
             </div>
         );
     }

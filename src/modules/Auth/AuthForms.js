@@ -23,7 +23,7 @@ export class SignInForm extends EcomPureComponent {
                 </Form.Group>
                 <Form.Group as={Col} className="submit-container" >
                     <Button disabled={isLoading} variant="none" onClick={handleSubmit} className="submit-button" >
-                        {isLoading && LABELS.BUTTON.SIGN_IN || LABELS.BUTTON.LOADING}
+                        {!isLoading && LABELS.BUTTON.SIGN_IN || LABELS.BUTTON.LOADING}
                     </Button>
                 </Form.Group>
             </React.Fragment>
@@ -66,7 +66,7 @@ export class SignUpForm extends EcomPureComponent {
                 </Form.Group>
                 <Form.Group as={Col} className="submit-container" >
                     <Button disabled={isLoading} variant="none" onClick={handleSubmit} className="submit-button" >
-                        {isLoading && LABELS.BUTTON.SIGN_UP || LABELS.BUTTON.LOADING}
+                        {!isLoading && LABELS.BUTTON.SIGN_UP || LABELS.BUTTON.LOADING}
                     </Button>
                 </Form.Group>
             </React.Fragment>

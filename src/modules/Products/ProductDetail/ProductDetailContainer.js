@@ -37,6 +37,7 @@ class ProductDetailContainer extends EcomPureComponent {
         e.preventDefault();
         if (this.props.profile.isLoggedIn) {
             console.log("Post Reivew", this.state)
+            return;
         }
         this.props.handleAuthModal({ showAuthModal: true })
     }

@@ -3,10 +3,10 @@ import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 import { Modal, Form } from 'react-bootstrap';
 import { SignInForm, SignUpForm } from './AuthForms';
 import { connect } from 'react-redux';
-import { handleAuthModal } from '../../common/actions/authAction';
+import { handleAuthModal, handleCustomerSignIn, handleCustomerSignUp } from '../../common/actions/authAction';
 import { ValidationHelper } from '../../common/services/helper/validation';
-import './auth.scss'
 import { VALIDATION_ERRORS } from '../../common/constants/stringConstants';
+import './auth.scss';
 
 class AuthModal extends EcomPureComponent {
     state = this.getInitialState();
@@ -17,7 +17,8 @@ class AuthModal extends EcomPureComponent {
             password: '',
             name: '',
             confirmPassword: '',
-            error: null
+            error: null,
+            isLoading: false
         }
     }
 
@@ -36,7 +37,6 @@ class AuthModal extends EcomPureComponent {
         if (this.props.profile.isSignInForm) {
             if (!email && !password) { this.setState({ error: null }); return true };;
             const error = { email, password };
-            console.log("Error", error)
             this.setState({ error: { email, password } });
             return false;
         }
@@ -48,9 +48,23 @@ class AuthModal extends EcomPureComponent {
 
     }
 
-    handleSubmit = () => {
+    handleSignIn = () => {
+        const { email, password } = this.state;
+        this.props.handleCustomerSignIn({ email, password })
+    }
+
+    handleSignUp = () => {
+        const { name, email, password } = this.state;
+        this.props.handleCustomerSignUp({ name, email, password })
+    }
+
+    handleSubmit = (e, data) => {
         if (this.isValidForm()) {
-            console.log('Valid')
+            if (this.props.profile.isSignInForm) {
+                this.handleSignIn();
+                return;
+            }
+            this.handleSignUp()
         }
     }
 
@@ -62,13 +76,15 @@ class AuthModal extends EcomPureComponent {
                         <Modal.Title>{this.props.profile.isSignInForm && "Sign In" || "Sign Up"}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form className="shopmate-auth-form">
+                        <Form className="shopmate-auth-form" onSubmit={this.handleSubmit}>
                             {this.props.profile.isSignInForm
                                 && <SignInForm
+                                    isLoading={this.state.isLoading}
                                     error={this.state.error}
                                     handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
 
                                 || <SignUpForm
+                                    isLoading={this.state.isLoading}
                                     error={this.state.error}
                                     handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
                             }
@@ -80,7 +96,11 @@ class AuthModal extends EcomPureComponent {
     }
 }
 function mapDispatchToProps(dispatchEvent) {
-    return { handleAuthModal: (flag) => { dispatchEvent(handleAuthModal(flag)) } }
+    return {
+        handleAuthModal: (flag) => { dispatchEvent(handleAuthModal(flag)) },
+        handleCustomerSignIn: (formData) => { dispatchEvent(handleCustomerSignIn(formData)) },
+        handleCustomerSignUp: (formData) => { dispatchEvent(handleCustomerSignUp(formData)) }
+    }
 }
 
 function mapStateToProps(state) {
