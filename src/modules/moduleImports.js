@@ -1,4 +1,4 @@
-import Dashboard from './dashboard/dashboard';
+import Dashboard from './Dashboard/Dashboard';
 import Home from './Home/Home';
 import FacebookLogin from './Auth/testLogin';
 import AuthModal from './Auth/AuthModal';

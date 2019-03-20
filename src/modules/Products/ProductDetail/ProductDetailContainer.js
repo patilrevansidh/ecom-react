@@ -54,19 +54,16 @@ class ProductDetailContainer extends EcomPureComponent {
                 <div className="product-view-container">
                     <Col md={{ span: 6 }}>
                         <img src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image} />
-                        {
-                            <div className="" >
-
-                            </div>
-                        }
                     </Col>
                     <Col md={{ span: 6 }}>
                         <div className="product-detail">
-                            {selectedProduct.name}
+                            <div className="product-title"> {selectedProduct.name} </div>
+                            <div className="product-description"> {selectedProduct.description} </div>
+                            <div className="product-price">$ {selectedProduct.price}</div>
+                            <div className="attribute-label"> Color </div>
                         </div>
                     </Col>
                 </div>
-
                 <div className="review-container">
                     <div className="review-layout" >
                         <div className="title"> Product Reviews </div>

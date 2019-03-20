@@ -7,44 +7,53 @@
         margin: 0px;
     }
     .product-view-container{
-        display: flex
-    }
-    .product-detail{
-        // width: 380px;
-        // height: 72px;
-        font-family: 'Montserrat';
-        font-size: 24px;
-        font-weight: bold;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.5;
-        letter-spacing: 1px;
-        color: $black;
-        .product-price{
-            width: 84px;
-            height: 36px;
-            font-family: 'Montserrat';
-            font-size: 24px;
-            font-weight: bold;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: 1.5;
-            letter-spacing: 1px;
-            color: $red-pink;
+        display: flex;
+        .product-detail{
+            .product-title{
+                font-family: 'Montserrat';
+                font-size: 24px;
+                font-weight: bold;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.5;
+                letter-spacing: 1px;
+                color: $black;
+            }
+            .product-description{
+
+            }
+            .product-price{
+                font-family: 'Montserrat';
+                font-size: 24px;
+                font-weight: bold;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.5;
+                letter-spacing: 1px;
+                color: $red-pink;
+            }
+            .price-color-label{
+                font-family: 'Montserrat';
+                font-size: 16px;
+                font-weight: bold;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.5;
+                letter-spacing: normal;
+                color: $greyish;
+            }
+            .attribute-label{
+                font-family: 'Montserrat';
+                font-size: 16px;
+                font-weight: bold;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.5;
+                letter-spacing: normal;
+                color: $greyish;
+            }
         }
-        .price-color-label{
-            width: 45px;
-            height: 24px;
-            font-family: 'Montserrat';
-            font-size: 16px;
-            font-weight: bold;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: 1.5;
-            letter-spacing: normal;
-            color: $greyish;
-        }
-    }
+    }   
     .review-container{
         background-color: $light-greyish;
         .review-layout{
