@@ -6,12 +6,11 @@ import { EcomPureComponent } from '../../../common/components/EcomPureComponent'
 import { Col } from 'react-bootstrap';
 import { URLS } from '../../../common/constants/stringConstants';
 import { AddReviewForm, ReviewList } from './ReviewComponents';
-import { objectToFormData } from '../../../common/services/helper/helper';
-import './productDetail.scss';
 import { DummyProductCard } from '../ProductCard/DummyProductCard';
+import './productDetail.scss';
 
 class ProductDetailContainer extends EcomPureComponent {
-    state = { review: '', name: '', rating: 0 }
+    state = { review: '', name: '', rating: 0, quantity: 1 }
     componentWillMount() {
         this.getProduct();
     }
@@ -47,6 +46,24 @@ class ProductDetailContainer extends EcomPureComponent {
         this.props.handleAuthModal({ showAuthModal: true })
     }
 
+    handleQuantityChange = (e) => {
+        if (/[.]/.test(e.target.value)) {
+            this.setState({ quantity: this.state.quantity });
+            return
+        };
+        const value = e.target.value.replace(/[^0-9]*/g, '')
+        this.setState({ quantity: value });
+    }
+
+    handleQuantityIncrementDecrement = (operation) => {
+        if (operation === 'minus') {
+            if (this.state.quantity - 1 < 1) return;
+            this.setState({ quantity: this.state.quantity - 1 });
+            return;
+        }
+        this.setState({ quantity: this.state.quantity + 1 });
+    }
+
     render() {
         if (this.props.isDetailLoading) return <DummyProductCard detail={true} />
         if (!this.props.selectedProduct) return null;
@@ -64,6 +81,11 @@ class ProductDetailContainer extends EcomPureComponent {
                     <Col md={{ span: 6 }}>
                         <div className="product-detail">
                             {selectedProduct.name}
+                        </div>
+                        <div className="quantiy-details row" >
+                            <div className="quantity-oval" id="minus" onClick={() => this.handleQuantityIncrementDecrement('minus')}> <i className="fas fa-minus" /> </div>
+                            <input min={1} value={this.state.quantity} onChange={this.handleQuantityChange} className="quntity-input" type="text" />
+                            <div className="quantity-oval" id="plus" onClick={() => this.handleQuantityIncrementDecrement('plus')}> <i className="fas fa-plus" /> </div>
                         </div>
                     </Col>
                 </div>
