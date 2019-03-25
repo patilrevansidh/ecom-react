@@ -8,6 +8,7 @@ import { URLS } from '../../../common/constants/stringConstants';
 import { AddReviewForm, ReviewList } from './ReviewComponents';
 import { objectToFormData } from '../../../common/services/helper/helper';
 import './productDetail.scss';
+import { DummyProductCard } from '../ProductCard/DummyProductCard';
 
 class ProductDetailContainer extends EcomPureComponent {
     state = { review: '', name: '', rating: 0 }
@@ -47,16 +48,16 @@ class ProductDetailContainer extends EcomPureComponent {
     }
 
     render() {
+        if (this.props.isDetailLoading) return <DummyProductCard detail={true} />
         if (!this.props.selectedProduct) return null;
         const { selectedProduct } = this.props
         return (
             <div className="shopmate-product-detail-container">
                 <div className="product-view-container">
-                    <Col md={{ span: 6 }}>
+                    <Col md={{ span: 6 }} className="margin-top-20" >
                         <img src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image} />
                         {
                             <div className="" >
-
                             </div>
                         }
                     </Col>

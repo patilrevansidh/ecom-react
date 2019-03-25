@@ -4,6 +4,7 @@ import { Button, Form, Col, Row } from 'react-bootstrap';
 import { LABELS } from '../../../common/constants/stringConstants';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
 import { withList } from '../../../common/components/HOC/withList';
+import { DummyReviewCard } from '../ProductCard/DummyProductCard';
 
 export class AddReviewForm extends Component {
     render() {
