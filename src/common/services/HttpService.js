@@ -52,6 +52,18 @@ export class HTTPService {
         })
     }
 
+    static delete(url) {
+        return new Promise((resolve, reject) => {
+            HTTPService.axiosInstance.delete(url)
+                .then(response => {
+                    if (response.status === 200) {
+                        saveToken(response);
+                        resolve(response.data)
+                    }
+                })
+                .catch((error) => reject(error))
+        })
+    }
 }
 
 function saveToken(reponse) {
