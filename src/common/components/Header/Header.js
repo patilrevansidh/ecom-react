@@ -2,15 +2,18 @@ import React from 'react';
 import { Navbar, Nav, Form, Badge, NavDropdown } from 'react-bootstrap';
 import { EcomPureComponent } from '../EcomPureComponent';
 import AuthMenuHeader from './AuthMenuHeader';
-import './header.scss';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import './header.scss';
+
+// to={{ pathname: `shopmate-product-browse/${department.name}&${category.name}`, state: { department, category } }}
 class AppHeaderComponent extends EcomPureComponent {
     render() {
         return (
             <header>
                 {<AuthMenuHeader />}
                 <Navbar fixed expand="lg" className="shopmate-bg-light" >
-                    <Navbar.Brand className="brand" href="/">Brand</Navbar.Brand>
+                    <Link className="brand navbar-brand brand" to="/" >Brand</Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
@@ -20,13 +23,11 @@ class AppHeaderComponent extends EcomPureComponent {
                                         {
                                             link.categories.map(cat => {
                                                 return <React.Fragment key={cat.category_id} >
-                                                    <a className="nav-link" href={`${link.name}&${cat.name}`}>{cat.name}</a>
-
+                                                    <Link className="nav-link" to={{ pathname: `/shopmate-product-browse/${link.name}&${cat.name}`, state: { department: link, category: cat } }}>{cat.name}</Link>
                                                 </React.Fragment>
                                             })
                                         }
                                     </NavDropdown>
-                                    // <a onMouseOver={} id={link.department_id} key={link.department_id} className="nav-link nav-menu-item" >{link.name}</a>
                                 )
                             }
                         </Nav>

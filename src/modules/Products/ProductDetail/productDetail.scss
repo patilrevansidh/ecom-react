@@ -42,60 +42,43 @@
                 letter-spacing: normal;
                 color: $greyish;
             }
-            .attribute-details{
-                .attribute-label{
-                    font-family: 'Montserrat';
-                    font-size: 16px;
-                    font-weight: bold;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: 1.5;
-                    letter-spacing: normal;
-                    color: $greyish;
-                }
-                .attribute-options{
-                    display: flex;
-                    // justify-content: space-between;
-                    .attribute-color-circle{
-                        width: 25px;
-                        height: 25px;
-                        margin-left: 5px;
-                        border-radius: 50%;
-                    }
-                    .selected-color{
-                        -moz-border-radius: 25px/25px;
-                        -webkit-border-radius: 25px 25px;
-                        border-radius: 25px/25px;
-                        border: solid 21px;
-                        width: 25px;
-                        height: 25px;
-                    }
-                    .attribute-color-reactangle-selected{
-                        width: 55px;
-                        height: 24px;
-                        border-radius: 2px;
-                        background-color: $red-pink;
-                    }
-                    .attribute-color-reactangle-selected{
-                        width: 55px;
-                        height: 24px;
-                        margin-left: 5px;
-                        border-radius: 2px;
-                        background-color: $red-pink;
-                        text-align: center;
-                    }
-                    .attribute-color-reactangle{
-                        width: 55px;
-                        height: 24px;
-                        border-radius: 2px;
-                        margin-left: 5px;
-                        background-color: $greyish;
-                        text-align: center;
-                    }
-                }
-            }
+         
         }
-    }   
+    }     
+    .add-button-container{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .submit-button {
+        @include ECom-Button;
+        height: 35px;
+        width:120px ;
+        border-radius: 17px
+    }
+    .quantiy-details{
+        .quantity-minus{
+            height: 20px;
+            width: 33px;
+            background-color: $greyish;
+            border-radius: 45%;          
+            text-align: center;
+        }
+        .quntity-input{
+            height: 20px;
+            width: 40px;
+            margin-left: 10px;
+            margin-right: 10px;
+            text-align: center;
+        }
+       
+        .quantity-oval{
+            height: 20px;
+            width: 33px;
+            background-color: $greyish;
+            border-radius: 45%;          
+            text-align: center;
+        }
+    }       
     .review-container{
         background-color: $light-greyish;
         .review-layout{
@@ -118,6 +101,16 @@
                 margin-bottom: 20px;
                 .row{
                     margin-bottom: 15px
+                }
+                .dummy-text{
+                    width:100px;
+                    height: 5px;
+                    background-color: $greyish;
+                    margin-top: 10px;
+                    // margin-bottom: 10px;
+                }
+                .dummmy-extra-width{
+                    width: 200px;
                 }
                 .user-name{              
                     font-family: 'LucidaGrande';
@@ -147,13 +140,7 @@
             }
             .review-star{
                 color: $macaroni-and-cheese;
-            }
-            .submit-button {
-                @include ECom-Button;
-                height: 35px;
-                width:120px ;
-                border-radius: 17px
-            }
+            }           
             .submit-container{
                 padding-bottom: 20px;
                 text-align: center;

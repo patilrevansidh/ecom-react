@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { getProductDetail, clearSelectedProduct, postReview } from '../../../common/actions/productAction';
 import { handleAuthModal } from '../../../common/actions/authAction';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
-import { Col } from 'react-bootstrap';
+import { Col, Button } from 'react-bootstrap';
 import { URLS } from '../../../common/constants/stringConstants';
 import { AddReviewForm, ReviewList } from './ReviewComponents';
 import './productDetail.scss';
+import { DummyProductCard } from '../ProductCard/DummyProductCard';
 
 class ProductDetailContainer extends EcomPureComponent {
     state = { review: '', name: '', rating: 0, selectedColor: null, selectedSize: null }
@@ -45,16 +46,43 @@ class ProductDetailContainer extends EcomPureComponent {
         this.props.handleAuthModal({ showAuthModal: true })
     }
 
+    handleQuantityChange = (e) => {
+        if (/[.]/.test(e.target.value)) {
+            this.setState({ quantity: this.state.quantity });
+            return
+        };
+        const value = e.target.value.replace(/[^0-9]*/g, '')
+        this.setState({ quantity: value });
+    }
+
+    handleAddToCart = () => {
+        console.log("Added to Cart", this.props.selectedProduct)
+    }
+
+    handleQuantityIncrementDecrement = (operation) => {
+        if (operation === 'minus') {
+            if (this.state.quantity - 1 < 1) return;
+            this.setState({ quantity: this.state.quantity - 1 });
+            return;
+        }
+        this.setState({ quantity: this.state.quantity + 1 });
+    }
+
     render() {
+        if (this.props.isDetailLoading) return <DummyProductCard detail={true} />
         if (!this.props.selectedProduct) return null;
         const { selectedProduct } = this.props
         return (
             <div className="shopmate-product-detail-container">
                 <div className="product-view-container row">
-                    <Col md={{ span: 6 }}>
+                    <Col md={{ span: 6 }} xs={{ span: 12 }} className="margin-top-20" >
                         <img src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image} />
+                        {
+                            <div className="" >
+                            </div>
+                        }
                     </Col>
-                    <Col md={{ span: 6 }}>
+                    <Col md={{ span: 6 }} xs={{ span: 12 }}>
                         <div className="product-detail">
                             <div className="product-title"> {selectedProduct.name} </div>
                             <div className="product-description"> {selectedProduct.description} </div>
@@ -78,6 +106,14 @@ class ProductDetailContainer extends EcomPureComponent {
                                     }
                                 </div>
                             </div>
+                        </div>
+                        <div className="quantiy-details row" >
+                            <div className="quantity-oval" id="minus" onClick={() => this.handleQuantityIncrementDecrement('minus')}> <i className="fas fa-minus" /> </div>
+                            <input min={1} value={this.state.quantity} onChange={this.handleQuantityChange} className="quntity-input" type="text" />
+                            <div className="quantity-oval" id="plus" onClick={() => this.handleQuantityIncrementDecrement('plus')}> <i className="fas fa-plus" /> </div>
+                        </div>
+                        <div className="add-button-container">
+                            <Button onClick={this.handleAddToCart} className="submit-button" type='submit' variant='none' >Add To Card</Button>
                         </div>
                     </Col>
                 </div>
