@@ -19,7 +19,7 @@ const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) =
                     <AppHeader {...props} />
                     <main className="container">
                         <Component {...props} />
-                        <CheckoutModal/>
+                        {/* <CheckoutModal/> */}
                         {showAuthModal && <AuthModal />}
                     </main>
                     <AppFooter />
