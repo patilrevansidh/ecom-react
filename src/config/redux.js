@@ -8,9 +8,9 @@ import { attributes } from '../common/reducers/attributes';
 import { categories } from '../common/reducers/catgories';
 import { products } from '../common/reducers/products';
 import { departments } from '../common/reducers/departments';
+import { shippingCart } from '../common/reducers/shippingCart';
 
-
-const combinedReducers = combineReducers({ profile, attributes, categories, products, departments })
+const combinedReducers = combineReducers({ profile, attributes, categories, products, departments, shippingCart })
 
 export const store = createStore(combinedReducers, compose(applyMiddleware(thunk)))
 

@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row } from 'react-bootstrap';
 import ProductList from '../Products/List/ProductList';
+import { getShippingDetails } from '../../common/actions/shippingCartAction';
 
 class Home extends Component {
+    componentWillMount() {
+        this.props.getShippingDetails()
+    }
     render() {
         return (
             <Row>
@@ -21,4 +25,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Home);
+function mapDispatchToProps(dispatchEvent) {
+    return {
+        getShippingDetails: () => { dispatchEvent(getShippingDetails()) },
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

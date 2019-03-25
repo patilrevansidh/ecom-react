@@ -22,7 +22,7 @@ export class SignInForm extends EcomPureComponent {
                     {error && error.password && <div className="invalid-feedback">{error.password}</div>}
                 </Form.Group>
                 <Form.Group as={Col} className="submit-container" >
-                    <Button disabled={isLoading} variant="none" onClick={handleSubmit} className="submit-button" >
+                    <Button disabled={isLoading} variant="none" onClick={handleSubmit} type='submit' className="submit-button" >
                         {!isLoading && LABELS.BUTTON.SIGN_IN || LABELS.BUTTON.LOADING}
                     </Button>
                 </Form.Group>
@@ -65,7 +65,7 @@ export class SignUpForm extends EcomPureComponent {
                     {error && error.matchError && <div className="invalid-feedback">{error.matchError}</div>}
                 </Form.Group>
                 <Form.Group as={Col} className="submit-container" >
-                    <Button disabled={isLoading} variant="none" onClick={handleSubmit} className="submit-button" >
+                    <Button disabled={isLoading} variant="none" type='submit' onClick={handleSubmit} className="submit-button" >
                         {!isLoading && LABELS.BUTTON.SIGN_UP || LABELS.BUTTON.LOADING}
                     </Button>
                 </Form.Group>

@@ -2,18 +2,18 @@ import { HTTPService } from '../HttpService';
 
 const url = 'shoppingcart/';
 
-export class Shop {
+export class ShopCart {
 
     static fetchCardId() {
         return HTTPService.get(url + 'generateUniqueId/');
     }
 
     static async fetchShipingDetails() {
-        const regions = await HTTPService.get(url + 'regions/');
+        const regions = await HTTPService.get('shipping/regions');
         if (Array.isArray(regions)) {
             return new Promise(async (resolve, reject) => {
                 try {
-                    let regionsDetails = regions.map((region) => HTTPService.get(url + + region.shipping_region_id))
+                    let regionsDetails = regions.map((region) => HTTPService.get("shipping/regions/" + region.shipping_region_id))
                     regionsDetails = await Promise.all(regionsDetails);
                     const regionAndShippingDetails = regions.map((item, index) => {
                         return {

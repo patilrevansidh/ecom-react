@@ -10,3 +10,25 @@
         margin-top: 20px
     }
 }
+.ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot{
+    background: $red-pink !important;
+}
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
+    background: $red-pink !important;;
+}
+.ant-steps-item-finish > .ant-steps-item-tail::after{
+    background: $red-pink !important;;
+}
+@media (max-width: 480px) {
+    .modal-lg { width: 40% }
+}
+.shopmate-form{
+    .invalid-feedback{
+        display: block;
+    }
+    .has-error{
+        border-color: #dc3545;
+        padding-right: 2.25rem;
+        background-repeat: no-repeat;
+    }
+}

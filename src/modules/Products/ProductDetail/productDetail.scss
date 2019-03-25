@@ -45,6 +45,16 @@
             color: $greyish;
         }        
     }
+    .add-button-container{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .submit-button {
+        @include ECom-Button;
+        height: 35px;
+        width:120px ;
+        border-radius: 17px
+    }
     .quantiy-details{
         .quantity-minus{
             height: 20px;
@@ -130,13 +140,7 @@
             }
             .review-star{
                 color: $macaroni-and-cheese;
-            }
-            .submit-button {
-                @include ECom-Button;
-                height: 35px;
-                width:120px ;
-                border-radius: 17px
-            }
+            }           
             .submit-container{
                 padding-bottom: 20px;
                 text-align: center;

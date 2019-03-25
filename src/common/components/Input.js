@@ -4,18 +4,19 @@ import { Form, Row, Col } from 'react-bootstrap';
 
 export class TextInputGroup extends EcomPureComponent {
     render() {
-        const { name, handleChange, placeholder, type, error, label, ...rest } = this.props;
+        const { groupAs, colspan, name, handleChange, placeholder, type, error, label, ...rest } = this.props;
+        const asGrp = groupAs === 'row' && Row || Col
         return (
-            <Form.Group as={Row} >
+            <Form.Group as={asGrp} >
                 {
                     label && <Form.Label column sm={4}> {label} </Form.Label>
                 }
-                <Col sm="6">
-                    <Form.Control type={type} name={name} className="text-box"
+                <Col sm={colspan || "6"}>
+                    <Form.Control type={type} name={name} className={error && 'has-error text-box' || 'text-box'}
                         placeholder={placeholder} onChange={handleChange} {...rest}
                     />
                 </Col>
-                {error && <Form.Control.Feedback type={this.props.error && 'invalid' || 'valid'} >{this.props.error}</Form.Control.Feedback>}
+                {error && <div className="invalid-feedback">{error}</div>}
             </Form.Group>
         );
     }

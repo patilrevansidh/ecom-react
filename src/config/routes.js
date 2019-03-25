@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { getProducts } from '../common/actions/productAction';
 import { getAttributes, getCategories, getDepartments } from '../common/actions/landingAction';
 import '../common/assets/styles/theme.scss';
+import CheckoutModal from '../modules/checkout/CheckoutModal';
 
 
 const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) => {
@@ -18,6 +19,7 @@ const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) =
                     <AppHeader {...props} />
                     <main className="container">
                         <Component {...props} />
+                        <CheckoutModal/>
                         {showAuthModal && <AuthModal />}
                     </main>
                     <AppFooter />
@@ -44,9 +46,13 @@ class Routes extends EcomPureComponent {
             <div className="theme-light" >
                 <Router basename="/" >
                     <Switch>
-                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} showAuthMenu exact path="/" component={Home} />
-                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} path="/shopmate-product/" component={ProductDetailContainer} />
-                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} path="/shopmate-product-browse/" component={Home} />
+                        <ComponentWithHeader
+                            showAuthModal={this.props.profile.showAuthModal} showAuthMenu
+                            exact path="/" component={Home} />
+                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal}
+                            path="/shopmate-product/" component={ProductDetailContainer} />
+                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal}
+                            path="/shopmate-product-browse/" component={Home} />
                     </Switch>
                 </Router>
             </div>
