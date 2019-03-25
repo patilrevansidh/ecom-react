@@ -9,9 +9,17 @@ const axiosInstance = axios.create({
 })
 
 export class HTTPService {
+    static axiosInstance = axios.create({
+        baseURL: URLS.API_BASE_URL,
+        headers: {
+            'Content-Type': 'application/json',
+            'user-key': localStorage.getItem('accessToken'),
+        },
+    })
+
     static get(url, params) {
         return new Promise((resolve, reject) => {
-            axiosInstance.get(url, params)
+            HTTPService.axiosInstance.get(url, params)
                 .then(response => {
                     if (response.status === 200)
                         resolve(response.data)
@@ -22,7 +30,7 @@ export class HTTPService {
 
     static put(url, body) {
         return new Promise((resolve, reject) => {
-            axiosInstance.put(url, body)
+            HTTPService.axiosInstance.put(url, body)
                 .then(response => {
                     if (response.status === 200)
                         resolve(response.data)
@@ -33,7 +41,7 @@ export class HTTPService {
 
     static post(url, body) {
         return new Promise((resolve, reject) => {
-            axiosInstance.post(url, body)
+            HTTPService.axiosInstance.post(url, body)
                 .then(response => {
                     if (response.status === 200) {
                         saveToken(response);
@@ -48,6 +56,6 @@ export class HTTPService {
 
 function saveToken(reponse) {
     if (reponse.data && reponse.data.accessToken) {
-        localStorage.setItem('accessToken',  reponse.data.accessToken)
+        localStorage.setItem('accessToken', reponse.data.accessToken)
     }
 }

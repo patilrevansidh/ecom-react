@@ -2,8 +2,11 @@ import React from 'react';
 import { Navbar, Nav, Form, Badge, NavDropdown } from 'react-bootstrap';
 import { EcomPureComponent } from '../EcomPureComponent';
 import AuthMenuHeader from './AuthMenuHeader';
-import './header.scss';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import './header.scss';
+
+// to={{ pathname: `shopmate-product-browse/${department.name}&${category.name}`, state: { department, category } }}
 class AppHeaderComponent extends EcomPureComponent {
     render() {
         return (
@@ -20,8 +23,7 @@ class AppHeaderComponent extends EcomPureComponent {
                                         {
                                             link.categories.map(cat => {
                                                 return <React.Fragment key={cat.category_id} >
-                                                    <a className="nav-link" href={`${link.name}&${cat.name}`}>{cat.name}</a>
-
+                                                    <Link className="nav-link" to={{ pathname: `/shopmate-product-browse/${link.name}&${cat.name}`, state: { department: link, category: cat } }}>{cat.name}</Link>
                                                 </React.Fragment>
                                             })
                                         }

@@ -13,15 +13,16 @@ const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) =
     return (
         <Route
             {...rest}
-            render={props =>
-                <React.Fragment>
-                    <AppHeader />
+            render={props => {
+                return <React.Fragment>
+                    <AppHeader {...props} />
                     <main className="container">
                         <Component {...props} />
                         {showAuthModal && <AuthModal />}
                     </main>
                     <AppFooter />
                 </React.Fragment>
+            }
             }
         />
     )
@@ -45,6 +46,7 @@ class Routes extends EcomPureComponent {
                     <Switch>
                         <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} showAuthMenu exact path="/" component={Home} />
                         <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} path="/shopmate-product/" component={ProductDetailContainer} />
+                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal} path="/shopmate-product-browse/" component={Home} />
                     </Switch>
                 </Router>
             </div>
