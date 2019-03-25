@@ -13,7 +13,7 @@ class AppHeaderComponent extends EcomPureComponent {
             <header>
                 {<AuthMenuHeader />}
                 <Navbar fixed expand="lg" className="shopmate-bg-light" >
-                    <Navbar.Brand className="brand" href="/">Brand</Navbar.Brand>
+                    <Link className="brand navbar-brand brand" to="/" >Brand</Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
@@ -28,7 +28,6 @@ class AppHeaderComponent extends EcomPureComponent {
                                             })
                                         }
                                     </NavDropdown>
-                                    // <a onMouseOver={} id={link.department_id} key={link.department_id} className="nav-link nav-menu-item" >{link.name}</a>
                                 )
                             }
                         </Nav>
