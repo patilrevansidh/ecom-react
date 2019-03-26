@@ -34,7 +34,7 @@ class AppHeaderComponent extends EcomPureComponent {
                         <div className="search-card-badge">
                             <SearchForm />
                             <i className="fas fa-shopping-cart shoping-cart-icon">
-                                <sup><Badge className="card-badge">3</Badge></sup>
+                                <sup><Badge className="card-badge">{this.props.shopCart.cart.length}</Badge></sup>
                             </i>
                         </div>
                     </Navbar.Collapse>
@@ -46,7 +46,8 @@ class AppHeaderComponent extends EcomPureComponent {
 
 function mapStateToProps(state) {
     return {
-        departments: state.departments
+        departments: state.departments,
+        shopCart: state.shippingCart
     }
 }
 
