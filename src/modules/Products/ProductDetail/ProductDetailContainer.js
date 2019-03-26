@@ -88,7 +88,7 @@ class ProductDetailContainer extends EcomPureComponent {
                             <div className="product-description other-text"> {selectedProduct.description} </div>
                             <div className="product-price">$ {selectedProduct.price}</div>
                             <div className="attribute-details">
-                                <div className="attribute-label"> Color </div>
+                                <div className="attribute-label margin-top-20"> Color </div>
                                 <div className="attribute-options">
                                     {selectedProduct.attributes.Color.map((color) => {
                                         const isWhite = color.attribute_value.toLowerCase() === 'white' && { border: 'dotted 3px black' } || null;
@@ -96,7 +96,7 @@ class ProductDetailContainer extends EcomPureComponent {
                                         return <div onClick={() => this.setState({ selectedColor: color.attribute_value_id })} className="attribute-color-circle" style={{ backgroundColor: color.attribute_value.toLowerCase(), ...isWhite, ...selected }} />
                                     })}
                                 </div>
-                                <div className="attribute-label"> Size </div>
+                                <div className="attribute-label margin-top-20"> Size </div>
                                 <div className="attribute-options" >
                                     {
                                         selectedProduct.attributes.Size.map((size) => {
