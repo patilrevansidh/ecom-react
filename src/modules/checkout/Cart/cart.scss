@@ -12,4 +12,21 @@
         color: $greyish;
         text-align: center
     }
+    .product-image-container{
+        width: 96px;
+        height: 96px;
+        border: solid 1px $form-border-color;
+        background-color: $white;
+        display: flex;
+        justify-content: center;
+        align-items: center;    
+        .product-image{
+            width: 77px;
+            height: 90px;
+        }
+    }
+    .cart-product-details{
+        margin-left: 20px;
+        text-align: left;
+    }
 }

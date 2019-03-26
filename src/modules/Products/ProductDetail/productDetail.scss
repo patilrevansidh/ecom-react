@@ -134,31 +134,31 @@
         width:120px ;
         border-radius: 17px
     }
-    .quantiy-details{
-        display: flex;
-        .quantity-minus{
-            height: 20px;
-            width: 33px;
-            background-color: $greyish;
-            border-radius: 45%;          
-            text-align: center;
-        }
-        .quntity-input{
-            height: 20px;
-            width: 40px;
-            margin-left: 10px;
-            margin-right: 10px;
-            text-align: center;
-        }
+    // .quantiy-details{
+    //     display: flex;
+    //     .quantity-minus{
+    //         height: 20px;
+    //         width: 33px;
+    //         background-color: $greyish;
+    //         border-radius: 45%;          
+    //         text-align: center;
+    //     }
+    //     .quntity-input{
+    //         height: 20px;
+    //         width: 40px;
+    //         margin-left: 10px;
+    //         margin-right: 10px;
+    //         text-align: center;
+    //     }
        
-        .quantity-oval{
-            height: 20px;
-            width: 33px;
-            background-color: $greyish;
-            border-radius: 45%;          
-            text-align: center;
-        }
-    }       
+    //     .quantity-oval{
+    //         height: 20px;
+    //         width: 33px;
+    //         background-color: $greyish;
+    //         border-radius: 45%;          
+    //         text-align: center;
+    //     }
+    // }       
     .review-container{
         background-color: $light-greyish;
         .review-layout{

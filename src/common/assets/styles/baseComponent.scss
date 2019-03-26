@@ -1,0 +1,27 @@
+@import './textCatalog.scss';
+
+.base-component-quanity{
+        display: flex;
+        .quantity-minus{
+            height: 20px;
+            width: 33px;
+            background-color: $greyish;
+            border-radius: 45%;          
+            text-align: center;
+        }
+        .quntity-input{
+            height: 20px;
+            width: 40px;
+            margin-left: 10px;
+            margin-right: 10px;
+            text-align: center;
+        }
+       
+        .quantity-oval{
+            height: 20px;
+            width: 33px;
+            background-color: $greyish;
+            border-radius: 45%;          
+            text-align: center;
+        }
+}

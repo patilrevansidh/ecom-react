@@ -16,7 +16,7 @@ export const getShippingDetails = () => {
 export function handleAddCart(payload, product) {
     return async (dispatchEvent) => {
         const response = await ShopCart.addToCart(payload)
-        const cartItem = { ...response, ...product }
+        const cartItem = { ...product, ...response[0], }
         dispatchEvent({ type: SHIPPING.ADD_TO_CART_COMPLETE, payload: cartItem })
     }
 }

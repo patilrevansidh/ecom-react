@@ -75,3 +75,7 @@ $light-greyish:#fafafa;
   background-color: $red-pink;
   border-color: $red-pink
 }
+
+@mixin center {
+  text-align: center
+}

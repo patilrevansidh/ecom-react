@@ -9,6 +9,7 @@ import { DummyProductCard } from '../ProductCard/DummyProductCard';
 import { getProductDetail, clearSelectedProduct, postReview } from '../../../common/actions/productAction';
 import { handleModal } from '../../../common/actions/authAction';
 import { handleAddCart } from '../../../common/actions/shippingCartAction';
+import { QuantityInput }  from '../../../common/components/importer';
 
 const selectionKey = {
     // size: 'attribute_value_id',
@@ -133,9 +134,10 @@ class ProductDetailContainer extends EcomPureComponent {
                             </div>
                         </div>
                         <div className="quantiy-details margin-top-20" >
-                            <div className="quantity-oval" id="minus" onClick={() => this.handleQuantityIncrementDecrement('minus')}> <i className="fas fa-minus" /> </div>
-                            <input min={1} value={this.state.quantity} onChange={this.handleQuantityChange} className="quntity-input" type="text" />
-                            <div className="quantity-oval" id="plus" onClick={() => this.handleQuantityIncrementDecrement('plus')}> <i className="fas fa-plus" /> </div>
+                            <QuantityInput
+                                quantity={this.state.quantity}
+                                handleQuantityIncrementDecrement={this.handleQuantityIncrementDecrement}
+                                handleQuantityChange={this.handleQuantityChange} />
                         </div>
                         <div className="add-button-container">
                             <Button onClick={this.handleAddToCart} className="submit-button" type='submit' variant='none' >Add To Card</Button>

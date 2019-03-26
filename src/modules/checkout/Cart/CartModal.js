@@ -4,6 +4,7 @@ import { handleModal } from '../../../common/actions/authAction';
 import { connect } from 'react-redux';
 import './cart.scss';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
+import CartItem from './CartItem';
 
 class CartModal extends EcomPureComponent {
 
@@ -25,6 +26,7 @@ class CartModal extends EcomPureComponent {
                             <Col className="table-header-item" md={{ span: 3 }} > Quantity </Col>
                             <Col className="table-header-item" md={{ span: 1 }} > Price </Col>
                         </Row>
+                        <CartItem />
                     </div>
                 </Modal.Body>
             </Modal>
