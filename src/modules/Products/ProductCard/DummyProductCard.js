@@ -29,7 +29,7 @@ export class DummyProductCard extends Component {
                         <div className="user-review" >
                             {
                                 [1, 2, 3].map(item => {
-                                    return <div style={{ marginBottom: 25 }}>
+                                    return <div key={item} style={{ marginBottom: 25 }}>
                                         <div className="dummy-text" />
                                         <div className="dummy-text dummmy-extra-width" />
                                         <div className="dummy-text" />

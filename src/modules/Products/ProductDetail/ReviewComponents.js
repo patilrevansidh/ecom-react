@@ -39,7 +39,7 @@ export const StarRate = (props) => {
             {
                 [1, 2, 3, 4, 5].map(item => {
                     const className = rating >= item ? 'fas fa-star' : 'far fa-star';
-                    return <i onClick={() => handleRate(item)} className={className} />
+                    return <i key={item} onClick={() => handleRate(item)} className={className} />
                 })
             }
         </React.Fragment>

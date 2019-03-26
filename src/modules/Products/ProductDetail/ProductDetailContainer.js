@@ -94,7 +94,7 @@ class ProductDetailContainer extends EcomPureComponent {
                                     {selectedProduct.attributes.Color.map((color) => {
                                         const isWhite = color.attribute_value.toLowerCase() === 'white' && { border: 'dotted 3px black' } || null;
                                         const selected = this.state.selectedColor === color.attribute_value_id && { border: '6px solid #2878B5' } || null
-                                        return <div onClick={() => this.setState({ selectedColor: color.attribute_value_id })} className="attribute-color-circle" style={{ backgroundColor: color.attribute_value.toLowerCase(), ...isWhite, ...selected }} />
+                                        return <div key={color.attribute_value_id} onClick={() => this.setState({ selectedColor: color.attribute_value_id })} className="attribute-color-circle" style={{ backgroundColor: color.attribute_value.toLowerCase(), ...isWhite, ...selected }} />
                                     })}
                                 </div>
                                 <div className="attribute-label margin-top-20"> Size </div>
@@ -102,7 +102,7 @@ class ProductDetailContainer extends EcomPureComponent {
                                     {
                                         selectedProduct.attributes.Size.map((size) => {
                                             const className = this.state.selectedSize === size.attribute_value_id && 'attribute-color-reactangle-selected' || 'attribute-color-reactangle'
-                                            return <div onClick={() => this.setState({ selectedSize: size.attribute_value_id })} className={className}>{size.attribute_value}</div>
+                                            return <div key={size.attribute_value_id} onClick={() => this.setState({ selectedSize: size.attribute_value_id })} className={className}>{size.attribute_value}</div>
                                         })
                                     }
                                 </div>
