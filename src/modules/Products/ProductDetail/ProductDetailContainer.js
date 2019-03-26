@@ -56,7 +56,8 @@ class ProductDetailContainer extends EcomPureComponent {
     }
 
     handleAddToCart = () => {
-        console.log("Added to Cart", this.props.selectedProduct)
+        console.log("Added to Cart", this.props.selectedProduct.product_id)
+        console.log("Added to Cart", this.props.shippingCart)
     }
 
     handleQuantityIncrementDecrement = (operation) => {
@@ -137,9 +138,11 @@ class ProductDetailContainer extends EcomPureComponent {
 function mapStateToProps(state) {
     const selectedProduct = state.products.selectedProduct;
     const isDetailLoading = state.products.isDetailLoading;
+    const shippingCart = state.shippingCart;
     return {
         selectedProduct, isDetailLoading,
-        profile: state.profile
+        profile: state.profile,
+        shippingCart
     }
 }
 

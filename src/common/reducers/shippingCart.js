@@ -1,15 +1,15 @@
 import { SHIPPING } from '../constants/actionString';
 
 const initialState = {
-    card_id: null,
+    cart_id: null,
     shipping: [],
     cart: []
 }
 
-export function shippingCart(state = initialState, action) {
+export const shippingCart = (state = initialState, action) => {
     switch (action.type) {
         case SHIPPING.FETCH_SHIPPING_REGION_COMPLETE:
-            return { ...state, shipping: action.payload };
+            return { ...state, shipping: action.payload.details, cart_id: action.payload.cart_id };
         case SHIPPING.ADD_TO_CART_COMPLETE:
             return { ...state }
         case SHIPPING.DETELTE_CART_ITEM_COMPLETE:
