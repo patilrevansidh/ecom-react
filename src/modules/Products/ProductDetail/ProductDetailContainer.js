@@ -10,7 +10,7 @@ import './productDetail.scss';
 import { DummyProductCard } from '../ProductCard/DummyProductCard';
 
 class ProductDetailContainer extends EcomPureComponent {
-    state = { review: '', name: '', rating: 0, selectedColor: null, selectedSize: null }
+    state = { review: '', name: '', rating: 0, selectedColor: null, selectedSize: null, quantity: 1 }
     componentWillMount() {
         this.getProduct();
     }
@@ -85,7 +85,7 @@ class ProductDetailContainer extends EcomPureComponent {
                     <Col md={{ span: 6 }} xs={{ span: 12 }}>
                         <div className="product-detail">
                             <div className="product-title"> {selectedProduct.name} </div>
-                            <div className="product-description"> {selectedProduct.description} </div>
+                            <div className="product-description other-text"> {selectedProduct.description} </div>
                             <div className="product-price">$ {selectedProduct.price}</div>
                             <div className="attribute-details">
                                 <div className="attribute-label"> Color </div>
@@ -107,7 +107,7 @@ class ProductDetailContainer extends EcomPureComponent {
                                 </div>
                             </div>
                         </div>
-                        <div className="quantiy-details row" >
+                        <div className="quantiy-details margin-top-20" >
                             <div className="quantity-oval" id="minus" onClick={() => this.handleQuantityIncrementDecrement('minus')}> <i className="fas fa-minus" /> </div>
                             <input min={1} value={this.state.quantity} onChange={this.handleQuantityChange} className="quntity-input" type="text" />
                             <div className="quantity-oval" id="plus" onClick={() => this.handleQuantityIncrementDecrement('plus')}> <i className="fas fa-plus" /> </div>
