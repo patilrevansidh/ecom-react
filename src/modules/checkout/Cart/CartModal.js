@@ -3,8 +3,9 @@ import { Modal, Row, Col } from 'react-bootstrap';
 import { handleModal } from '../../../common/actions/authAction';
 import { connect } from 'react-redux';
 import './cart.scss';
+import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
 
-class CartModal extends Component {
+class CartModal extends EcomPureComponent {
 
     handleCloseCartModal = () => {
         this.props.handleModal({ showCartModal: false })
@@ -30,6 +31,7 @@ class CartModal extends Component {
         );
     }
 }
+
 function mapStateToProps(state) {
     return {
         showCartModal: state.profile.showCartModal,
@@ -42,4 +44,5 @@ function mapDispatchToProps(dispatchEvent) {
         handleModal: (payload) => { dispatchEvent(handleModal(payload)) }
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(CartModal);

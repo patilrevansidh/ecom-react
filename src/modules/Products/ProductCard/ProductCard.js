@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, Col } from 'react-bootstrap';
 import { URLS } from '../../../common/constants/stringConstants';
 import './product.scss';
+import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
 
-export class ProductCard extends Component {
+export class ProductCard extends EcomPureComponent {
 
     handleDetailsView = () => {
         const { item } = this.props;

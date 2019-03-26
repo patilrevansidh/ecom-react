@@ -4,9 +4,8 @@ import { Button, Form, Col, Row } from 'react-bootstrap';
 import { LABELS } from '../../../common/constants/stringConstants';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
 import { withList } from '../../../common/components/HOC/withList';
-import { DummyReviewCard } from '../ProductCard/DummyProductCard';
 
-export class AddReviewForm extends Component {
+export class AddReviewForm extends EcomPureComponent {
     render() {
         const { handleChange, handleSubmit, rating, name, review, handleRate } = this.props
         return (

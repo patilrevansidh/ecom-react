@@ -5,7 +5,7 @@ import './product.scss';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
 import { ReviewList } from '../ProductDetail/ReviewComponents';
 
-export class DummyProductCard extends Component {
+export class DummyProductCard extends EcomPureComponent {
 
     render() {
         const productCard = <Col sm={{ span: 10, offset: 2 }} md={{ span: 3, offset: 0 }}>
