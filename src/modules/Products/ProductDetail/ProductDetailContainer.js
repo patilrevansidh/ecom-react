@@ -114,7 +114,7 @@ class ProductDetailContainer extends EcomPureComponent {
                                 <div className="attribute-options" >
                                     {
                                         selectedProduct.attributes.Size.map((size) => {
-                                            const className = this.state.selectedSize === size.attribute_value_id && 'attribute-color-reactangle-selected' || 'attribute-color-reactangle'
+                                            const className = this.state.selectedSize === size.attribute_value_id && 'attribute-color-reactangle selected' || 'attribute-color-reactangle'
                                             return <div key={size.attribute_value_id} onClick={() => this.setState({ selectedSize: size.attribute_value_id })} className={className}>{size.attribute_value}</div>
                                         })
                                     }
