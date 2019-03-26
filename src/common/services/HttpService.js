@@ -19,7 +19,7 @@ export class HTTPService {
 
     static get(url, params) {
         return new Promise((resolve, reject) => {
-            HTTPService.axiosInstance.get(url, params)
+            axiosInstance.get(url, params)
                 .then(response => {
                     if (response.status === 200)
                         resolve(response.data)
@@ -30,7 +30,7 @@ export class HTTPService {
 
     static put(url, body) {
         return new Promise((resolve, reject) => {
-            HTTPService.axiosInstance.put(url, body)
+            axiosInstance.put(url, body)
                 .then(response => {
                     if (response.status === 200)
                         resolve(response.data)
@@ -41,7 +41,7 @@ export class HTTPService {
 
     static post(url, body) {
         return new Promise((resolve, reject) => {
-            HTTPService.axiosInstance.post(url, body)
+            axiosInstance.post(url, body)
                 .then(response => {
                     if (response.status === 200) {
                         saveToken(response);
@@ -54,7 +54,7 @@ export class HTTPService {
 
     static delete(url) {
         return new Promise((resolve, reject) => {
-            HTTPService.axiosInstance.delete(url)
+            axiosInstance.delete(url)
                 .then(response => {
                     if (response.status === 200) {
                         saveToken(response);

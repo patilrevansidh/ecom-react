@@ -59,6 +59,7 @@ class AuthModal extends EcomPureComponent {
     }
 
     handleSubmit = (e, data) => {
+        e.preventDefault();
         if (this.isValidForm()) {
             if (this.props.profile.isSignInForm) {
                 this.handleSignIn();

@@ -10,7 +10,11 @@ import './productDetail.scss';
 import { DummyProductCard } from '../ProductCard/DummyProductCard';
 
 class ProductDetailContainer extends EcomPureComponent {
-    state = { review: '', name: '', rating: 0, selectedColor: null, selectedSize: null, quantity: 1 }
+    state = {
+        review: '', name: '', rating: 0, selectedImage: null,
+        selectedColor: null, selectedSize: null, quantity: 1
+    }
+
     componentWillMount() {
         this.getProduct();
     }
@@ -69,19 +73,28 @@ class ProductDetailContainer extends EcomPureComponent {
         this.setState({ quantity: this.state.quantity + 1 });
     }
 
+    handleImageSelection = (endpoint) => {
+        this.setState({ selectedImage: endpoint });
+    }
+
     render() {
         if (this.props.isDetailLoading) return <DummyProductCard detail={true} />
         if (!this.props.selectedProduct) return null;
-        const { selectedProduct } = this.props
+        const { selectedProduct } = this.props;
+        const selectedImage = this.state.selectedImage || selectedProduct.image
         return (
             <div className="shopmate-product-detail-container">
                 <div className="product-view-container row">
-                    <Col md={{ span: 6 }} xs={{ span: 12 }} className="margin-top-20" >
-                        <img src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image} />
-                        {
-                            <div className="" >
+                    <Col md={{ span: 6 }} xs={{ span: 12 }}>
+                        <div className="product-image-container">
+                            <div className="product-image-big-wrap">
+                                <img src={URLS.IMAGE_BASE_URL + 'products/' + selectedImage} />
                             </div>
-                        }
+                            <div className="product-image-small-wrap">
+                                <img className={this.state.selectedImage !== selectedProduct.image_2 && "preview-image selected" || "preview-image"} src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image} onClick={() => this.handleImageSelection(selectedProduct.image)}  />
+                                <img className={this.state.selectedImage === selectedProduct.image_2 && "preview-image selected" || "preview-image"} src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image_2} onClick={() => this.handleImageSelection(selectedProduct.image_2)}  />
+                            </div>
+                        </div>
                     </Col>
                     <Col md={{ span: 6 }} xs={{ span: 12 }}>
                         <div className="product-detail">

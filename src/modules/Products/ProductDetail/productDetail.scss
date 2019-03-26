@@ -7,7 +7,32 @@
         margin: 0px;
     }
     .product-view-container{
-        display: flex
+        display: flex;
+        .product-image-container{
+            .product-image-big-wrap{
+                height: 250px;
+                // display: flex;
+                text-align: center;
+                padding-top: 20px;
+                .preview-big-imag{
+                    width: 120px;
+                    height: 111px;
+                    margin-top: 20px;
+                    cursor: pointer;
+                }
+            }
+            .product-image-small-wrap{
+                text-align: center;
+                .preview-image{
+                    margin-right: 20px;
+                    height: 70px;
+                    width: 70px;                    
+                }
+                .selected {
+                    border: solid $red-pink 2px;
+                }
+            }
+        }
     }
     .product-detail{       
         .product-title{
