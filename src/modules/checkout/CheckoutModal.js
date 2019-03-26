@@ -3,13 +3,18 @@ import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 import { Modal, Col } from 'react-bootstrap';
 import { Steps } from 'antd';
 import { DeliveryForm } from '../checkout/DeliveryForm';
+import { handleModal } from '../../common/actions/authAction';
+import { connect } from 'react-redux';
 
 const Step = Steps.Step;
 
 class CheckoutModal extends EcomPureComponent {
-    state = {
-        current: 0
+    state = { current: 0 }
+
+    handleCloseCheckoutModal = () => {
+        this.props.handlModal({ showCheckoutModal: false })
     }
+
     render() {
         let currentStepComponent = <DeliveryForm />;
         switch (this.state.current) {
@@ -26,7 +31,7 @@ class CheckoutModal extends EcomPureComponent {
         return (
             <React.Fragment>
                 <Col span={{ md: 10, xs: 8 }}>
-                    <Modal size='lg' show={true} >
+                    <Modal size='lg' show={this.props.showCheckoutModal} onHide={this.handleCloseCheckoutModal} >
                         <Modal.Header>
                             <Modal.Title>CheckOut</Modal.Title>
                         </Modal.Header>
@@ -49,4 +54,16 @@ class CheckoutModal extends EcomPureComponent {
     }
 }
 
-export default CheckoutModal;
+function mapStateToProps(state) {
+    return {
+        showCheckoutModal: state.profile.showCheckoutModal,
+    }
+}
+
+function mapDispatchToProps(dispatchEvent) {
+    return {
+        handlModal: (payload) => { dispatchEvent(handleModal(payload)) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutModal);

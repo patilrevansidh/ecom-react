@@ -11,7 +11,7 @@ import { getShippingDetails } from "../common/actions/shippingCartAction";
 import '../common/assets/styles/theme.scss';
 
 
-const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) => {
+const ComponentWithHeader = ({ showCartModal, showCheckoutModal, showAuthModal, component: Component, ...rest }) => {
     return (
         <Route
             {...rest}
@@ -20,7 +20,7 @@ const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) =
                     <AppHeader {...props} />
                     <main className="container">
                         <Component {...props} />
-                        {/* <CheckoutModal/> */}
+                        {showCheckoutModal && <CheckoutModal />}
                         {showAuthModal && <AuthModal />}
                     </main>
                     <AppFooter />
@@ -44,16 +44,17 @@ class Routes extends EcomPureComponent {
     }
 
     render() {
+        const { showAuthModal, showCartModal, showCheckoutModal } = this.props.profile
         return (
             <div className="theme-light" >
                 <Router basename="/" >
                     <Switch>
-                        <ComponentWithHeader
-                            showAuthModal={this.props.profile.showAuthModal} showAuthMenu
+                        <ComponentWithHeader showCartModal={showCartModal} showCheckoutModal={showCheckoutModal}
+                            showAuthModal={showAuthModal} showAuthMenu
                             exact path="/" component={Home} />
-                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal}
+                        <ComponentWithHeader showAuthModal={showAuthModal} showCartModal={showCartModal} showCheckoutModal={showCheckoutModal}
                             path="/shopmate-product/" component={ProductDetailContainer} />
-                        <ComponentWithHeader showAuthModal={this.props.profile.showAuthModal}
+                        <ComponentWithHeader showAuthModal={showAuthModal} showCartModal={showCartModal} showCheckoutModal={showCheckoutModal}
                             path="/shopmate-product-browse/" component={Home} />
                     </Switch>
                 </Router>

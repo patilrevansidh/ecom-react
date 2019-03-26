@@ -11,7 +11,7 @@ import { handleModal } from '../../actions/authAction';
 class AppHeaderComponent extends EcomPureComponent {
 
     handleShowCartModal = () => {
-        this.props.handleModal({ showCartModal: true })
+        this.props.handleModal({ showCheckoutModal: true })
     }
     
     render() {
