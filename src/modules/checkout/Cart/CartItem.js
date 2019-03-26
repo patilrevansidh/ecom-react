@@ -3,26 +3,25 @@ import { Row, Col } from 'react-bootstrap';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
 import { connect } from 'react-redux';
 import { URLS } from '../../../common/constants/stringConstants';
+import { QuantityInput } from '../../../common/components/importer';
 
 class CartItem extends EcomPureComponent {
     render() {
         return (
-            <Row className="margin-top-20">
-                <Col md={{ span: 5 }}>
+            <div style={{ marginTop: 20 }} className="margin-top-20 row">
+                <Col className="row-container" md={{ span: 5 }}>
                     <CartProductView product={dummyProduct} />
                 </Col >
-                <Col md={{ span: 2 }}>
-                    {
-                        dummyProduct.attributes
-                    }
+                <Col className="row-container" md={{ span: 2 }}>
+                    <div className="attribute-value"> XL </div>
                 </Col>
-                <Col md={{ span: 3 }}>
-                    {}                        
+                <Col className="row-container" md={{ span: 3 }}>
+                    <QuantityInput quantity={1} />
                 </Col>
-                <Col md={{ span: 1 }}>
-                    {dummyProduct.subtotal}
+                <Col className="row-container" md={{ span: 1 }}>
+                    <div className="product-price"> $21 </div>
                 </Col>
-            </Row>
+            </div>
         );
     }
 }
@@ -58,7 +57,7 @@ class CartProductView extends EcomPureComponent {
             <Row>
                 <div>
                     <div className="product-image-container">
-                        <img className="product-image" src={URLS.IMAGE_BASE_URL+'products/' + product.image} />
+                        <img className="product-image" src={URLS.IMAGE_BASE_URL + 'products/' + product.image} />
                     </div>
                 </div>
                 <div className="cart-product-details">

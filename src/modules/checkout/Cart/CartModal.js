@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Modal, Row, Col } from 'react-bootstrap';
 import { handleModal } from '../../../common/actions/authAction';
 import { connect } from 'react-redux';

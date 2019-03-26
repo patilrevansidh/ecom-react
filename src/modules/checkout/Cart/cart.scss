@@ -25,6 +25,32 @@
             height: 90px;
         }
     }
+    .row-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .attribute-value{
+        font-family: OpenSans;
+        font-size: 16px;
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: $black;
+    }
+    .product-price{
+        font-family: Montserrat;
+        font-size: 24px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: 1px;
+        text-align: center;
+        color: $black;
+    }
     .cart-product-details{
         margin-left: 20px;
         text-align: left;
