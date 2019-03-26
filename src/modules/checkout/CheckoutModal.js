@@ -12,7 +12,7 @@ class CheckoutModal extends EcomPureComponent {
     state = { current: 0 }
 
     handleCloseCheckoutModal = () => {
-        this.props.handlModal({ showCheckoutModal: false })
+        this.props.handleModal({ showCheckoutModal: false })
     }
 
     render() {
@@ -33,7 +33,7 @@ class CheckoutModal extends EcomPureComponent {
                 <Col span={{ md: 10, xs: 8 }}>
                     <Modal size='lg' show={this.props.showCheckoutModal} onHide={this.handleCloseCheckoutModal} >
                         <Modal.Header>
-                            <Modal.Title>CheckOut</Modal.Title>
+                            <Modal.Title>  CheckOut</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <Steps progressDot current={this.state.current}>
@@ -57,12 +57,13 @@ class CheckoutModal extends EcomPureComponent {
 function mapStateToProps(state) {
     return {
         showCheckoutModal: state.profile.showCheckoutModal,
+        cart: state.shippingCart.cart
     }
 }
 
 function mapDispatchToProps(dispatchEvent) {
     return {
-        handlModal: (payload) => { dispatchEvent(handleModal(payload)) }
+        handleModal: (payload) => { dispatchEvent(handleModal(payload)) }
     }
 }
 

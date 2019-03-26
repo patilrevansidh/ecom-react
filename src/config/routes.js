@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { getProducts } from '../common/actions/productAction';
 import { getAttributes, getCategories, getDepartments } from '../common/actions/landingAction';
 import CheckoutModal from '../modules/checkout/CheckoutModal';
+import CartModal from '../modules/checkout/Cart/CartModal';
 import { getShippingDetails } from "../common/actions/shippingCartAction";
 import '../common/assets/styles/theme.scss';
 
@@ -22,6 +23,7 @@ const ComponentWithHeader = ({ showCartModal, showCheckoutModal, showAuthModal, 
                         <Component {...props} />
                         {showCheckoutModal && <CheckoutModal />}
                         {showAuthModal && <AuthModal />}
+                        {showCartModal && <CartModal />}
                     </main>
                     <AppFooter />
                 </React.Fragment>

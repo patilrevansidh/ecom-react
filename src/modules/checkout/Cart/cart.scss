@@ -1,0 +1,15 @@
+@import '../../../common/assets/styles/textCatalog.scss';
+
+.shopmate-cart-container {
+    .table-header-item{
+        font-family: 'Montserrat';
+        font-size: 16px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: $greyish;
+        text-align: center
+    }
+}

@@ -8,7 +8,6 @@ class DeliveryFormCompnent extends Component {
 
     }
     render() {
-        console.log("this.[props", this.props.shipping);
         return (
             <Form className="shopmate-form">
                 <div className="row" >
