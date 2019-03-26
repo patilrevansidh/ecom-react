@@ -36,7 +36,6 @@ class AuthModal extends EcomPureComponent {
 
         if (this.props.profile.isSignInForm) {
             if (!email && !password) { this.setState({ error: null }); return true };;
-            const error = { email, password };
             this.setState({ error: { email, password } });
             return false;
         }

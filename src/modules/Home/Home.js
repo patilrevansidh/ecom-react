@@ -3,19 +3,12 @@ import { connect } from 'react-redux';
 import { Row } from 'react-bootstrap';
 import ProductList from '../Products/List/ProductList';
 import { getShippingDetails } from '../../common/actions/shippingCartAction';
+import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 
-class Home extends Component {
-    componentWillMount() {
-        this.props.getShippingDetails()
-    }
-    render() {
-        return (
-            <Row>
-                <ProductList history={this.props.history} data={this.props.products} isLoading={this.props.isLoading} />
-            </Row>
-
-        );
-    }
+class Home extends EcomPureComponent {
+    render = () => <Row>
+        <ProductList history={this.props.history} data={this.props.products} isLoading={this.props.isLoading} />
+    </Row>
 }
 
 const mapStateToProps = (state) => {
@@ -25,11 +18,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-function mapDispatchToProps(dispatchEvent) {
-    return {
-        getShippingDetails: () => { dispatchEvent(getShippingDetails()) },
-
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

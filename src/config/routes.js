@@ -8,6 +8,7 @@ import { getProducts } from '../common/actions/productAction';
 import { getAttributes, getCategories, getDepartments } from '../common/actions/landingAction';
 import '../common/assets/styles/theme.scss';
 import CheckoutModal from '../modules/checkout/CheckoutModal';
+import { getShippingDetails } from "../common/actions/shippingCartAction";
 
 
 const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) => {
@@ -39,6 +40,7 @@ class Routes extends EcomPureComponent {
         this.props.fetchCategogies();
         this.props.fetchAttributes();
         this.props.fetchProducts();
+        this.props.getShippingDetails()
     }
 
     render() {
@@ -71,7 +73,9 @@ function mapDispatchToProps(dispatchEvent) {
         fetchProducts: () => { dispatchEvent(getProducts()) },
         fetchCategogies: () => { dispatchEvent(getCategories()) },
         fetchAttributes: () => { dispatchEvent(getAttributes()) },
-        fetchDepartments: () => { dispatchEvent(getDepartments()) }
+        fetchDepartments: () => { dispatchEvent(getDepartments()) },
+        getShippingDetails: () => { dispatchEvent(getShippingDetails()) },
+
     }
 }
 

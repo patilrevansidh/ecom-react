@@ -1,14 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProductDetail, clearSelectedProduct, postReview } from '../../../common/actions/productAction';
-import { handleAuthModal } from '../../../common/actions/authAction';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
 import { Col, Button } from 'react-bootstrap';
 import { URLS } from '../../../common/constants/stringConstants';
 import { AddReviewForm, ReviewList } from './ReviewComponents';
 import './productDetail.scss';
 import { DummyProductCard } from '../ProductCard/DummyProductCard';
+import { getProductDetail, clearSelectedProduct, postReview } from '../../../common/actions/productAction';
+import { handleAuthModal } from '../../../common/actions/authAction';
+import { handleAddCart } from '../../../common/actions/shippingCartAction';
 
+const selectionKey = {
+    // size: 'attribute_value_id',
+    // color: 'attribute_value_id'
+    key: 'attribute_value'
+}
 class ProductDetailContainer extends EcomPureComponent {
     state = {
         review: '', name: '', rating: 0, selectedImage: null,
@@ -60,8 +66,13 @@ class ProductDetailContainer extends EcomPureComponent {
     }
 
     handleAddToCart = () => {
-        console.log("Added to Cart", this.props.selectedProduct.product_id)
-        console.log("Added to Cart", this.props.shippingCart)
+        const payload = {
+            product_id: this.props.selectedProduct.product_id,
+            cart_id: this.props.shippingCart.cart_id,
+            attributes: `${this.state.selectedSize}, ${this.state.selectedColor}`,
+            quantity: this.state.quantity
+        }
+        this.props.handleAddCart(payload, this.props.selectedProduct)
     }
 
     handleQuantityIncrementDecrement = (operation) => {
@@ -91,8 +102,8 @@ class ProductDetailContainer extends EcomPureComponent {
                                 <img src={URLS.IMAGE_BASE_URL + 'products/' + selectedImage} />
                             </div>
                             <div className="product-image-small-wrap">
-                                <img className={this.state.selectedImage !== selectedProduct.image_2 && "preview-image selected" || "preview-image"} src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image} onClick={() => this.handleImageSelection(selectedProduct.image)}  />
-                                <img className={this.state.selectedImage === selectedProduct.image_2 && "preview-image selected" || "preview-image"} src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image_2} onClick={() => this.handleImageSelection(selectedProduct.image_2)}  />
+                                <img className={this.state.selectedImage !== selectedProduct.image_2 && "preview-image selected" || "preview-image"} src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image} onClick={() => this.handleImageSelection(selectedProduct.image)} />
+                                <img className={this.state.selectedImage === selectedProduct.image_2 && "preview-image selected" || "preview-image"} src={URLS.IMAGE_BASE_URL + 'products/' + selectedProduct.image_2} onClick={() => this.handleImageSelection(selectedProduct.image_2)} />
                             </div>
                         </div>
                     </Col>
@@ -106,16 +117,16 @@ class ProductDetailContainer extends EcomPureComponent {
                                 <div className="attribute-options">
                                     {selectedProduct.attributes.Color.map((color) => {
                                         const isWhite = color.attribute_value.toLowerCase() === 'white' && { border: 'dotted 3px black' } || null;
-                                        const selected = this.state.selectedColor === color.attribute_value_id && { border: '6px solid #2878B5' } || null
-                                        return <div key={color.attribute_value_id} onClick={() => this.setState({ selectedColor: color.attribute_value_id })} className="attribute-color-circle" style={{ backgroundColor: color.attribute_value.toLowerCase(), ...isWhite, ...selected }} />
+                                        const selected = this.state.selectedColor === color[selectionKey.key] && { border: '6px solid #2878B5' } || null
+                                        return <div key={color.attribute_value_id} onClick={() => this.setState({ selectedColor: color[selectionKey.key] })} className="attribute-color-circle" style={{ backgroundColor: color.attribute_value.toLowerCase(), ...isWhite, ...selected }} />
                                     })}
                                 </div>
                                 <div className="attribute-label margin-top-20"> Size </div>
                                 <div className="attribute-options" >
                                     {
                                         selectedProduct.attributes.Size.map((size) => {
-                                            const className = this.state.selectedSize === size.attribute_value_id && 'attribute-color-reactangle selected' || 'attribute-color-reactangle'
-                                            return <div key={size.attribute_value_id} onClick={() => this.setState({ selectedSize: size.attribute_value_id })} className={className}>{size.attribute_value}</div>
+                                            const className = this.state.selectedSize === size[selectionKey.key] && 'attribute-color-reactangle selected' || 'attribute-color-reactangle'
+                                            return <div key={size.attribute_value_id} onClick={() => this.setState({ selectedSize: size[selectionKey.key] })} className={className}>{size.attribute_value}</div>
                                         })
                                     }
                                 </div>
@@ -161,10 +172,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatchEvent) {
     return {
+        handleAddCart: (payload, product) => { dispatchEvent(handleAddCart(payload, product)) },
         getProductDetail: (id) => { dispatchEvent(getProductDetail(id)) },
         clearSelectedProduct: () => { dispatchEvent(clearSelectedProduct()) },
         handleAuthModal: (flag) => { dispatchEvent(handleAuthModal(flag)) },
-        handleSubmitReview: (id, formData) => { dispatchEvent(postReview(id, formData)) }
+        handleSubmitReview: (id, formData) => { dispatchEvent(postReview(id, formData)) },
     }
 }
 

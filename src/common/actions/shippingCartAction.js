@@ -12,3 +12,11 @@ export const getShippingDetails = () => {
         dispatchEvent({ type: SHIPPING.FETCH_SHIPPING_REGION_COMPLETE, payload })
     }
 }
+
+export function handleAddCart(payload, product) {
+    return async (dispatchEvent) => {
+        const response = await ShopCart.addToCart(payload)
+        const cartItem = { ...response, ...product }
+        dispatchEvent({ type: SHIPPING.ADD_TO_CART_COMPLETE, payload: cartItem })
+    }
+}
