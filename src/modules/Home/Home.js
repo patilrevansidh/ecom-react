@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row } from 'react-bootstrap';
 import ProductList from '../Products/List/ProductList';
-import { getShippingDetails } from '../../common/actions/shippingCartAction';
 import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 
 class Home extends EcomPureComponent {

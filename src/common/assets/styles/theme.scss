@@ -19,9 +19,6 @@
 .ant-steps-item-finish > .ant-steps-item-tail::after{
     background: $red-pink !important;;
 }
-@media (max-width: 480px) {
-    .modal-lg { width: 40% }
-}
 .shopmate-form{
     .invalid-feedback{
         display: block;
@@ -31,4 +28,7 @@
         padding-right: 2.25rem;
         background-repeat: no-repeat;
     }
+}
+@media (max-width: 480px) {
+    .modal-lg { width: 40% }
 }

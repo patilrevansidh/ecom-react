@@ -1,6 +1,6 @@
 import React from 'react';
 import { EcomPureComponent } from '../../common/components/EcomPureComponent';
-import { Modal, Row, Col } from 'react-bootstrap';
+import { Modal, Col } from 'react-bootstrap';
 import { Steps } from 'antd';
 import { DeliveryForm } from '../checkout/DeliveryForm';
 

@@ -6,9 +6,9 @@ import { EcomPureComponent } from '../common/components/EcomPureComponent';
 import { connect } from 'react-redux'
 import { getProducts } from '../common/actions/productAction';
 import { getAttributes, getCategories, getDepartments } from '../common/actions/landingAction';
-import '../common/assets/styles/theme.scss';
 import CheckoutModal from '../modules/checkout/CheckoutModal';
 import { getShippingDetails } from "../common/actions/shippingCartAction";
+import '../common/assets/styles/theme.scss';
 
 
 const ComponentWithHeader = ({ showAuthModal, component: Component, ...rest }) => {
