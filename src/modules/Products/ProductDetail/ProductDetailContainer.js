@@ -7,7 +7,7 @@ import { AddReviewForm, ReviewList } from './ReviewComponents';
 import './productDetail.scss';
 import { DummyProductCard } from '../ProductCard/DummyProductCard';
 import { getProductDetail, clearSelectedProduct, postReview } from '../../../common/actions/productAction';
-import { handleAuthModal } from '../../../common/actions/authAction';
+import { handleModal } from '../../../common/actions/authAction';
 import { handleAddCart } from '../../../common/actions/shippingCartAction';
 
 const selectionKey = {
@@ -53,7 +53,7 @@ class ProductDetailContainer extends EcomPureComponent {
             this.props.handleSubmitReview(selectedProduct.product_id, formData)
             return;
         }
-        this.props.handleAuthModal({ showAuthModal: true })
+        this.props.handleModal({ showAuthModal: true })
     }
 
     handleQuantityChange = (e) => {
@@ -175,7 +175,7 @@ function mapDispatchToProps(dispatchEvent) {
         handleAddCart: (payload, product) => { dispatchEvent(handleAddCart(payload, product)) },
         getProductDetail: (id) => { dispatchEvent(getProductDetail(id)) },
         clearSelectedProduct: () => { dispatchEvent(clearSelectedProduct()) },
-        handleAuthModal: (flag) => { dispatchEvent(handleAuthModal(flag)) },
+        handleModal: (flag) => { dispatchEvent(handleModal(flag)) },
         handleSubmitReview: (id, formData) => { dispatchEvent(postReview(id, formData)) },
     }
 }

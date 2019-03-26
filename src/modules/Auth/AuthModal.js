@@ -3,7 +3,7 @@ import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 import { Modal, Form } from 'react-bootstrap';
 import { SignInForm, SignUpForm } from './AuthForms';
 import { connect } from 'react-redux';
-import { handleAuthModal, handleCustomerSignIn, handleCustomerSignUp } from '../../common/actions/authAction';
+import { handleModal, handleCustomerSignIn, handleCustomerSignUp } from '../../common/actions/authAction';
 import { ValidationHelper } from '../../common/services/helper/validation';
 import { VALIDATION_ERRORS } from '../../common/constants/stringConstants';
 import './auth.scss';
@@ -27,7 +27,7 @@ class AuthModal extends EcomPureComponent {
     }
 
     handleClose = () => {
-        this.props.handleAuthModal({ showAuthModal: false })
+        this.props.handleModal({ showAuthModal: false })
     }
 
     isValidForm() {
@@ -97,7 +97,7 @@ class AuthModal extends EcomPureComponent {
 }
 function mapDispatchToProps(dispatchEvent) {
     return {
-        handleAuthModal: (flag) => { dispatchEvent(handleAuthModal(flag)) },
+        handleModal: (flag) => { dispatchEvent(handleModal(flag)) },
         handleCustomerSignIn: (formData) => { dispatchEvent(handleCustomerSignIn(formData)) },
         handleCustomerSignUp: (formData) => { dispatchEvent(handleCustomerSignUp(formData)) }
     }

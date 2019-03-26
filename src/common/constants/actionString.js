@@ -1,6 +1,7 @@
 module.exports = {
     PROFILE_ACTION: {
         OPEN_AUTH_MODAL: 'OPEN_AUTH_MODAL',
+        TOGGLE_MODAL: 'TOGGLE_MODAL',
         SIGN_IN: 'SIGN_IN',
         SIGN_UP: 'SIGN_UP',
         UPDATE_INFO: 'UPDATE_INFO',

@@ -1,9 +1,9 @@
 import { PROFILE_ACTION } from '../constants/actionString';
 import { Customer } from '../services/promises/authPromise';
 
-export const handleAuthModal = (payload) => {
+export const handleModal = (payload) => {
     return (dispatchEvent) => {
-        dispatchEvent({ type: PROFILE_ACTION.OPEN_AUTH_MODAL, payload })
+        dispatchEvent({ type: PROFILE_ACTION.TOGGLE_MODAL, payload })
     }
 }
 

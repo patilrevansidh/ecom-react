@@ -1,14 +1,14 @@
 import React from 'react';
 import { EcomPureComponent } from '../EcomPureComponent';
 import { connect } from 'react-redux';
-import { handleAuthModal } from '../../actions/authAction';
+import { handleModal } from '../../actions/authAction';
 
 class AuthMenuHeader extends EcomPureComponent {
 
     handleAuthClick = (e) => {
         const showAuthModal = true;
         const isSignInForm = e.target.id === 'sign'
-        this.props.handleAuthModal({ isSignInForm, showAuthModal })
+        this.props.handleModal({ isSignInForm, showAuthModal })
     }
 
     render() {
@@ -35,7 +35,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatchEvent) {
     return {
-        handleAuthModal: (payload) => { dispatchEvent(handleAuthModal(payload)) }
+        handleModal: (payload) => { dispatchEvent(handleModal(payload)) }
     }
 }
 

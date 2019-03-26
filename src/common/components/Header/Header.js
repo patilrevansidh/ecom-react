@@ -5,9 +5,15 @@ import AuthMenuHeader from './AuthMenuHeader';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './header.scss';
+import { handleModal } from '../../actions/authAction';
 
 // to={{ pathname: `shopmate-product-browse/${department.name}&${category.name}`, state: { department, category } }}
 class AppHeaderComponent extends EcomPureComponent {
+
+    handleShowCartModal = () => {
+        this.props.handleModal({ showCartModal: true })
+    }
+    
     render() {
         return (
             <header>
@@ -33,7 +39,7 @@ class AppHeaderComponent extends EcomPureComponent {
                         </Nav>
                         <div className="search-card-badge">
                             <SearchForm />
-                            <i className="fas fa-shopping-cart shoping-cart-icon">
+                            <i onClick={this.handleShowCartModal} className="fas fa-shopping-cart shoping-cart-icon">
                                 <sup><Badge className="card-badge">{this.props.shopCart.cart.length}</Badge></sup>
                             </i>
                         </div>
@@ -51,7 +57,13 @@ function mapStateToProps(state) {
     }
 }
 
-export const AppHeader = connect(mapStateToProps)(AppHeaderComponent)
+function mapDisptachToProps(dispatchEvent) {
+    return {
+        handleModal: (payload) => { dispatchEvent(handleModal(payload)) }
+    }
+}
+
+export const AppHeader = connect(mapStateToProps, mapDisptachToProps)(AppHeaderComponent)
 class SearchForm extends EcomPureComponent {
     render() {
         return (
