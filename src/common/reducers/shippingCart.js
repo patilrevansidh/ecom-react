@@ -15,7 +15,7 @@ export const shippingCart = (state = initialState, action) => {
         case SHIPPING.UPDATE_CART_ITEM:
             return { ...state, cart: action.payload }
         case SHIPPING.DETELTE_CART_ITEM_COMPLETE:
-            return { state }
+            return { ...state, cart: action.payload }
 
         case SHIPPING.FETCH_TAX_DETAILS:
             return { ...state }

@@ -98,6 +98,14 @@ export class ShopCart {
     }
 
     static deleteCartItem(item_id) {
-        return HTTPService.delete(url + 'removeProduct/' + item_id)
+        return new Promise(async (resolve, reject) => {
+            try {
+                const cartItems = store.getState().shippingCart.cart;
+                await HTTPService.delete(url + 'removeProduct/' + item_id);
+                resolve(cartItems.filter(item => item.item_id !== item_id))
+            } catch (error) {
+
+            }
+        })
     }
 }

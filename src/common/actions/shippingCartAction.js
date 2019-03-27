@@ -26,3 +26,10 @@ export function updateItemQuantity(payload, cart_id) {
         dispatchEvent({ type: SHIPPING.UPDATE_CART_ITEM, payload: response })
     }
 }
+
+export function deleteCartItem(item_id) {
+    return async (dispatchEvent) => {
+        const response = await ShopCart.deleteCartItem(item_id);
+        dispatchEvent({ type: SHIPPING.DETELTE_CART_ITEM_COMPLETE, payload: response })
+    }
+}
