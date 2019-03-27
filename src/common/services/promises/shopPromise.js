@@ -46,17 +46,19 @@ export class ShopCart {
     static addToCart(payload) {
         return new Promise(async (resolve, reject) => {
             try {
+                const products = store.getState().products.products;
                 let addCartItems = await HTTPService.post(url + 'add', payload)
-                const shippingCart = store.getState().products.products;
-                addCartItems = addCartItems.map((item) => {
-                    const product = shippingCart.find(product => product.product_id === payload.product_id);
-                    return {
-                        image: product.thumbnail,
-                        ...payload,
-                        ...item
-                    }
-                })
-                resolve(addCartItems)
+                const shippingCart = store.getState().shippingCart.cart;
+
+                resolve(
+                    addCartItems.map((item) => {
+                        const isAlreadyCalculated = shippingCart.find(cItem => cItem.item_id === item.item_id)
+                        if (isAlreadyCalculated) return isAlreadyCalculated;
+                        const product = products.find(product => product.product_id === payload.product_id);
+                        return { ...item, product_id: product.product_id, image: product.thumbnail }
+                    })
+                )
+
             } catch (error) {
                 reject(error)
             }
@@ -67,19 +69,20 @@ export class ShopCart {
         return HTTPService.get(url + id);
     }
 
-    static updateCartItem(payload) {
+    static updateCartItem(payload, cart_id) {
         return new Promise(async (resolve, reject) => {
             try {
-                const shippingCart = store.getState().shippingCart.cart;
-                const response = await HTTPService.put(url + 'update/' + payload.item_id, payload)
-                const cartItems = shippingCart.map((item) => {
-                    if (item.item_id === response.item_id) {
-                        console.log("updated data", { ...item, ...response })
-                        return { ...item, ...response }
-                    }
-                    return item
-                })
-                resolve(cartItems)
+                const cartItems = store.getState().shippingCart.cart;
+                await HTTPService.put(url + 'update/' + payload.item_id, payload);
+                let cartDetails = await HTTPService.get(url + cart_id);
+
+                // cartDetails = 
+                resolve(
+                    cartDetails.map((item) => {
+                        const product = cartItems.find(it => it.item_id === item.item_id)
+                        if (product) return { ...product, ...item }
+                    })
+                )
             } catch (error) {
                 reject(error)
             }

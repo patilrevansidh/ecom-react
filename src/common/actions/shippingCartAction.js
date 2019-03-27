@@ -20,9 +20,9 @@ export function handleAddCart(payload, product) {
     }
 }
 
-export function updateItemQuantity(payload, product) {
+export function updateItemQuantity(payload, cart_id) {
     return async (dispatchEvent) => {
-        const response = await ShopCart.updateCartItem(payload, product);
+        const response = await ShopCart.updateCartItem(payload, cart_id);
         dispatchEvent({ type: SHIPPING.UPDATE_CART_ITEM, payload: response })
     }
 }

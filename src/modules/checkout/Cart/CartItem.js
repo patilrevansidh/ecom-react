@@ -8,14 +8,13 @@ import { handleModal } from '../../../common/actions/authAction';
 import { updateItemQuantity } from '../../../common/actions/shippingCartAction';
 
 class CartItem extends EcomPureComponent {
-    state = { quantity: dummyProduct.quantity }
 
     handleQuantityChange = (quantity, product) => {
         const payload = {
             quantity: quantity,
             item_id: product.item_id
         }
-        this.props.updateItemQuantity(payload)
+        this.props.updateItemQuantity(payload, this.props.cart_id)
     }
 
     handleNavigation = () => {
@@ -57,28 +56,18 @@ class CartItem extends EcomPureComponent {
 function mapStateToProps(state) {
     return {
         cart: state.shippingCart.cart,
+        cart_id: state.shippingCart.cart_id
     }
 }
 function mapDispatchToProps(dispatchEvent) {
     return {
         handleModal: (payload) => { dispatchEvent(handleModal(payload)) },
-        updateItemQuantity: (payload) =>{ dispatchEvent(updateItemQuantity(payload)) }
+        updateItemQuantity: (payload, cart_id) => { dispatchEvent(updateItemQuantity(payload, cart_id)) }
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
 
-
-const dummyProduct = {
-    product_id: 1,
-    name: "Arc d'Triomphe",
-    description: "This beautiful and iconic T-shirt will no doubt lead you to your own triumph.",
-    price: "14.99",
-    discounted_price: "0.00",
-    image: "arc-d-triomphe.gif",
-    image_2: "arc-d-triomphe-2.gif",
-
-}
 class CartProductView extends EcomPureComponent {
     render() {
         const { product } = this.props
