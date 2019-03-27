@@ -12,7 +12,9 @@ import { shippingCart } from '../common/reducers/shippingCart';
 
 const combinedReducers = combineReducers({ profile, attributes, categories, products, departments, shippingCart })
 
-export const store = createStore(combinedReducers, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+const componseParams = process.env.NODE_ENV === 'production' && compose(applyMiddleware(thunk)) || compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+export const store = createStore(combinedReducers, componseParams)
 
 export const App = (props) => {
     return (
