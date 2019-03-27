@@ -29,6 +29,9 @@
         background-repeat: no-repeat;
     }
 }
+.pull-right{
+    text-align: right;
+}
 @media (max-width: 480px) {
     .modal-lg { width: 40% }
 }

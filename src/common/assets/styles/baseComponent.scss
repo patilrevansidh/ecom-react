@@ -25,3 +25,10 @@
             text-align: center;
         }
 }
+
+.shopmate-primary-button{
+    @include ECom-Button;
+    width: 130px;
+    height: 40px;
+    border-radius: 17px;
+}

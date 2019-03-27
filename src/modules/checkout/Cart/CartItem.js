@@ -3,25 +3,43 @@ import { Row, Col } from 'react-bootstrap';
 import { EcomPureComponent } from '../../../common/components/EcomPureComponent';
 import { connect } from 'react-redux';
 import { URLS } from '../../../common/constants/stringConstants';
-import { QuantityInput } from '../../../common/components/importer';
+import { QuantityInput, ShopmateButton } from '../../../common/components/importer';
 
 class CartItem extends EcomPureComponent {
+    state = { quantity: dummyProduct.quantity }
+
+    handleQuantityChange = (value) => {
+        this.setState({ quantity: value });
+    }
+
     render() {
         return (
-            <div style={{ marginTop: 20 }} className="margin-top-20 row">
-                <Col className="row-container" md={{ span: 5 }}>
-                    <CartProductView product={dummyProduct} />
-                </Col >
-                <Col className="row-container" md={{ span: 2 }}>
-                    <div className="attribute-value"> XL </div>
-                </Col>
-                <Col className="row-container" md={{ span: 3 }}>
-                    <QuantityInput quantity={1} />
-                </Col>
-                <Col className="row-container" md={{ span: 1 }}>
-                    <div className="product-price"> $21 </div>
-                </Col>
-            </div>
+            <React.Fragment>
+                {
+                    this.props.cart.map((product) => {
+                        return <div style={{ marginTop: 20 }} className="margin-top-20 row">
+                            <Col className="row-container" md={{ span: 5 }}>
+                                <CartProductView product={product} />
+                            </Col >
+                            <Col className="row-container" md={{ span: 2 }}>
+                                <div className="attribute-value"> {product.attributes} </div>
+                            </Col>
+                            <Col className="row-container" md={{ span: 3 }}>
+                                <QuantityInput
+                                    quantity={product.quantity || this.props.quantity || 1} onChange={this.handleQuantityChange} />
+                            </Col>
+                            <Col className="row-container" md={{ span: 1 }}>
+                                <div className="product-price"> ${product.subtotal} </div>
+                            </Col>
+                            <div className="center" >
+                            </div>
+                        </div>
+                    })
+                }
+                <div className="row-container pull-right">
+                    < ShopmateButton label="Checkout" />
+                </div>
+            </React.Fragment>
         );
     }
 }
@@ -31,13 +49,8 @@ function mapStateToProps(state) {
         cart: state.shippingCart.cart,
     }
 }
-function mapDispatchToProps(dispatchEvent) {
-    return {
 
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
+export default connect(mapStateToProps)(CartItem);
 
 
 const dummyProduct = {

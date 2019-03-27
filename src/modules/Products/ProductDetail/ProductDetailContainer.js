@@ -58,12 +58,13 @@ class ProductDetailContainer extends EcomPureComponent {
     }
 
     handleQuantityChange = (e) => {
-        if (/[.]/.test(e.target.value)) {
-            this.setState({ quantity: this.state.quantity });
-            return
-        };
-        const value = e.target.value.replace(/[^0-9]*/g, '')
-        this.setState({ quantity: value });
+        // if (/[.]/.test(e.target.value)) {
+        //     this.setState({ quantity: this.state.quantity });
+        //     return
+        // };
+        // const value = e.target.value.replace(/[^0-9]*/g, '')
+        // this.setState({ quantity: value });
+        this.setState({ quantity: e });
     }
 
     handleAddToCart = () => {
@@ -97,7 +98,7 @@ class ProductDetailContainer extends EcomPureComponent {
         return (
             <div className="shopmate-product-detail-container">
                 <div className="product-view-container row">
-                    <Col md={{ span: 6 }} xs={{ span: 12 }}>
+                    <Col md={{ span: 5 }} xs={{ span: 12 }}>
                         <div className="product-image-container">
                             <div className="product-image-big-wrap">
                                 <img src={URLS.IMAGE_BASE_URL + 'products/' + selectedImage} />
@@ -136,8 +137,7 @@ class ProductDetailContainer extends EcomPureComponent {
                         <div className="quantiy-details margin-top-20" >
                             <QuantityInput
                                 quantity={this.state.quantity}
-                                handleQuantityIncrementDecrement={this.handleQuantityIncrementDecrement}
-                                handleQuantityChange={this.handleQuantityChange} />
+                                onChange={this.handleQuantityChange} />
                         </div>
                         <div className="add-button-container">
                             <Button onClick={this.handleAddToCart} className="submit-button" type='submit' variant='none' >Add To Card</Button>
