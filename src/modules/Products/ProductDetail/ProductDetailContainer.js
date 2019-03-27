@@ -9,7 +9,7 @@ import { DummyProductCard } from '../ProductCard/DummyProductCard';
 import { getProductDetail, clearSelectedProduct, postReview } from '../../../common/actions/productAction';
 import { handleModal } from '../../../common/actions/authAction';
 import { handleAddCart } from '../../../common/actions/shippingCartAction';
-import { QuantityInput }  from '../../../common/components/importer';
+import { QuantityInput } from '../../../common/components/importer';
 
 const selectionKey = {
     // size: 'attribute_value_id',
@@ -68,13 +68,17 @@ class ProductDetailContainer extends EcomPureComponent {
     }
 
     handleAddToCart = () => {
-        const payload = {
-            product_id: this.props.selectedProduct.product_id,
-            cart_id: this.props.shippingCart.cart_id,
-            attributes: `${this.state.selectedSize}, ${this.state.selectedColor}`,
-            quantity: this.state.quantity
+        const { selectedSize, selectedColor } = this.state;
+        if (selectedSize && selectedColor) {
+            const payload = {
+                product_id: this.props.selectedProduct.product_id,
+                cart_id: this.props.shippingCart.cart_id,
+                attributes: `${this.state.selectedSize}, ${this.state.selectedColor}`,
+                quantity: this.state.quantity
+            }
+            this.props.handleAddCart(payload, this.props.selectedProduct)
+            this.setState({ selectedSize: null, selectedColor: null, quantity: 1 });
         }
-        this.props.handleAddCart(payload, this.props.selectedProduct)
     }
 
     handleQuantityIncrementDecrement = (operation) => {

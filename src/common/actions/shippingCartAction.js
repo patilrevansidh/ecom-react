@@ -16,7 +16,13 @@ export const getShippingDetails = () => {
 export function handleAddCart(payload, product) {
     return async (dispatchEvent) => {
         const response = await ShopCart.addToCart(payload)
-        const cartItem = { ...product, ...response[0], }
-        dispatchEvent({ type: SHIPPING.ADD_TO_CART_COMPLETE, payload: cartItem })
+        dispatchEvent({ type: SHIPPING.ADD_TO_CART_COMPLETE, payload: response })
+    }
+}
+
+export function updateItemQuantity(payload, product) {
+    return async (dispatchEvent) => {
+        const response = await ShopCart.updateCartItem(payload, product);
+        dispatchEvent({ type: SHIPPING.UPDATE_CART_ITEM, payload: response })
     }
 }

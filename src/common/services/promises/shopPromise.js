@@ -1,4 +1,5 @@
 import { HTTPService } from '../HttpService';
+import { store } from '../../../config/redux';
 
 const url = 'shoppingcart/';
 
@@ -43,7 +44,23 @@ export class ShopCart {
     }
 
     static addToCart(payload) {
-        return HTTPService.post(url + 'add', payload)
+        return new Promise(async (resolve, reject) => {
+            try {
+                let addCartItems = await HTTPService.post(url + 'add', payload)
+                const shippingCart = store.getState().products.products;
+                addCartItems = addCartItems.map((item) => {
+                    const product = shippingCart.find(product => product.product_id === payload.product_id);
+                    return {
+                        image: product.thumbnail,
+                        ...payload,
+                        ...item
+                    }
+                })
+                resolve(addCartItems)
+            } catch (error) {
+                reject(error)
+            }
+        })
     }
 
     static fetchCartDetails(id) {
@@ -51,7 +68,22 @@ export class ShopCart {
     }
 
     static updateCartItem(payload) {
-        return HTTPService.put(url + 'update/' + payload.item_id, payload)
+        return new Promise(async (resolve, reject) => {
+            try {
+                const shippingCart = store.getState().shippingCart.cart;
+                const response = await HTTPService.put(url + 'update/' + payload.item_id, payload)
+                const cartItems = shippingCart.map((item) => {
+                    if (item.item_id === response.item_id) {
+                        console.log("updated data", { ...item, ...response })
+                        return { ...item, ...response }
+                    }
+                    return item
+                })
+                resolve(cartItems)
+            } catch (error) {
+                reject(error)
+            }
+        })
     }
 
     static deleteCart(cart_id) {

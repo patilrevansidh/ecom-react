@@ -4,20 +4,30 @@ import { EcomPureComponent } from '../../../common/components/EcomPureComponent'
 import { connect } from 'react-redux';
 import { URLS } from '../../../common/constants/stringConstants';
 import { QuantityInput, ShopmateButton } from '../../../common/components/importer';
+import { handleModal } from '../../../common/actions/authAction';
+import { updateItemQuantity } from '../../../common/actions/shippingCartAction';
 
 class CartItem extends EcomPureComponent {
     state = { quantity: dummyProduct.quantity }
 
-    handleQuantityChange = (value) => {
-        this.setState({ quantity: value });
+    handleQuantityChange = (quantity, product) => {
+        const payload = {
+            quantity: quantity,
+            item_id: product.item_id
+        }
+        this.props.updateItemQuantity(payload)
+    }
+
+    handleNavigation = () => {
+        this.props.handleModal({ showCartModal: false, showCheckoutModal: true })
     }
 
     render() {
         return (
             <React.Fragment>
                 {
-                    this.props.cart.map((product) => {
-                        return <div style={{ marginTop: 20 }} className="margin-top-20 row">
+                    this.props.cart.map((product, index) => {
+                        return <div key={index} style={{ marginTop: 20 }} className="margin-top-20 row">
                             <Col className="row-container" md={{ span: 5 }}>
                                 <CartProductView product={product} />
                             </Col >
@@ -26,7 +36,7 @@ class CartItem extends EcomPureComponent {
                             </Col>
                             <Col className="row-container" md={{ span: 3 }}>
                                 <QuantityInput
-                                    quantity={product.quantity || this.props.quantity || 1} onChange={this.handleQuantityChange} />
+                                    quantity={product.quantity || this.props.quantity || 1} onChange={(quantity) => this.handleQuantityChange(quantity, product)} />
                             </Col>
                             <Col className="row-container" md={{ span: 1 }}>
                                 <div className="product-price"> ${product.subtotal} </div>
@@ -37,7 +47,7 @@ class CartItem extends EcomPureComponent {
                     })
                 }
                 <div className="row-container pull-right">
-                    < ShopmateButton label="Checkout" />
+                    < ShopmateButton onClick={this.handleNavigation} label="Checkout" />
                 </div>
             </React.Fragment>
         );
@@ -49,8 +59,14 @@ function mapStateToProps(state) {
         cart: state.shippingCart.cart,
     }
 }
+function mapDispatchToProps(dispatchEvent) {
+    return {
+        handleModal: (payload) => { dispatchEvent(handleModal(payload)) },
+        updateItemQuantity: (payload) =>{ dispatchEvent(updateItemQuantity(payload)) }
+    }
+}
 
-export default connect(mapStateToProps)(CartItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
 
 
 const dummyProduct = {
