@@ -38,4 +38,8 @@ export class Products {
             }
         })
     }
+
+    static searchProducts(searchProducts) {
+        return;
+    }
 }

@@ -37,3 +37,10 @@ export function postReview(id, formData) {
         dispatchEvent({ type: PRODUCTS.POST_PRODUCT_REVIEW, payload: { ...formData, created_on: Date.now() } })
     }
 }
+
+export function handleSearchProduct(queryString) {
+    return async (dispatchEvent) => {
+        const products = await Products.searchProducts(queryString);
+        dispatchEvent({ type: PRODUCTS.FETCH_PRODUCT_DETAILS_COMPLETE, payload: products })
+    }
+}

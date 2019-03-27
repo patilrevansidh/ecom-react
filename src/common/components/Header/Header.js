@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './header.scss';
 import { handleModal } from '../../actions/authAction';
+import { handleSearchProduct } from '../../actions/productAction';
 
 // to={{ pathname: `shopmate-product-browse/${department.name}&${category.name}`, state: { department, category } }}
 class AppHeaderComponent extends EcomPureComponent {
@@ -13,7 +14,7 @@ class AppHeaderComponent extends EcomPureComponent {
     handleShowCartModal = () => {
         this.props.handleModal({ showCartModal: true })
     }
-    
+
     render() {
         return (
             <header>
@@ -38,7 +39,7 @@ class AppHeaderComponent extends EcomPureComponent {
                             }
                         </Nav>
                         <div className="search-card-badge">
-                            <SearchForm />
+                            <SearchForm handleSearch={this.props.handleSearchProduct} />
                             <i onClick={this.handleShowCartModal} className="fas fa-shopping-cart shoping-cart-icon">
                                 <sup><Badge className="card-badge">{this.props.shopCart.cart.length}</Badge></sup>
                             </i>
@@ -59,17 +60,29 @@ function mapStateToProps(state) {
 
 function mapDisptachToProps(dispatchEvent) {
     return {
-        handleModal: (payload) => { dispatchEvent(handleModal(payload)) }
+        handleModal: (payload) => { dispatchEvent(handleModal(payload)) },
+        handleSearchProduct: (queryString) => { dispatchEvent(handleSearchProduct(queryString)) }
     }
 }
 
 export const AppHeader = connect(mapStateToProps, mapDisptachToProps)(AppHeaderComponent)
 class SearchForm extends EcomPureComponent {
+    state = { query: '' }
+
+    onSearchChange = (e) => {
+        this.setState({ query: e.target.value });
+    }
+
+    handleSearchSubmit = (e) => {
+        e.preventDefault();
+        this.props.handleSearch(this.state.query)
+    }
+
     render() {
         return (
-            <Form inline>
+            <Form inline onSubmit={this.handleSearchSubmit} >
                 <div className="search-bar">
-                    <input className="search_input" type="text" name="" placeholder="Search..." />
+                    <input onChange={this.onSearchChange} className="search_input" type="text" name="" placeholder="Search..." />
                     <span className="search_icon"><i className="fas fa-search" />
                     </span>
                 </div>
