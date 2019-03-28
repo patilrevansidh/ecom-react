@@ -31,3 +31,7 @@ export const VALIDATION_ERRORS = {
     PASSWORD_MATCH: 'Password Does not Match',
     EMPTY: "Feild Cann't be empty",
 }
+
+export const KEYS = {
+    STRIPE_PUBLIC_KEY: 'pk_test_NcwpaplBCuTL6I0THD44heRe'
+}
