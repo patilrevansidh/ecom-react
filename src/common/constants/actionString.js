@@ -6,7 +6,8 @@ module.exports = {
         SIGN_UP: 'SIGN_UP',
         UPDATE_INFO: 'UPDATE_INFO',
         UPDATE_ADDRESS: 'UPDATE_ADDRESS',
-        UPDAE_CC: 'UPDAE_CC'
+        UPDAE_CC: 'UPDAE_CC',
+        FETCH_INFO: 'FETCH_INFO'
     },
     ATTRIBUTES_CATEGORIES_PRODUCT_ACTION: {
         FETCH_PRODUCT: 'FETCH_PRODUCT',

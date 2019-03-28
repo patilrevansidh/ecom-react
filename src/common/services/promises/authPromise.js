@@ -5,7 +5,7 @@ import { URLS } from '../../constants/stringConstants';
 export class Customer {
 
     static get(id) {
-        return HTTPService.get('customer' + id)
+        return HTTPService.get('customer')
     }
 
     static signIn(formData) {

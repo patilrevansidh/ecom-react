@@ -18,7 +18,7 @@ class DeliveryFormCompnent extends EcomPureComponent {
         const { postal_code, address_1, city, country } = this.state;
         const { user } = this.props.profile
         return !ValidationHelper.isEmptyString(postal_code) && !ValidationHelper.isEmptyString(address_1)
-            && !ValidationHelper.isEmptyString(country) && !ValidationHelper.isEmptyString(city)
+           && !ValidationHelper.isEmptyString(city)
     }
 
     handleCheckout = () => {
@@ -31,7 +31,8 @@ class DeliveryFormCompnent extends EcomPureComponent {
             const payload = {
                 postal_code, address_1, city, country,
                 region: this.state.selectedRegion.region.shipping_region,
-                ...this.state.selectedRegion.region
+                ...this.state.selectedRegion.region,
+                tax_id: 1,
             }
             this.props.handleCustomerAddress(payload)
         }

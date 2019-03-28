@@ -11,8 +11,9 @@ export const handleCustomerSignIn = (formData) => {
     return async (dispatchEvent) => {
         try {
             const response = await Customer.signIn(formData);
-            // localStorage.setItem('',response.accessToken)
-            dispatchEvent({ type: PROFILE_ACTION.SIGN_IN, payload: response })
+            dispatchEvent({ type: PROFILE_ACTION.SIGN_IN, payload: response });
+            const customer = await Customer.get()
+            dispatchEvent({ type: PROFILE_ACTION.FETCH_INFO, payload: customer })
         } catch (error) {
 
         }
@@ -24,6 +25,8 @@ export const handleCustomerSignUp = (formData) => {
         try {
             const response = await Customer.signUp(formData);
             dispatchEvent({ type: PROFILE_ACTION.SIGN_UP, payload: response })
+            const customer = await Customer.get()
+            dispatchEvent({ type: PROFILE_ACTION.FETCH_INFO, payload: customer })
         } catch (error) {
 
         }

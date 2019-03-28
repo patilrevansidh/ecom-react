@@ -1,5 +1,6 @@
-import { ATTRIBUTES_CATEGORIES_PRODUCT_ACTION } from '../constants/actionString';
+import { ATTRIBUTES_CATEGORIES_PRODUCT_ACTION, PROFILE_ACTION } from '../constants/actionString';
 import { Attributes, Departments, Categories } from '../services/promises/propDeptPromises';
+import { Customer } from '../services/promises/authPromise';
 
 export function getAttributes() {
     return async (dispatchEvent) => {
@@ -29,6 +30,17 @@ export function getDepartments() {
             let response = await Departments.fecth();
             const departments = await Departments.fetchDepartmentCategories(response)
             dispatchEvent({ type: ATTRIBUTES_CATEGORIES_PRODUCT_ACTION.FECTH_DEPARTMENTS, payload: departments })
+        } catch (error) {
+            console.log('Error in Departments', error)
+        }
+    }
+}
+
+export function getCustomerInfo() {
+    return async (dispatchEvent) => {
+        try {
+            const customer = await Customer.get()
+            dispatchEvent({ type: PROFILE_ACTION.FETCH_INFO, payload: customer })
         } catch (error) {
             console.log('Error in Departments', error)
         }

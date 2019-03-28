@@ -5,7 +5,7 @@ import { AppFooter, AppHeader } from '../common/components/importer';
 import { EcomPureComponent } from '../common/components/EcomPureComponent';
 import { connect } from 'react-redux'
 import { getProducts } from '../common/actions/productAction';
-import { getAttributes, getCategories, getDepartments } from '../common/actions/landingAction';
+import { getAttributes, getCategories, getDepartments, getCustomerInfo } from '../common/actions/landingAction';
 import CheckoutModal from '../modules/checkout/CheckoutModal';
 import CartModal from '../modules/checkout/Cart/CartModal';
 import { getShippingDetails } from "../common/actions/shippingCartAction";
@@ -43,6 +43,7 @@ class Routes extends EcomPureComponent {
         this.props.fetchAttributes();
         this.props.fetchProducts();
         this.props.getShippingDetails()
+        this.props.getCustomerInfo();
     }
 
     render() {
@@ -78,6 +79,7 @@ function mapDispatchToProps(dispatchEvent) {
         fetchAttributes: () => { dispatchEvent(getAttributes()) },
         fetchDepartments: () => { dispatchEvent(getDepartments()) },
         getShippingDetails: () => { dispatchEvent(getShippingDetails()) },
+        getCustomerInfo: () => { dispatchEvent(getCustomerInfo()) },
 
     }
 }
