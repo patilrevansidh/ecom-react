@@ -29,3 +29,14 @@ export const handleCustomerSignUp = (formData) => {
         }
     }
 }
+
+export const handleUpdateCustomer = (payload) => {
+    return async (dispatchEvent) => {
+        try {
+            const respose = await Customer.updateAddress(payload);
+            dispatchEvent({ type: PROFILE_ACTION.UPDATE_ADDRESS, payload })
+        } catch (error) {
+            console.log("update user", error)
+        }
+    }
+}

@@ -19,6 +19,8 @@ export const profile = (state = initialState, action) => {
             return { ...state, ...action.payload, showAuthModal: false, isLoggedIn: true, isSignInForm: false, }
         case PROFILE_ACTION.SIGN_UP:
             return { ...state, ...action.payload, showAuthModal: false, isLoggedIn: true, isSignInForm: false, }
+        case PROFILE_ACTION.UPDATE_ADDRESS:
+            return { ...state, user: { ...state.customer, ...action.payload } }
         default:
             return state
     }

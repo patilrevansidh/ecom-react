@@ -3,18 +3,42 @@ import { TextInputGroup, ShopmateButton } from '../../common/components/importer
 import { Form, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { EcomPureComponent } from '../../common/components/EcomPureComponent';
+import { handleModal, handleUpdateCustomer } from '../../common/actions/authAction';
+import { ValidationHelper } from '../../common/services/helper/validation';
 
 class DeliveryFormCompnent extends EcomPureComponent {
 
-    state = { selectedRegion: null, shipping_id: null }
+    state = { selectedRegion: null, shipping_id: null, address_1: '', city: '', country: '', postal_code: '' }
 
-    handleChange = () => {
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
 
+    isValidForm = () => {
+        const { postal_code, address_1, city, country } = this.state;
+        const { user } = this.props.profile
+        return !ValidationHelper.isEmptyString(postal_code) && !ValidationHelper.isEmptyString(address_1)
+            && !ValidationHelper.isEmptyString(country) && !ValidationHelper.isEmptyString(city)
+    }
+
+    handleCheckout = () => {
+        if (!this.props.profile.isLoggedIn) {
+            this.props.handleModal({ showAuthModal: true });
+            return;
+        }
+        if (this.isValidForm() && this.state.shipping_id) {
+            const { postal_code, address_1, city, country } = this.state;
+            const payload = {
+                postal_code, address_1, city, country,
+                region: this.state.selectedRegion.region.shipping_region,
+                ...this.state.selectedRegion.region
+            }
+            this.props.handleCustomerAddress(payload)
+        }
     }
 
     handleSelection = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
+        const { name, value } = event.target;
         if (name === 'selectedRegion') {
             const region = this.props.shipping.shipping.find(({ region }) => region.shipping_region_id == value);
             this.setState({ [name]: region, shipping_id: null });
@@ -24,25 +48,24 @@ class DeliveryFormCompnent extends EcomPureComponent {
     }
 
     render() {
+        const user = this.props.profile.user
         return (
             <Form className="shopmate-form">
                 <div className="row" >
-                    <TextInputGroup colspan={10} groupAs='col' label="Last Name" name="last_name"
-                        handleChange={this.handleChange} />
                     <TextInputGroup colspan={10} groupAs='col' label="First Name" name="first_name"
-                        handleChange={this.handleChange} />
+                        handleChange={this.handleChange} value={user && user.name} />
                 </div>
                 <div className="row" >
-                    <TextInputGroup colspan={10} groupAs='col' label="Address" name="address"
-                        handleChange={this.handleChange} />
-                    <TextInputGroup colspan={10} groupAs='col' label="city" name="city"
-                        handleChange={this.handleChange} />
+                    <TextInputGroup colspan={10} groupAs='col' label="Address" name="address_1"
+                        handleChange={this.handleChange} defaultValue={user && user.address_1} />
+                    <TextInputGroup colspan={10} groupAs='col' label="City" name="city"
+                        handleChange={this.handleChange} defaultValue={user && user.city} />
                 </div>
                 <div className="row" >
-                    <TextInputGroup colspan={10} groupAs='col' label="State" name="state"
-                        handleChange={this.handleChange} />
-                    <TextInputGroup colspan={10} groupAs='col' label="ZIP Code" name="zip_code"
-                        handleChange={this.handleChange} />
+                    <TextInputGroup colspan={10} groupAs='col' label="Country" name="country"
+                        handleChange={this.handleChange} defaultValue={user && user.country} />
+                    <TextInputGroup colspan={10} groupAs='col' label="ZIP Code" name="postal_code"
+                        handleChange={this.handleChange} defaultValue={user && user.postal_code} />
                 </div>
                 <div className="row">
                     <Form.Group as={Col}>
@@ -72,7 +95,7 @@ class DeliveryFormCompnent extends EcomPureComponent {
                     }
                 </div>
                 {
-                    this.state.shipping_id && <ShopmateButton label="Next" />
+                    <ShopmateButton onClick={this.handleCheckout} label="Next" />
                 }
             </Form>
         );
@@ -84,4 +107,10 @@ function mapStateToProps(state) {
         profile: state.profile
     }
 }
-export const DeliveryForm = connect(mapStateToProps)(DeliveryFormCompnent)
+function mapDispatchToProps(dispatchEvent) {
+    return {
+        handleModal: (payload) => { dispatchEvent(handleModal(payload)) },
+        handleCustomerAddress: (payload) => { dispatchEvent(handleUpdateCustomer(payload)) }
+    }
+}
+export const DeliveryForm = connect(mapStateToProps, mapDispatchToProps)(DeliveryFormCompnent)

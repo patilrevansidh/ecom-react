@@ -21,7 +21,7 @@ export class Customer {
     }
 
     static updateAddress(payload) {
-        return HTTPService.post(URLS.API_URL_PATH.CUSTOMERS + 'address', payload)
+        return HTTPService.put(URLS.API_URL_PATH.CUSTOMERS + 'address', payload)
     }
 
     static update(payload) {
