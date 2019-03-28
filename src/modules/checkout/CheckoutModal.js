@@ -39,7 +39,7 @@ class CheckoutModal extends EcomPureComponent {
                             <Steps progressDot current={this.state.current}>
                                 {
                                     steps.map(step => {
-                                        return <Step title={step.title} />
+                                        return <Step key={step.title} title={step.title} />
                                     })
                                 }
                             </Steps>
@@ -57,6 +57,7 @@ class CheckoutModal extends EcomPureComponent {
 function mapStateToProps(state) {
     return {
         showCheckoutModal: state.profile.showCheckoutModal,
+        profile: state.profile,
         cart: state.shippingCart.cart
     }
 }
