@@ -2,7 +2,7 @@ import React from 'react';
 import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 import { Modal, Col } from 'react-bootstrap';
 import { Steps } from 'antd';
-import { DeliveryForm } from '../checkout/DeliveryForm';
+import { DeliveryForm } from '../Checkout/DeliveryForm';
 import { handleModal } from '../../common/actions/authAction';
 import { connect } from 'react-redux';
 

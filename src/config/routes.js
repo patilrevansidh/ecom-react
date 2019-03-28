@@ -6,8 +6,8 @@ import { EcomPureComponent } from '../common/components/EcomPureComponent';
 import { connect } from 'react-redux'
 import { getProducts } from '../common/actions/productAction';
 import { getAttributes, getCategories, getDepartments, getCustomerInfo } from '../common/actions/landingAction';
-import CheckoutModal from '../modules/checkout/CheckoutModal';
-import CartModal from '../modules/checkout/Cart/CartModal';
+import CheckoutModal from '../modules/Checkout/CheckoutModal';
+import CartModal from '../modules/Checkout/Cart/CartModal';
 import { getShippingDetails } from "../common/actions/shippingCartAction";
 import '../common/assets/styles/theme.scss';
 
