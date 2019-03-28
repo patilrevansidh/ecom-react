@@ -36,6 +36,8 @@ export const profile = (state = initialState, action) => {
     switch (action.type) {
         case PROFILE_ACTION.OPEN_AUTH_MODAL:
             return { ...state, ...action.payload }
+        case PROFILE_ACTION.TOGGLE_AUTH_FORM:
+            return { ...state, isSignInForm: !state.isSignInForm }
         case PROFILE_ACTION.TOGGLE_MODAL:
             return { ...state, ...action.payload }
         case PROFILE_ACTION.SIGN_IN:

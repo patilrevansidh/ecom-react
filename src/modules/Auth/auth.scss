@@ -27,4 +27,13 @@
             background-repeat: no-repeat;
         }
     }
+    .highlight-header{
+        font-family: Montserrat;
+        font-size: 15px;
+        font-weight: bold;   
+        color: $red-pink;
+        padding-left: 5px;
+        padding-right: 5px;
+        cursor: pointer;
+    }
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import { EcomPureComponent } from '../../common/components/EcomPureComponent';
-import { Modal, Form } from 'react-bootstrap';
+import { Modal, Form, Col } from 'react-bootstrap';
 import { SignInForm, SignUpForm } from './AuthForms';
 import { connect } from 'react-redux';
-import { handleModal, handleCustomerSignIn, handleCustomerSignUp } from '../../common/actions/authAction';
+import { handleModal, handleCustomerSignIn, handleCustomerSignUp, toggleAuthForm } from '../../common/actions/authAction';
 import { ValidationHelper } from '../../common/services/helper/validation';
 import { VALIDATION_ERRORS } from '../../common/constants/stringConstants';
 import './auth.scss';
@@ -68,10 +68,14 @@ class AuthModal extends EcomPureComponent {
         }
     }
 
+    handleAuthFormToggle = () => {
+        this.props.toggleAuthForm()
+    }
+
     render() {
         return (
             <div className="auth-container">
-                <Modal size='lg'  show={this.props.profile.showAuthModal} onHide={this.handleClose} >
+                <Modal size='lg' show={this.props.profile.showAuthModal} onHide={this.handleClose} >
                     <Modal.Header onHide={this.handleClose} closeButton>
                         <Modal.Title>{this.props.profile.isSignInForm && "Sign In" || "Sign Up"}</Modal.Title>
                     </Modal.Header>
@@ -88,6 +92,12 @@ class AuthModal extends EcomPureComponent {
                                     error={this.state.error}
                                     handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
                             }
+                            <Form.Group as={Col}>
+                                {
+                                    this.props.profile.isSignInForm && <div onClick={this.handleAuthFormToggle} className="highlight-header">Dont Have Account ? Sign Up</div>
+                                    || <div onClick={this.handleAuthFormToggle} className="highlight-header" >Have Account ? Sign In</div>
+                                }
+                            </Form.Group>
                         </Form>
                     </Modal.Body>
                 </Modal >
@@ -99,7 +109,8 @@ function mapDispatchToProps(dispatchEvent) {
     return {
         handleModal: (flag) => { dispatchEvent(handleModal(flag)) },
         handleCustomerSignIn: (formData) => { dispatchEvent(handleCustomerSignIn(formData)) },
-        handleCustomerSignUp: (formData) => { dispatchEvent(handleCustomerSignUp(formData)) }
+        handleCustomerSignUp: (formData) => { dispatchEvent(handleCustomerSignUp(formData)) },
+        toggleAuthForm: () => dispatchEvent(toggleAuthForm())
     }
 }
 

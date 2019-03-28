@@ -43,3 +43,9 @@ export const handleUpdateCustomer = (payload) => {
         }
     }
 }
+
+export const toggleAuthForm = (payload) => {
+    return dispatchEvent => {
+        dispatchEvent({ type: PROFILE_ACTION.TOGGLE_AUTH_FORM })
+    }
+}
