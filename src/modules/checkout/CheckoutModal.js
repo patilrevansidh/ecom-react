@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 const Step = Steps.Step;
 
 class CheckoutModal extends EcomPureComponent {
-    state = { current: 0 }
+
 
     handleCloseCheckoutModal = () => {
         this.props.handleModal({ showCheckoutModal: false })
@@ -17,9 +17,12 @@ class CheckoutModal extends EcomPureComponent {
 
     render() {
         let currentStepComponent = <DeliveryForm />;
-        switch (this.state.current) {
+        switch (this.props.profile.current) {
             case 0:
                 currentStepComponent = <DeliveryForm />
+                break;
+            case 1:
+                currentStepComponent = <div>Confirmation</div>
                 break;
             default:
                 currentStepComponent = <DeliveryForm />
@@ -36,7 +39,7 @@ class CheckoutModal extends EcomPureComponent {
                             <Modal.Title>  CheckOut</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <Steps progressDot current={this.state.current}>
+                            <Steps progressDot current={this.props.profile.current}>
                                 {
                                     steps.map(step => {
                                         return <Step key={step.title} title={step.title} />

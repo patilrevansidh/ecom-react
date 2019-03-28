@@ -126,9 +126,11 @@ export class ShopCart {
         return new Promise(async (resolve, reject) => {
             try {
                 const response = await HTTPService.post('orders', payload);
-                const orderDetails = await HTTPService.get(response.orderId)
+                localStorage.removeItem('cartId')
+                const orderDetails = await HTTPService.get('orders/' + response.orderId)
                 resolve(orderDetails)
             } catch (error) {
+                console.log("error", error)
                 reject(error)
             }
         })

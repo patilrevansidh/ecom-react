@@ -9,7 +9,8 @@ const initialState = {
     cart: [],
     orders: [],
     ordersLoading: false,
-    paymentInfo: null
+    paymentInfo: null,
+    currentStep: 0,
 }
 
 export const profile = (state = initialState, action) => {
@@ -28,7 +29,7 @@ export const profile = (state = initialState, action) => {
             return { ...state, user: { ...state.user, ...action.payload }, isLoggedIn: true }
 
         case ORDERS.PLACE_ORDER_COMPLETE:
-            return { ...state, orders: [...state.orders, action.payload] }
+            return { ...state, orders: [...state.orders, action.payload], current: state.currentStep + 1 }
         default:
             return state
     }

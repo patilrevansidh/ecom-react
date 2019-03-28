@@ -34,7 +34,6 @@ class DeliveryFormCompnent extends EcomPureComponent {
             return;
         }
         if (this.isValidForm() && this.state.shipping_id) {
-            this.handleCustomerInfoUpdate()
             const orderPayload = {
                 cart_id: this.props.shipping.cart_id,
                 customer_id: this.props.profile.user.customer_id,
@@ -42,6 +41,7 @@ class DeliveryFormCompnent extends EcomPureComponent {
                 tax_id: '1',
             }
             this.props.handlePlaceOrder(orderPayload)
+            this.handleCustomerInfoUpdate()
         }
     }
 
@@ -135,7 +135,7 @@ function mapDispatchToProps(dispatchEvent) {
     return {
         handleModal: (payload) => { dispatchEvent(handleModal(payload)) },
         handleCustomerAddress: (payload) => { dispatchEvent(handleUpdateCustomer(payload)) },
-        handlePlaceOrder: payload => dispatchEvent(placeOrder(payload))
+        handlePlaceOrder: payload => { dispatchEvent(placeOrder(payload)) }
 
     }
 }
