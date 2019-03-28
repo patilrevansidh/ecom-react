@@ -1,4 +1,4 @@
-import { SHIPPING } from '../constants/actionString';
+import { SHIPPING, ORDERS } from '../constants/actionString';
 import { ShopCart } from '../services/promises/shopPromise';
 
 export const getShippingDetails = () => {
@@ -47,5 +47,11 @@ export function deleteCartItem(item_id) {
     return async (dispatchEvent) => {
         const response = await ShopCart.deleteCartItem(item_id);
         dispatchEvent({ type: SHIPPING.DETELTE_CART_ITEM_COMPLETE, payload: response })
+    }
+}
+
+export function proceedtoPayment(payload) {
+    return (dispatchEvent) => {
+        dispatchEvent({ type: ORDERS.PROCEED_TO_PAYMENT, payload })
     }
 }

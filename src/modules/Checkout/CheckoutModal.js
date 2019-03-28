@@ -2,9 +2,12 @@ import React from 'react';
 import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 import { Modal, Col } from 'react-bootstrap';
 import { Steps } from 'antd';
-import { DeliveryForm } from '../Checkout/DeliveryForm';
+import { DeliveryForm } from './DeliveryForm';
+import { OrderConfirmation } from './OrderConfirmation';
+import { ShopmatePayment } from './Payment';
 import { handleModal } from '../../common/actions/authAction';
 import { connect } from 'react-redux';
+
 
 const Step = Steps.Step;
 
@@ -17,12 +20,16 @@ class CheckoutModal extends EcomPureComponent {
 
     render() {
         let currentStepComponent = <DeliveryForm />;
-        switch (this.props.profile.current) {
+        console.log("step", this.props.profile.currentStep)
+        switch (this.props.profile.currentStep) {
             case 0:
                 currentStepComponent = <DeliveryForm />
                 break;
             case 1:
-                currentStepComponent = <div>Confirmation</div>
+                currentStepComponent = <OrderConfirmation />
+                break;
+            case 2:
+                currentStepComponent = <ShopmatePayment />
                 break;
             default:
                 currentStepComponent = <DeliveryForm />
@@ -39,7 +46,7 @@ class CheckoutModal extends EcomPureComponent {
                             <Modal.Title>  CheckOut</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <Steps progressDot current={this.props.profile.current}>
+                            <Steps progressDot current={this.props.profile.currentStep}>
                                 {
                                     steps.map(step => {
                                         return <Step key={step.title} title={step.title} />
