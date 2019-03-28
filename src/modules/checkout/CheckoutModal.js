@@ -26,7 +26,7 @@ class CheckoutModal extends EcomPureComponent {
                 break;
         }
         const steps = [
-            { title: 'Delivery' }, { title: 'Confirmation' }, { title: 'Order' }, { title: 'Finish' },
+            { title: 'Delivery' }, { title: 'Confirmation' }, { title: 'Payment' }, { title: 'Finish' },
         ]
         return (
             <React.Fragment>

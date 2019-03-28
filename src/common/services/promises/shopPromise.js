@@ -108,4 +108,24 @@ export class ShopCart {
             }
         })
     }
+
+    static placeOrder(payload) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await HTTPService.post('orders', payload);
+                const orderDetails = await HTTPService.get(response.orderId)
+                resolve(orderDetails)
+            } catch (error) {
+                reject(error)
+            }
+        })
+    }
+
+    static fetchOrders() {
+        return HTTPService.get('orders/inCustomer')
+    }
+
+    static orderDetails(id) {
+        return HTTPService.get('orders/' + id)
+    }
 }

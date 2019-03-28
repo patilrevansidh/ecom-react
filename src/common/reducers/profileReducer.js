@@ -1,4 +1,4 @@
-import { PROFILE_ACTION } from '../../common/constants/actionString';
+import { PROFILE_ACTION, ORDERS } from '../../common/constants/actionString';
 
 const initialState = {
     showAuthModal: false,
@@ -6,7 +6,10 @@ const initialState = {
     showCartModal: false,
     isSignInForm: true,
     isLoggedIn: false,
-    cart: []
+    cart: [],
+    orders: [],
+    ordersLoading: false,
+    paymentInfo: null
 }
 
 export const profile = (state = initialState, action) => {
@@ -23,6 +26,9 @@ export const profile = (state = initialState, action) => {
             return { ...state, user: { ...state.customer, ...action.payload } }
         case PROFILE_ACTION.FETCH_INFO:
             return { ...state, user: { ...state.user, ...action.payload }, isLoggedIn: true }
+
+        case ORDERS.PLACE_ORDER_COMPLETE:
+            return { ...state, orders: [...state.orders, action.payload] }
         default:
             return state
     }

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 import { handleModal, handleUpdateCustomer } from '../../common/actions/authAction';
 import { ValidationHelper } from '../../common/services/helper/validation';
+import isEqual from 'react-fast-compare';
 
 class DeliveryFormCompnent extends EcomPureComponent {
 
@@ -15,10 +16,15 @@ class DeliveryFormCompnent extends EcomPureComponent {
     }
 
     isValidForm = () => {
-        const { postal_code, address_1, city, country } = this.state;
+        let { postal_code, address_1, city, country } = this.state;
         const { user } = this.props.profile
+        postal_code = postal_code || user && user.postal_code;
+        address_1 = address_1 || user && user.address_1;
+        city = city || user && user.city;
+        country = country || user && user.country;
+
         return !ValidationHelper.isEmptyString(postal_code) && !ValidationHelper.isEmptyString(address_1)
-           && !ValidationHelper.isEmptyString(city)
+            && !ValidationHelper.isEmptyString(city)
     }
 
     handleCheckout = () => {
@@ -27,15 +33,31 @@ class DeliveryFormCompnent extends EcomPureComponent {
             return;
         }
         if (this.isValidForm() && this.state.shipping_id) {
-            const { postal_code, address_1, city, country } = this.state;
-            const payload = {
-                postal_code, address_1, city, country,
-                region: this.state.selectedRegion.region.shipping_region,
-                ...this.state.selectedRegion.region,
-                tax_id: 1,
+            this.handleCustomerInfoUpdate()
+            const orderPayload = {
+                cart_id: this.props.shipping.cart_id,
+                customer_id: this.props.profile.user.customer_id,
+                shipping_id: this.state.shipping_id,
+                tax_id: '1',
             }
-            this.props.handleCustomerAddress(payload)
+            this.props.handlePlaceOrder(orderPayload)
         }
+    }
+
+    handleCustomerInfoUpdate() {
+        let { postal_code, address_1, city, country } = this.state;
+        const { user } = this.props.profile
+        postal_code = postal_code || user && user.postal_code;
+        address_1 = address_1 || user && user.address_1;
+        city = city || user && user.city;
+        country = country || user && user.country;
+        const payload = {
+            postal_code, address_1, city, country,
+            region: this.state.selectedRegion.region.shipping_region,
+            ...this.state.selectedRegion.region,
+            tax_id: 1,
+        }
+        this.props.handleCustomerAddress(payload);
     }
 
     handleSelection = (event) => {
