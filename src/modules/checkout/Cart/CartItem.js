@@ -67,9 +67,12 @@ class CartItem extends EcomPureComponent {
                         </div>
                     })
                 }
-                <div className="row-container pull-right">
-                    < ShopmateButton onClick={this.handleNavigation} label="Checkout" />
-                </div>
+                {
+                    this.props.cart.length > 0 && <div className="row-container pull-right">
+                        < ShopmateButton onClick={this.handleNavigation} label="Checkout" />
+                    </div>
+                    || <div className="text-center margin-top-20 empty-cart-text"> Cart Empty </div>
+                }
             </React.Fragment>
         );
     }
