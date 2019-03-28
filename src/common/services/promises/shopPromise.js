@@ -9,6 +9,19 @@ export class ShopCart {
         return HTTPService.get(url + 'generateUniqueId/');
     }
 
+    static fetchCartDetails(id) {
+        return new Promise(async (resolve, reject) => {
+            const cartItems = await HTTPService.get(url + id);
+            const products = store.getState().products.products;
+            resolve(
+                cartItems.map((item) => {
+                    const product = products.find(product => product.name === item.name);
+                    return { ...item, product_id: product.product_id, image: product.thumbnail }
+                })
+            )
+        })
+    }
+
     static async fetchShipingDetails() {
         const regions = await HTTPService.get('shipping/regions');
         if (Array.isArray(regions)) {

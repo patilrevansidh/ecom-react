@@ -3,13 +3,29 @@ import { ShopCart } from '../services/promises/shopPromise';
 
 export const getShippingDetails = () => {
     return async (dispatchEvent) => {
-        const cart_id = await ShopCart.fetchCardId();
         const shippingCartDetails = await ShopCart.fetchShipingDetails();
         const payload = {
             details: shippingCartDetails,
-            cart_id: cart_id.cart_id
         }
         dispatchEvent({ type: SHIPPING.FETCH_SHIPPING_REGION_COMPLETE, payload })
+    }
+}
+
+export function getCartDetails() {
+    return async (dispatchEvent) => {
+        try {
+            const isCartExist = localStorage.getItem('cartId')
+            if (isCartExist) {
+                const cartDetails = await ShopCart.fetchCartDetails(isCartExist)
+                dispatchEvent({ type: SHIPPING.RESTORE_CART_DETAILS, payload: { cart_id: isCartExist, cart: cartDetails } })
+            } else {
+                const cart_id = await ShopCart.fetchCardId();
+                localStorage.setItem('cartId', cart_id.cart_id)
+                dispatchEvent({ type: SHIPPING.GENERATE_CART, payload: cart_id.cart_id })
+            }
+        } catch (error) {
+
+        }
     }
 }
 

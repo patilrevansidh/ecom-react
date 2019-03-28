@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 import { handleModal, handleUpdateCustomer } from '../../common/actions/authAction';
 import { ValidationHelper } from '../../common/services/helper/validation';
-import isEqual from 'react-fast-compare';
+// import isEqual from 'react-fast-compare';
+import { placeOrder } from '../../common/actions/orderPaymentAction';
 
 class DeliveryFormCompnent extends EcomPureComponent {
 
@@ -133,7 +134,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatchEvent) {
     return {
         handleModal: (payload) => { dispatchEvent(handleModal(payload)) },
-        handleCustomerAddress: (payload) => { dispatchEvent(handleUpdateCustomer(payload)) }
+        handleCustomerAddress: (payload) => { dispatchEvent(handleUpdateCustomer(payload)) },
+        handlePlaceOrder: payload => dispatchEvent(placeOrder(payload))
+
     }
 }
 export const DeliveryForm = connect(mapStateToProps, mapDispatchToProps)(DeliveryFormCompnent)

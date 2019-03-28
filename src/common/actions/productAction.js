@@ -1,5 +1,6 @@
 import { PRODUCTS } from '../constants/actionString';
 import { Products } from '../services/promises/productPromises';
+import { getCartDetails } from '../actions/shippingCartAction';
 
 export function getProducts() {
     return async (dispatch) => {
@@ -7,6 +8,7 @@ export function getProducts() {
             dispatch({ type: PRODUCTS.PRODUCTS_LOADING })
             const response = await Products.fecth();
             dispatch({ type: PRODUCTS.FETCH_PRODUCTS_COMPLETE, payload: { count: response.count, products: response.rows } })
+            dispatch(getCartDetails())
         } catch (error) {
             console.log('Error in Products', error)
         }
