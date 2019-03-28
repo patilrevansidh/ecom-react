@@ -2,34 +2,34 @@ import { PROFILE_ACTION, ORDERS, SHIPPING } from '../../common/constants/actionS
 
 const initialState = {
     showAuthModal: false,
-    showCheckoutModal: true,
+    showCheckoutModal: false,
     showCartModal: false,
     isSignInForm: true,
     isLoggedIn: false,
     orderValue: 0,
     cart: [],
     orders: [
-        {
-            "order_id": 148,
-            "product_id": 20,
-            "attributes": "XL, Yellow",
-            "product_name": "Torch",
-            "quantity": 1,
-            "unit_cost": "17.95",
-            "subtotal": "17.95"
-        }, {
-            "order_id": 148,
-            "product_id": 6,
-            "attributes": "S, White",
-            "product_name": "Alsace",
-            "quantity": 2,
-            "unit_cost": "16.50",
-            "subtotal": "33.00"
-        }
+        // {
+        //     "order_id": 148,
+        //     "product_id": 20,
+        //     "attributes": "XL, Yellow",
+        //     "product_name": "Torch",
+        //     "quantity": 1,
+        //     "unit_cost": "17.95",
+        //     "subtotal": "17.95"
+        // }, {
+        //     "order_id": 148,
+        //     "product_id": 6,
+        //     "attributes": "S, White",
+        //     "product_name": "Alsace",
+        //     "quantity": 2,
+        //     "unit_cost": "16.50",
+        //     "subtotal": "33.00"
+        // }
     ],
     ordersLoading: false,
     paymentInfo: null,
-    currentStep: 1,
+    currentStep: 0,
 }
 
 export const profile = (state = initialState, action) => {
