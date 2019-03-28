@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TextInputGroup } from '../../../common/components/Input';
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import { LABELS } from '../../../common/constants/stringConstants';
@@ -13,7 +13,7 @@ export class AddReviewForm extends EcomPureComponent {
                 <div className="title"> Add a review </div>
                 <TextInputGroup handleChange={handleChange} label="Choose a nickname" name="name" />
                 <TextInputGroup handleChange={handleChange} label="Your Review" name="review" as="textarea" row={3} />
-                <Form.Group as={Row} >
+                <Form.Group as={Col} >
                     <Form.Label column sm={4}> {"Overall Review"} </Form.Label>
                     <Col sm="6" className="review-star">
                         <StarRate handleRate={handleRate} rating={rating} />

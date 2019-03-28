@@ -19,6 +19,10 @@ export class HTTPService {
 
     static get(url, params) {
         return new Promise((resolve, reject) => {
+            axiosInstance.interceptors.request.use((config) => {
+                config.headers["user-key"] = localStorage.getItem('accessToken') || '';
+                return config
+            })
             axiosInstance.get(url, params)
                 .then(response => {
                     if (response.status === 200)
@@ -30,6 +34,10 @@ export class HTTPService {
 
     static put(url, body) {
         return new Promise((resolve, reject) => {
+            axiosInstance.interceptors.request.use((config) => {
+                config.headers["user-key"] = localStorage.getItem('accessToken');
+                return config
+            })
             axiosInstance.put(url, body)
                 .then(response => {
                     if (response.status === 200)
@@ -41,6 +49,10 @@ export class HTTPService {
 
     static post(url, body) {
         return new Promise((resolve, reject) => {
+            axiosInstance.interceptors.request.use((config) => {
+                config.headers["user-key"] = localStorage.getItem('accessToken');
+                return config
+            })
             axiosInstance.post(url, body)
                 .then(response => {
                     if (response.status === 200) {

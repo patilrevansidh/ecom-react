@@ -58,18 +58,12 @@ class ProductDetailContainer extends EcomPureComponent {
     }
 
     handleQuantityChange = (e) => {
-        // if (/[.]/.test(e.target.value)) {
-        //     this.setState({ quantity: this.state.quantity });
-        //     return
-        // };
-        // const value = e.target.value.replace(/[^0-9]*/g, '')
-        // this.setState({ quantity: value });
         this.setState({ quantity: e });
     }
 
     handleAddToCart = () => {
         const { selectedSize, selectedColor } = this.state;
-        if (selectedSize && selectedColor) {
+        if (selectedSize && selectedColor && this.props.shippingCart.cart_id) {
             const payload = {
                 product_id: this.props.selectedProduct.product_id,
                 cart_id: this.props.shippingCart.cart_id,
