@@ -55,3 +55,16 @@ export function proceedtoPayment(payload) {
         dispatchEvent({ type: ORDERS.PROCEED_TO_PAYMENT, payload })
     }
 }
+
+export function handleNextStep() {
+    return (dispatchEvent) => {
+        dispatchEvent({ type: SHIPPING.CHECKOUT_NEXT_STEP })
+    }
+}
+
+export function handleFinishStep() {
+    return (dispatchEvent) => {
+        localStorage.removeItem('cartId')
+        dispatchEvent({ type: SHIPPING.FINISH_STEP })
+    }
+}

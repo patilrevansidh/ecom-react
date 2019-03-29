@@ -6,21 +6,28 @@ import { CardElement, StripeProvider, Elements, injectStripe } from 'react-strip
 import { Form } from 'react-bootstrap';
 import './checkout.scss';
 import { KEYS } from '../../common/constants/stringConstants';
+import { handleNextStep } from '../../common/actions/shippingCartAction';
+
 class Payment extends EcomPureComponent {
     render() {
         return (
             <StripeProvider apiKey={KEYS.STRIPE_PUBLIC_KEY}>
                 <Elements>
-                    <CardForm />
+                    <CardForm handleNextStep={this.props.handleNextStep} />
                 </Elements>
             </StripeProvider>
         );
     }
 }
 class Card_Form extends EcomPureComponent {
-    handleSubmit = e => {
+    handleSubmit = async (e) => {
         e.preventDefault();
-        this.props.stripe.createToken().then(payload => console.log(payload))
+        try {
+            this.props.stripe.createToken()
+            this.props.handleNextStep()
+        } catch (error) {
+            this.props.handleNextStep()
+        }
     }
     render() {
         return (
@@ -42,7 +49,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-
+        handleNextStep: () => dispatch(handleNextStep())
     }
 }
 

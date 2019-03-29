@@ -8,25 +8,7 @@ const initialState = {
     isLoggedIn: false,
     orderValue: 0,
     cart: [],
-    orders: [
-        // {
-        //     "order_id": 148,
-        //     "product_id": 20,
-        //     "attributes": "XL, Yellow",
-        //     "product_name": "Torch",
-        //     "quantity": 1,
-        //     "unit_cost": "17.95",
-        //     "subtotal": "17.95"
-        // }, {
-        //     "order_id": 148,
-        //     "product_id": 6,
-        //     "attributes": "S, White",
-        //     "product_name": "Alsace",
-        //     "quantity": 2,
-        //     "unit_cost": "16.50",
-        //     "subtotal": "33.00"
-        // }
-    ],
+    orders: [],
     ordersLoading: false,
     paymentInfo: null,
     currentStep: 0,
@@ -53,9 +35,11 @@ export const profile = (state = initialState, action) => {
             return { ...state, orders: [...state.orders, ...action.payload] }
         case SHIPPING.CHECKOUT_NEXT_STEP:
             return { ...state, currentStep: state.currentStep + 1 }
+        case SHIPPING.FINISH_STEP:
+            return { ...state, cart: [], orders: [], currentStep: 0, orderValue: 0 }
 
         case ORDERS.PROCEED_TO_PAYMENT:
-            return { ...state, ...action.payload, currentStep: state.currentStep + 1 }
+            return { ...state, ...action.payload, currentStep: state.currentStep + 1, showCheckoutModal: false }
         default:
             return state
     }

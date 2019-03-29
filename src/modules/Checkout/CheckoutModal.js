@@ -7,6 +7,7 @@ import { OrderConfirmation } from './OrderConfirmation';
 import { ShopmatePayment } from './Payment';
 import { handleModal } from '../../common/actions/authAction';
 import { connect } from 'react-redux';
+import { FinishStep } from './FinishShoping';
 
 
 const Step = Steps.Step;
@@ -30,6 +31,9 @@ class CheckoutModal extends EcomPureComponent {
                 break;
             case 2:
                 currentStepComponent = <ShopmatePayment />
+                break;
+            case 3:
+                currentStepComponent = <FinishStep />
                 break;
             default:
                 currentStepComponent = <DeliveryForm />
