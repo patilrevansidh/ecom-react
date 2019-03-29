@@ -40,6 +40,7 @@ export class Products {
     }
 
     static searchProducts(searchProducts) {
-        return;
+        return HTTPService.get('products/search', { query_string: searchProducts })
     }
+
 }

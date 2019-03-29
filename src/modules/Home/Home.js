@@ -6,13 +6,14 @@ import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 
 class Home extends EcomPureComponent {
     render = () => <Row>
-        <ProductList history={this.props.history} data={this.props.products} isLoading={this.props.isLoading} />
+        <ProductList history={this.props.history} data={this.props.products} count={this.props.count} isLoading={this.props.isLoading} />
     </Row>
 }
 
 const mapStateToProps = (state) => {
     return {
         products: state.products.products,
+        count: state.products.count,
         isLoading: state.products.isLoading,
     }
 }

@@ -23,7 +23,8 @@ export class HTTPService {
                 config.headers["user-key"] = localStorage.getItem('accessToken') || '';
                 return config
             })
-            axiosInstance.get(url, params)
+            console.log("{ params: params }", params)
+            axiosInstance.get(url, { params: params })
                 .then(response => {
                     if (response.status === 200)
                         resolve(response.data)

@@ -42,7 +42,12 @@ export function postReview(id, formData) {
 
 export function handleSearchProduct(queryString) {
     return async (dispatchEvent) => {
-        const products = await Products.searchProducts(queryString);
-        dispatchEvent({ type: PRODUCTS.FETCH_PRODUCT_DETAILS_COMPLETE, payload: products })
+        if (queryString) {
+            dispatchEvent({ type: PRODUCTS.PRODUCTS_LOADING })
+            const products = await Products.searchProducts(queryString);
+            dispatchEvent({ type: PRODUCTS.FETCH_PRODUCTS_COMPLETE, payload: products })
+        } else {
+            dispatchEvent(getProducts())
+        }
     }
 }

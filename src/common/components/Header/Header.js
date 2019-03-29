@@ -70,6 +70,9 @@ class SearchForm extends EcomPureComponent {
     state = { query: '' }
 
     onSearchChange = (e) => {
+        if (!e.target.value) {
+            this.props.handleSearch('')
+        }
         this.setState({ query: e.target.value });
     }
 
