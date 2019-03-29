@@ -36,10 +36,10 @@ export const profile = (state = initialState, action) => {
         case SHIPPING.CHECKOUT_NEXT_STEP:
             return { ...state, currentStep: state.currentStep + 1 }
         case SHIPPING.FINISH_STEP:
-            return { ...state, cart: [], orders: [], currentStep: 0, orderValue: 0 }
+            return { ...state, cart: [], orders: [], currentStep: 0, orderValue: 0, showCheckoutModal: false }
 
         case ORDERS.PROCEED_TO_PAYMENT:
-            return { ...state, ...action.payload, currentStep: state.currentStep + 1, showCheckoutModal: false }
+            return { ...state, ...action.payload, currentStep: state.currentStep + 1 }
         default:
             return state
     }

@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import './checkout.scss';
 import ShopmateButton from '../../common/components/Button';
 import { handleFinishStep } from '../../common/actions/shippingCartAction';
+import { EcomPureComponent } from '../../common/components/EcomPureComponent';
 
-class FinishShoping extends Component {
+class FinishShoping extends EcomPureComponent {
     render() {
         return (
             <div className="center">
                 Order Placed Successfully.
                 <div className="margin-top-20">
-                    <ShopmateButton label="Continue Shoping" />
+                    <ShopmateButton onClick={this.props.handleFinishStep} label="Continue Shoping" />
                 </div>
             </div>
         );

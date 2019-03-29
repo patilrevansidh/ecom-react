@@ -23,6 +23,8 @@ export const shippingCart = (state = initialState, action) => {
 
         case SHIPPING.FETCH_TAX_DETAILS:
             return { ...state }
+        case SHIPPING.FINISH_STEP:
+            return { ...state, cart: [] }
 
         default:
             return state

@@ -63,8 +63,11 @@ export function handleNextStep() {
 }
 
 export function handleFinishStep() {
-    return (dispatchEvent) => {
+    return async (dispatchEvent) => {
         localStorage.removeItem('cartId')
         dispatchEvent({ type: SHIPPING.FINISH_STEP })
+        const cart_id = await ShopCart.fetchCardId();
+        localStorage.setItem('cartId', cart_id.cart_id)
+        dispatchEvent({ type: SHIPPING.GENERATE_CART, payload: cart_id.cart_id })
     }
 }
